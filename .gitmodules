@@ -1,0 +1,3 @@
+[submodule "modules/kohana-smarty3"]
+	path = modules/kohana-smarty3
+	url = git://github.com/tchemineau/kohana-smarty3.git
