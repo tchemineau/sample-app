@@ -6,7 +6,7 @@ define([
 	var AccountRouter = Marionette.AppRouter.extend(
 	{
 		appRoutes: {
-			'account': 'account',
+			'account': 'showAccount',
 		},
 
 		controller: AccountController,
