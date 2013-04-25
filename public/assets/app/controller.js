@@ -9,18 +9,6 @@ define([
 			this.options = options;
 		},
 
-		account: function()
-		{
-			var opt = this.options;
-			var App = this.options.app;
-
-			require(['module/account/controller'], function(AccountController)
-			{
-				var accountController = new AccountController(opt);
-				accountController.trigger('page:account');
-			});
-		},
-
 		default: function(actions)
 		{
 			var App = this.options.app;

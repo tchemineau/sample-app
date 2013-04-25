@@ -1,7 +1,8 @@
 define([
 	'marionette',
-	'router'
-], function (Marionette, AppRouter)
+	'router',
+	'module/account/router',
+], function (Marionette, AppRouter, AccountRouter)
 {
 	"use strict";
 
@@ -31,9 +32,8 @@ define([
 
 	App.addInitializer(function()
 	{
-		this.router = new AppRouter({
-			app: App
-		});
+		this.router = new AppRouter({app: App});
+		this.accountRouter = new AccountRouter({app: App});
 	});
 
 	App.addInitializer(function()

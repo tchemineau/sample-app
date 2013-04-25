@@ -1,19 +1,17 @@
 define([
-	'marionette',
-	'app'
-], function(Marionette, App)
+	'marionette'
+], function(Marionette)
 {
-	var AccountController = Marionette.Controller.extend({
+	var controller = {
 
 		initialize: function(options)
 		{
 			this.options = options;
-
-			this.on('page:account', function(){ this.showIndex(); });
 		},
 
-		showIndex: function()
+		showAccount: function(path)
 		{
+			var opt = this.options;
 			var App = this.options.app;
 
 			require(['module/account/view/account'], function(AccountView)
@@ -23,7 +21,7 @@ define([
 			});
 		},
 
-	});
+	};
 
-	return AccountController;
+	return controller;
 });

@@ -7,7 +7,6 @@ define([
 	{
 		appRoutes: {
 			'': 'welcome',
-			'account': 'account',
 			'*actions': 'default'
 		},
 
