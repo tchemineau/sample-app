@@ -132,6 +132,10 @@ Cookie::$salt = 'foobar';
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
  * defaults for the URI.
  */
+Route::set('rest_v1', 'api/v1/(<controller>(/<action>(/<id>)))')
+	->defaults(array(
+		'directory'  => 'RESTv1'
+	));
 Route::set('default', '(<controller>(/<action>(/<id>)))')
 	->defaults(array(
 		'controller' => 'welcome',
