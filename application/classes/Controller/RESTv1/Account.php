@@ -3,7 +3,7 @@
 /**
  * User REST API
  */
-class Controller_RESTv1_User extends RESTful_Controller
+class Controller_RESTv1_Account extends RESTful_Controller
 {
 
 	public function action_get()
