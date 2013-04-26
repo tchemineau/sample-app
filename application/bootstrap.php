@@ -118,6 +118,7 @@ Kohana::modules(array(
 	// 'unittest'   => MODPATH.'unittest',   // Unit testing
 	// 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
 
+	'restful' => dirname(APPPATH).'/modules/kohana-restful',
 	'smarty3' => dirname(APPPATH).'/modules/kohana-smarty3'
 
 	));
