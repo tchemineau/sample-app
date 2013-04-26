@@ -43,7 +43,9 @@
  	// Run the application
 	require(['app'], function (App)
 	{
-		App.start();
+		App.start({
+			url: '/sample-app/'
+		});
 	});
  
 })();

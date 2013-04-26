@@ -12,31 +12,33 @@ define([
 		root: '#approot'
 	});
 
-	App.vent.on('page:error', function(options)
+	App.vent.on('page:error', function()
 	{
 		require(['view/error'], function(ErrorView)
 		{
-			var errorView = new ErrorView(App);
+			var errorView = new ErrorView({app: App});
 			App.root.show(errorView);
 		});
 	});
 
-	App.vent.on('page:welcome', function()
+	App.vent.on('page:welcome', function(options)
 	{
 		require(['view/welcome'], function(WelcomeView)
 		{
-			var welcomeView = new WelcomeView(App);
+			var welcomeView = new WelcomeView({app: App});
 			App.root.show(welcomeView);
 		});
 	});
 
-	App.addInitializer(function()
+	App.addInitializer(function(options)
 	{
-		this.router = new AppRouter({app: App});
-		this.accountRouter = new AccountRouter({app: App});
+		options.app = App;
+
+		this.router = new AppRouter(options);
+		this.accountRouter = new AccountRouter(options);
 	});
 
-	App.addInitializer(function()
+	App.addInitializer(function(options)
 	{
 		App.vent.trigger('page:welcome');
 	});

@@ -15,6 +15,7 @@ define([
 		initialize: function(options)
 		{
 			var App = options.app;
+			var Url = options.url;
 
 			this.controller.initialize({
 				app: options.app
@@ -34,7 +35,7 @@ define([
 
 			Backbone.history.start({
 				pushState: true,
-				root: '/sample-app/'
+				root: Url
 			});
 		}
 	});
