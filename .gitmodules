@@ -4,3 +4,6 @@
 [submodule "kohana"]
 	path = kohana
 	url = git://github.com/kohana/kohana.git
+[submodule "modules/kohana-restful"]
+	path = modules/kohana-restful
+	url = git@github.com:tchemineau/kohana-restful.git
