@@ -1,4 +1,4 @@
-<script type="text/template" id="accountTemplate">
+<script id="accountTemplate" type="text/template">
 	<div>
 		<h1 class="apptitle">My account</h1>
 	</div>
@@ -6,9 +6,9 @@
 		<fieldset>
 			<legend>Personal information</legend>
 			<label>Firstname</label>
-			<input id="account-firstname" type="text" placeholder="Type your firstname…">
+			<input id="account-firstname" type="text" placeholder="Type your firstname…" value="<%= firstname %>">
 			<label>Lasttname</label>
-			<input id="account-lastname" type="text" placeholder="Type your lastname…">
+			<input id="account-lastname" type="text" placeholder="Type your lastname…" value="<%= lastname %>">
 		</fieldset>
 	</form>
 	<div>

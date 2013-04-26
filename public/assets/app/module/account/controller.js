@@ -1,6 +1,7 @@
 define([
-	'marionette'
-], function(Marionette)
+	'marionette',
+	'app'
+], function(Marionette, App)
 {
 	var controller = {
 
@@ -11,12 +12,17 @@ define([
 
 		showAccount: function(path)
 		{
-			var opt = this.options;
 			var App = this.options.app;
 
-			require(['module/account/view/account'], function(AccountView)
+			require([
+				'module/account/model/account',
+				'module/account/view/account'
+			], function(AccountModel, AccountView)
 			{
-				var accountView = new AccountView(App);
+				var accountModel = new AccountModel();
+				accountModel.fetch();
+
+				var accountView = new AccountView({model: accountModel});
 				App.root.show(accountView);
 			});
 		},

@@ -1,8 +1,9 @@
 
 define([
 	'marionette',
+	'app',
 	'text!module/account/template/account.html'
-], function(Marionette, AccountTemplate)
+], function(Marionette, App, AccountTemplate)
 {
 	var AccountView = Marionette.ItemView.extend(
 	{
@@ -20,7 +21,7 @@ define([
 
 		actionSave: function (event)
 		{
-			console.log(event);
+			App.vent.trigger('account:save', this.model);
 		}
 	});
 
