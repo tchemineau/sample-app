@@ -1,16 +1,18 @@
 define([
-	'marionette',
-	'app'
-], function(Marionette, App)
+	'marionette'
+], function(Marionette)
 {
 	var controller = {
 
-		initialize: function(options)
+		initialize: function (options)
 		{
 			this.options = options;
 		},
 
-		showAccount: function(path)
+		/**
+		 * Show account view
+		 */
+		showAccount: function (path)
 		{
 			var App = this.options.app;
 
