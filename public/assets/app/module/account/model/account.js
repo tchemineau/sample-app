@@ -7,6 +7,11 @@ define([
 {
 	var AccountModel = Backbone.Model.extend(
 	{
+		defaults: {
+			firstname: '',
+			lastname: ''
+		},
+
 		initialize: function (options)
 		{
 			App.vent.on('account:save', function(model)
