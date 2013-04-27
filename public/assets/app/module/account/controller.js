@@ -20,10 +20,13 @@ define([
 			], function(AccountModel, AccountView)
 			{
 				var accountModel = new AccountModel();
-				accountModel.fetch();
-
-				var accountView = new AccountView({model: accountModel});
-				App.root.show(accountView);
+				accountModel.fetch({
+					success: function()
+					{
+						var accountView = new AccountView({model: accountModel});
+						App.root.show(accountView);
+					}
+				});
 			});
 		},
 
