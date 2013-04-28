@@ -1,6 +1,7 @@
 define([
+	'require',
 	'marionette'
-], function(Marionette)
+], function(lrequire, Marionette)
 {
 	var controller = {
 
@@ -10,22 +11,43 @@ define([
 		},
 
 		/**
-		 * Show account view
+		 * Register new account
 		 */
-		showAccount: function (path)
+		createAccount: function ()
 		{
 			var App = this.options.app;
 
-			require([
-				'module/account/model/account',
-				'module/account/view/account'
+			lrequire([
+				'./model/account',
+				'./view/createAccount'
+			], function(AccountModel, CreateAccountView)
+			{
+				var accountModel = new AccountModel({app: App});
+				var createAccountView = new CreateAccountView({app: App, model: accountModel});
+
+				App.root.show(createAccountView);
+			});
+		},
+
+		/**
+		 * Show account view
+		 */
+		showAccount: function ()
+		{
+			var App = this.options.app;
+
+			lrequire([
+				'./model/account',
+				'./view/account'
 			], function(AccountModel, AccountView)
 			{
-				var accountModel = new AccountModel();
+				var accountModel = new AccountModel({app: App});
+
 				accountModel.fetch({
 					success: function()
 					{
-						var accountView = new AccountView({model: accountModel});
+						var accountView = new AccountView({app: App, model: accountModel});
+
 						App.root.show(accountView);
 					}
 				});
