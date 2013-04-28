@@ -29,12 +29,12 @@ define([
 				if (href.slice(protocol.length) !== protocol)
 				{
 					evt.preventDefault();
-					App.router.navigate(href, true);
+					App.router.navigate(href, {trigger: true});
 				}
 			});
 
 			Backbone.history.start({
-				pushState: true,
+				pushState: false,
 				root: Url
 			});
 		}
