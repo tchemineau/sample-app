@@ -1,0 +1,27 @@
+<script id="createAccountTemplate" type="text/template">
+	<div>
+		<h1 class="apptitle">Create new account</h1>
+	</div>
+	<form>
+		<fieldset>
+			<legend>Mandatory information</legend>
+			<label>Email</label>
+			<input id="account-email" type="text" placeholder="Type your email address…" />
+			<label>Password</label>
+			<input id="account-password" type="password" placeholder="password" />
+		</fieldset>
+		<fieldset>
+			<legend>Personal information</legend>
+			<label>Firstname</label>
+			<input id="account-firstname" type="text" placeholder="Type your firstname…" value="<%= firstname %>">
+			<label>Lasttname</label>
+			<input id="account-lastname" type="text" placeholder="Type your lastname…" value="<%= lastname %>">
+		</fieldset>
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary">Create</button>
+		</div>
+	</form>
+	<div>
+		<a href="" class="btn"><i class="icon-arrow-left"></i></a>
+	</div>
+</script>
