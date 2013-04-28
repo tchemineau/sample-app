@@ -1,19 +1,24 @@
 
 define([
 	'backbone',
-	'marionette',
-	'app'
-], function(Backbone, Marionette, App)
+	'marionette'
+], function(Backbone, Marionette)
 {
 	var AccountModel = Backbone.Model.extend(
 	{
 		defaults: {
+			email: '',
 			firstname: '',
-			lastname: ''
+			lastname: '',
+			password: ''
 		},
 
 		initialize: function (options)
 		{
+			this.options = options;
+
+			var App = this.options.app;
+
 			App.vent.on('account:save', function(model)
 			{
 				model.saveData();
