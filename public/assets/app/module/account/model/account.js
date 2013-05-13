@@ -13,21 +13,8 @@ define([
 			password: ''
 		},
 
-		initialize: function (options)
-		{
-			this.options = options;
-
-			var App = this.options.app;
-
-			App.vent.on('account:save', function(model)
-			{
-				model.saveData();
-			});
-		},
-
 		saveData: function ()
 		{
-			console.log('save data');
 			this.save();
 		},
 
