@@ -1,27 +1,59 @@
 <script id="createAccountTemplate" type="text/template">
+
 	<div>
 		<h1 class="apptitle">Create new account</h1>
 	</div>
-	<form method="POST">
+
+	<form method="POST" class="form-horizontal">
+
 		<fieldset>
+
 			<legend>Mandatory information</legend>
-			<label>Email</label>
-			<input id="account-email" type="text" placeholder="Type your email address…" />
-			<label>Password</label>
-			<input id="account-password" type="password" placeholder="password" />
+
+			<div id="account-email-control" class="control-group">
+				<label class="control-label" for="account-email">Email</label>
+				<div class="controls">
+					<input id="account-email" type="email" placeholder="Type your email address…" required />
+				</div>
+			</div>
+
+			<div id="account-password-control" class="control-group">
+				<label class="control-label" for="account-password">Password</label>
+				<div class="controls">
+					<input id="account-password" type="password" placeholder="password" required />
+				</div>
+			</div>
+			
 		</fieldset>
+
 		<fieldset>
+
 			<legend>Personal information</legend>
-			<label>Firstname</label>
-			<input id="account-firstname" type="text" placeholder="Type your firstname…" value="<%= firstname %>">
-			<label>Lasttname</label>
-			<input id="account-lastname" type="text" placeholder="Type your lastname…" value="<%= lastname %>">
+
+			<div id="account-firstname-control" class="control-group">
+				<label class="control-label" for="account-firstname">Firstname</label>
+				<div class="controls">
+					<input id="account-firstname" type="text" placeholder="Type your firstname…" />
+				</div>
+			</div>
+
+			<div id="account-lastname-control" class="control-group">
+				<label class="control-label" for="account-lastname">Lastname</label>
+				<div class="controls">
+					<input id="account-lastname" type="text" placeholder="Type your lastname…" />
+				</div>
+			</div>
+
 		</fieldset>
+
 		<div class="form-actions">
 			<button id="account-create-btn" type="submit" class="btn btn-primary">Create</button>
 		</div>
+
 	</form>
+
 	<div>
 		<a href="" class="btn"><i class="icon-arrow-left"></i></a>
 	</div>
+
 </script>
