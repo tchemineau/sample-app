@@ -2,7 +2,7 @@
 	<div>
 		<h1 class="apptitle">Create new account</h1>
 	</div>
-	<form>
+	<form method="POST">
 		<fieldset>
 			<legend>Mandatory information</legend>
 			<label>Email</label>
@@ -18,7 +18,7 @@
 			<input id="account-lastname" type="text" placeholder="Type your lastname…" value="<%= lastname %>">
 		</fieldset>
 		<div class="form-actions">
-			<button type="submit" class="btn btn-primary">Create</button>
+			<button id="account-create-btn" type="submit" class="btn btn-primary">Create</button>
 		</div>
 	</form>
 	<div>
