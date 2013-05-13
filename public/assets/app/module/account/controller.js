@@ -22,8 +22,13 @@ define([
 				'./view/createAccount'
 			], function(AccountModel, CreateAccountView)
 			{
-				var accountModel = new AccountModel({app: App});
+				var accountModel = new AccountModel();
 				var createAccountView = new CreateAccountView({app: App, model: accountModel});
+
+				App.vent.on('account:save', function(model)
+				{
+					accountModel.saveData();
+				});
 
 				App.root.show(createAccountView);
 			});

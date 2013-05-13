@@ -9,7 +9,7 @@ define([
 		template: CreateAccountTemplate,
 
 		events: {
-			'click #account-create': 'actionCreate'
+			'click #account-create-btn': 'actionCreate'
 		},
 
 		ui: {
@@ -21,7 +21,19 @@ define([
 
 		actionCreate: function (event)
 		{
-			App.vent.trigger('account:create', this.model);
+			var App = this.options.app;
+
+			event.preventDefault();
+			event.stopPropagation();
+
+			this.model.set({
+				'email': this.ui.email.val(),
+				'password': this.ui.password.val(),
+				'firstname': this.ui.firstname.val(),
+				'lastname': this.ui.lastname.val()
+			});
+
+			App.vent.trigger('account:save', this.model);
 		}
 	});
 
