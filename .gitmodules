@@ -1,9 +1,12 @@
-[submodule "modules/kohana-smarty3"]
-	path = modules/kohana-smarty3
-	url = git://github.com/tchemineau/kohana-smarty3.git
 [submodule "kohana"]
 	path = kohana
 	url = git://github.com/kohana/kohana.git
+[submodule "modules/kohana-mongodb"]
+	path = modules/kohana-mongodb
+	url = git://github.com/tchemineau/kohana-mongodb.git
 [submodule "modules/kohana-restful"]
 	path = modules/kohana-restful
 	url = git@github.com:tchemineau/kohana-restful.git
+[submodule "modules/kohana-smarty3"]
+	path = modules/kohana-smarty3
+	url = git://github.com/tchemineau/kohana-smarty3.git
