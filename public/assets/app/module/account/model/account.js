@@ -13,6 +13,17 @@ define([
 			password: ''
 		},
 
+		validation: {
+			email: {
+				required: true,
+				pattern: 'email'
+			},
+			password: {
+				required: true,
+				minLength: 8
+			}
+		},
+
 		saveData: function ()
 		{
 			this.save();

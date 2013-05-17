@@ -22,14 +22,20 @@ class Controller_RESTv1_Account extends RESTful_Controller
 	{
 		$data = $this->request->body();
 		$account = Model::factory('App_Account');
+		$validation = $account->validate_data((array) $data);
 
-		if (!$account->validate_data((array) $data))
-			throw HTTP_Exception::factory(400);
+		if ($validation['status'])
+		{
+			$account->values($data);
+			$account->save();
 
-		$account->values($data);
-		$account->save();
-
-		$this->response->status(201);
+			$this->response->status(201);
+		}
+		else
+		{
+			$this->response->body(json_encode(array('error' => $validation['errors'])));
+			$this->response->status(400);
+		}
 	}
 
 	public function action_delete ()

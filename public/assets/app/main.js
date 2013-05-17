@@ -5,11 +5,12 @@
  	// Configure Requirement
 	require.config({
 		paths: {
-			backbone: '../lib/backbone.min',
-			bootstrap: '../lib/bootstrap/js/bootstrap.min',
-			jquery: '../lib/jquery-1.9.1.min',
-			marionette: '../lib/backbone.marionette.min',
-			underscore: '../lib/underscore.min'
+			'backbone': '../lib/backbone.min',
+			'backbone.validation': '../lib/backbone.validation.amd.min',
+			'bootstrap': '../lib/bootstrap/js/bootstrap.min',
+			'jquery': '../lib/jquery-1.9.1.min',
+			'marionette': '../lib/backbone.marionette.min',
+			'underscore': '../lib/underscore.min'
 		},
 		shim: {
 			backbone: {
@@ -24,7 +25,7 @@
 				exports: '$'
 			},
 			marionette: {
-				deps: ['backbone'],
+				deps: ['backbone', 'backbone.validation'],
 				exports: 'Backbone.Marionette'
 			},
 			underscore: {

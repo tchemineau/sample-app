@@ -22,7 +22,10 @@ class Model_App_Account extends Model
 			->rule('firstname', 'regex', array(':value', '/[-\w.,+]+/'))
 			->rule('lastname', 'regex', array(':value', '/[-\w.,+]+/'));
 
-		return $validation->check();
+		return array(
+			'status' => $validation->check(),
+			'errors' => $validation->errors()
+		);
 	}
 
 }
