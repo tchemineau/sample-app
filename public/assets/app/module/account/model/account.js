@@ -13,20 +13,9 @@ define([
 			password: ''
 		},
 
-		validation: {
-			email: {
-				required: true,
-				pattern: 'email'
-			},
-			password: {
-				required: true,
-				minLength: 8
-			}
-		},
-
-		saveData: function ()
+		saveData: function (options)
 		{
-			this.save();
+			this.save({}, options);
 		},
 
 		url: 'api/v1/account'
