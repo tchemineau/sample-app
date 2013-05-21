@@ -6,29 +6,33 @@
 	require.config({
 		paths: {
 			'backbone': '../lib/backbone.min',
-			'backbone.validation': '../lib/backbone.validation.amd.min',
 			'bootstrap': '../lib/bootstrap/js/bootstrap.min',
 			'jquery': '../lib/jquery-1.9.1.min',
 			'marionette': '../lib/backbone.marionette.min',
+			//'marionette.formview': '../lib/backbone.marionette.formview.min',
+			'marionette.formview': '../lib/backbone.marionette.formview',
 			'underscore': '../lib/underscore.min'
 		},
 		shim: {
-			backbone: {
+			'backbone': {
 				deps: ['underscore', 'jquery', 'bootstrap'],
 				exports: 'Backbone'
 			},
-			bootstrap: {
+			'bootstrap': {
 				deps: ['jquery'],
 				exports: "bootstrap"
 			},
-			jquery: {
+			'jquery': {
 				exports: '$'
 			},
-			marionette: {
-				deps: ['backbone', 'backbone.validation'],
+			'marionette': {
+				deps: ['backbone'],
 				exports: 'Backbone.Marionette'
 			},
-			underscore: {
+			'marionette.formview': {
+				deps: ['marionette']
+			},
+			'underscore': {
 				exports: '_'
 			},
 		}
