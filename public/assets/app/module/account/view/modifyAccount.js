@@ -2,12 +2,12 @@
 define([
 	'marionette',
 	'app',
-	'text!module/account/template/account.html'
-], function(Marionette, App, AccountTemplate)
+	'text!module/account/template/modifyAccount.html'
+], function(Marionette, App, ModifyAccountTemplate)
 {
-	var AccountView = Marionette.ItemView.extend(
+	var ModifyAccountView = Marionette.ItemView.extend(
 	{
-		template: AccountTemplate,
+		template: ModifyAccountTemplate,
 
 		events: {
 			'blur #account-firstname': 'actionSave',
@@ -25,5 +25,5 @@ define([
 		}
 	});
 
-	return AccountView;
+	return ModifyAccountView;
 });

@@ -27,7 +27,17 @@ define([
 
 				App.vent.on('account:save', function(model)
 				{
-					accountModel.saveData();
+					accountModel.saveData({
+						error: function (model, xhr, options)
+						{
+							App.vent.trigger('account:save:error', model, JSON.parse(xhr.responseText));
+						}
+					});
+				});
+
+				App.vent.on('account:save:error', function(model, errors)
+				{
+					createAccountView.showErrors(errors);
 				});
 
 				App.root.show(createAccountView);
@@ -43,17 +53,17 @@ define([
 
 			lrequire([
 				'./model/account',
-				'./view/account'
-			], function(AccountModel, AccountView)
+				'./view/modifyAccount'
+			], function(AccountModel, ModifyAccountView)
 			{
 				var accountModel = new AccountModel({app: App});
 
 				accountModel.fetch({
 					success: function()
 					{
-						var accountView = new AccountView({app: App, model: accountModel});
+						var modifyAccountView = new ModifyAccountView({app: App, model: accountModel});
 
-						App.root.show(accountView);
+						App.root.show(modifyAccountView);
 					}
 				});
 			});

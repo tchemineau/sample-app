@@ -4,6 +4,8 @@
 		<h1 class="apptitle">Create new account</h1>
 	</div>
 
+	<div id="account-alert-container"></div>
+
 	<form method="POST" class="form-horizontal">
 
 		<fieldset>
@@ -13,14 +15,14 @@
 			<div id="account-email-control" class="control-group">
 				<label class="control-label" for="account-email">Email</label>
 				<div class="controls">
-					<input id="account-email" type="email" name="email" placeholder="Type your email address…" required />
+					<input id="account-email" type="email" name="email" placeholder="Type your email address…" data-field="email" />
 				</div>
 			</div>
 
 			<div id="account-password-control" class="control-group">
 				<label class="control-label" for="account-password">Password</label>
 				<div class="controls">
-					<input id="account-password" type="password" name="password" placeholder="password" required />
+					<input id="account-password" type="password" name="password" placeholder="password" data-field="password" />
 				</div>
 			</div>
 			
