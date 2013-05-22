@@ -10,3 +10,6 @@
 [submodule "modules/kohana-smarty3"]
 	path = modules/kohana-smarty3
 	url = git://github.com/tchemineau/kohana-smarty3.git
+[submodule "modules/kohana-password"]
+	path = modules/kohana-password
+	url = git@github.com:tchemineau/kohana-password.git

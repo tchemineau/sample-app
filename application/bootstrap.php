@@ -119,6 +119,7 @@ Kohana::modules(array(
 	// 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
 
 	'mongodb' => dirname(APPPATH).'/modules/kohana-mongodb',
+	'password' => dirname(APPPATH).'/modules/kohana-password',
 	'restful' => dirname(APPPATH).'/modules/kohana-restful',
 	'smarty3' => dirname(APPPATH).'/modules/kohana-smarty3'
 
