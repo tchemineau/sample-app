@@ -10,7 +10,7 @@ class Model_App_Account extends Model
 	 * @param {array} $data
 	 * @return {array}
 	 */
-	public static function format ( array $data )
+	public static function format_data ( array $data )
 	{
 		if (isset($data['password']))
 		{
@@ -18,6 +18,24 @@ class Model_App_Account extends Model
 		}
 
 		return $data;
+	}
+
+	/**
+	 * Load by email address ?
+	 *
+	 * @param {string} $email
+	 */
+	public function load_by_email ( $email )
+	{
+		$response = $this->_collection->findOne(array('email' => $email));
+
+		if ($response)
+		{
+			$this->values($response);
+			$this->_loaded = true;
+		}
+
+		return $this;
 	}
 
 	/**
@@ -30,7 +48,7 @@ class Model_App_Account extends Model
 	{
 		if ($format)
 		{
-			$data = $this->format((array) $data);
+			$data = $this->format_data((array) $data);
 		}
 
 		return parent::values((array) $data);
