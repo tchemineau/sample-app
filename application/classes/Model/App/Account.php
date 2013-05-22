@@ -4,7 +4,45 @@ class Model_App_Account extends Model
 {
 	public $_reserved = array();
 
-	public static function validate_data ( $data )
+	/**
+	 * Format values
+	 *
+	 * @param {array} $data
+	 * @return {array}
+	 */
+	public static function format ( array $data )
+	{
+		if (isset($data['password']))
+		{
+			$data['password'] = Password::instance()->hash($data['password']);
+		}
+
+		return $data;
+	}
+
+	/**
+	 * Set values
+	 *
+	 * @param {array} $data
+	 * @param {boolean} $format
+	 */
+	public function values ( $data, $format = true )
+	{
+		if ($format)
+		{
+			$data = $this->format((array) $data);
+		}
+
+		return parent::values((array) $data);
+	}
+
+	/**
+	 * Validate data.
+	 *
+	 * @param {array} $data
+	 * @return {array}
+	 */
+	public static function validate_data ( array $data )
 	{
 		$validation = Validation::factory($data)
 
