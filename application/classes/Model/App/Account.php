@@ -2,6 +2,30 @@
 
 class Model_App_Account extends Model
 {
+
+	/**
+	 * Email
+	 */
+	public $email;
+
+	/**
+	 * Firstname
+	 */
+	public $firstname;
+
+	/**
+	 * Lastname
+	 */
+	public $lastname;
+
+	/**
+	 * Password
+	 */
+	public $password;
+
+	/**
+	 * Reserved values to not return
+	 */
 	public $_reserved = array();
 
 	/**
