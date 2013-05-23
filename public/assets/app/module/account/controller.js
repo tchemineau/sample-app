@@ -22,22 +22,9 @@ define([
 				'./view/createAccount'
 			], function(AccountModel, CreateAccountView)
 			{
-				var accountModel = new AccountModel();
-				var createAccountView = new CreateAccountView({app: App, model: accountModel});
-
-				App.vent.on('account:save', function(model)
-				{
-					accountModel.saveData({
-						error: function (model, xhr, options)
-						{
-							App.vent.trigger('account:save:error', model, JSON.parse(xhr.responseText));
-						}
-					});
-				});
-
-				App.vent.on('account:save:error', function(model, errors)
-				{
-					createAccountView.showErrors(errors);
+				var createAccountView = new CreateAccountView({
+					app: App,
+					model: new AccountModel()
 				});
 
 				App.root.show(createAccountView);
