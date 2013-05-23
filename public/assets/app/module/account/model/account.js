@@ -13,9 +13,24 @@ define([
 			password: ''
 		},
 
-		saveData: function (options)
+		parse: function (response, xhr)
 		{
-			this.save({}, options);
+			if (_.isObject(response.data))
+			{
+				return response.data;
+			}
+
+			return response;
+		},
+
+		savedata: function ()
+		{
+			var me = this;
+
+			this.save({}, {error: function (response, xhr)
+			{
+				me.trigger('account:error', JSON.parse(xhr.responseText), xhr);
+			}});
 		},
 
 		url: 'api/v1/account'
