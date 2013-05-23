@@ -3,15 +3,19 @@
 /**
  * User REST API
  */
-class Controller_RESTv1_Account extends RESTful_Controller
+class Controller_RESTv1_Account extends Controller_RESTv1_Core
 {
 
 	public function action_get ()
 	{
-		$this->response->body(json_encode(array(
-			'firstname' => 'John',
-			'lastname' => 'Doe'
-		)));
+		return $this->response(self::build_response(
+			'Account exists',
+			'success',
+			array(
+				'firstname' => 'John',
+				'lastname' => 'Doe'
+			)
+		));
 	}
 
 	public function action_update ()
@@ -32,10 +36,14 @@ class Controller_RESTv1_Account extends RESTful_Controller
 		// If validation failed, return the appropriate errors
 		if (!$validation['status'])
 		{
-			$this->response->body(json_encode(array('error' => $validation['errors'])));
-			$this->response->status(400);
-
-			return;
+			return $this->response(self::build_response(
+				'Validation failed',
+				'failure',
+				array(),
+				array(
+					'error' => $validation['errors']
+				)
+			), 400);
 		}
 
 		// Try to load the account by email (email is mandatory)
@@ -43,16 +51,20 @@ class Controller_RESTv1_Account extends RESTful_Controller
 
 		if ($account->loaded())
 		{
-			$this->response->status(409);
-
-			return;
+			return $this->response(self::build_response(
+				'Account already exists',
+				'failure'
+			), 409);
 		}
 
 		// Nothing wrong, save data
 		$account->values($data)->save();
 
 		// Return appropriate HTTP code
-		$this->response->status(201);
+		return $this->response(self::build_response(
+			'Account created',
+			'success'
+		), 201);
 	}
 
 	public function action_delete ()
