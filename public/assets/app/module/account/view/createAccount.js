@@ -9,13 +9,27 @@ define([
 	{
 		template: CreateAccountTemplate,
 
-                ui: {
-                        email: '#account-email',
-                        password: '#account-password',
-                        firstname: '#account-firstname',
-                        lastname: '#account-lastname'
-                },
+		/**
+		 * Initialize stuff like event listeners
+		 */
+		initialize: function ()
+		{
+			this.listenTo(this.model, 'account:error', this.onModelError);
+		},
 
+		/**
+		 * Declare variables to access template content
+		 */
+		ui: {
+			email: '#account-email',
+			password: '#account-password',
+			firstname: '#account-firstname',
+			lastname: '#account-lastname'
+		},
+
+		/**
+		 * Declare inputs that should be validate
+		 */
 		fields: {
 			email: {
 				el: '#account-email',
@@ -33,6 +47,9 @@ define([
 			}
 		},
 
+		/**
+		 * Specific validation rules
+		 */
 		rules: {
 			password: function(val)
 			{
@@ -40,18 +57,49 @@ define([
 			}
 		},
 
+		/**
+		 * What to do if an error occurs on the model
+		 */
+		onModelError: function (response, xhr)
+		{
+			this.showGlobalError(response.message);
+		},
+
+		/**
+		 * Save model when submit me
+		 */
 		onSubmit: function (evt)
 		{
 			evt.preventDefault();
 
-			var data = this.serializeFormData();
-			this.model.set(data);
-
-			var App = this.options.app;
-			App.vent.trigger('account:save', this.model);
+			this.model.set(this.serializeFormData()).savedata();
 		},
 
+		/**
+		 * What to do if the submit fails
+		 */
 		onSubmitFail: function (errors)
+		{
+			this.showLocalErrors(errors);
+		},
+
+		/**
+		 * Show an error
+		 */
+		showGlobalError: function (message)
+		{
+			var container = $('#account-alert-container');
+			var alertbox = $('<div class="alert alert-error" />')
+				.append($('<button type="button" class="close" data-dismiss="alert">&times;</button>'))
+				.append('<strong>Error</strong>: '+message);
+
+			alertbox.appendTo(container).alert();
+		},
+
+		/**
+		 * Highlight input in error
+		 */
+		showLocalErrors: function (errors)
 		{
 			var cpt = 0;
 
@@ -68,17 +116,8 @@ define([
 
 				cpt++;
 			});
-		},
-
-		showErrors: function (errors)
-		{
-			var container = $('#account-alert-container');
-			var alertbox = $('<div class="alert alert-error" />')
-				.append($('<button type="button" class="close" data-dismiss="alert">&times;</button>'))
-				.append('<strong>Error</strong>: Something went wrong');
-
-			alertbox.appendTo(container).alert();
 		}
+
 	});
 
 	return CreateAccountView;
