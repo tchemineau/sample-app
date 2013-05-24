@@ -1,0 +1,10 @@
+<?php defined('SYSPATH') or die('No direct script access.');
+
+/**
+ * Define your local settings here.
+ * They will not be overriden by software update.
+ */
+$local = array(
+
+);
+
