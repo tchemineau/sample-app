@@ -13,3 +13,6 @@
 [submodule "modules/kohana-password"]
 	path = modules/kohana-password
 	url = git@github.com:tchemineau/kohana-password.git
+[submodule "modules/kohana-email"]
+	path = modules/kohana-email
+	url = git://github.com/tchemineau/kohana-email.git
