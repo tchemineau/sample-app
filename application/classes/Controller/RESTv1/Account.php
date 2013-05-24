@@ -60,6 +60,9 @@ class Controller_RESTv1_Account extends Controller_RESTv1_Core
 		// Nothing wrong, save data
 		$account->values($data)->save();
 
+		// Send a mail
+		$this->_send_email($account, 'Account created');
+
 		// Return appropriate HTTP code
 		return $this->response(self::build_response(
 			'Account created',
@@ -69,6 +72,27 @@ class Controller_RESTv1_Account extends Controller_RESTv1_Core
 
 	public function action_delete ()
 	{
+	}
+
+	private function _send_email ( $account, $title )
+	{
+		// Get the email service
+		$email = Service::factory('Email');
+
+		// Build headers
+		$headers = $email->build_headers($account->email, $title);
+
+		// Build content
+		$content = $email->build_content(
+			'Account.'.ucwords($this->request->action()),
+			array(
+				'email' => $account->email,
+				'firstname' => $account->firstname,
+				'lastname' => $account->lastname
+			)
+		);
+
+		return $email->send($headers, $content);
 	}
 
 }
