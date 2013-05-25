@@ -17,10 +17,11 @@ $config = array(
 /**
  * !! This will load local settings.
  */
-if (file_exists(APPPATH.'config/config.local.php'))
+if (file_exists(APPPATH.'config/app.local.php'))
 {
-        require_once APPPATH.'config/config.local.php';
+        require_once APPPATH.'config/app.local.php';
         $config = array_merge($config, $local);
+        unset($local);
 }
 
 /**

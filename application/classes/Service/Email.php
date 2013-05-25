@@ -35,8 +35,8 @@ class Service_Email extends Service
 		if (is_null($from))
 		{
 			$from = array(
-				Kohana::$config->load('config.email_from_address'),
-				Kohana::$config->load('config.email_from_name')
+				Kohana::$config->load('app.email_from_address'),
+				Kohana::$config->load('app.email_from_name')
 			);
 		}
 
