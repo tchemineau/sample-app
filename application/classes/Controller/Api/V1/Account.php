@@ -3,7 +3,7 @@
 /**
  * User REST API
  */
-class Controller_RESTv1_Account extends Controller_RESTv1_Core
+class Controller_Api_V1_Account extends Controller_Api_V1_Core
 {
 
 	public function action_get ()

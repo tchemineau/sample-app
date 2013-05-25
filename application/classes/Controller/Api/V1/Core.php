@@ -3,7 +3,7 @@
 /**
  * Core REST API
  */
-abstract class Controller_RESTv1_Core extends RESTful_Controller
+abstract class Controller_Api_V1_Core extends RESTful_Controller
 {
 
 	/**
