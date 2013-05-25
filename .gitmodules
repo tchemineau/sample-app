@@ -1,18 +1,18 @@
-[submodule "kohana"]
-	path = kohana
+[submodule "vendor/kohana"]
+	path = vendor/kohana
 	url = git://github.com/kohana/kohana.git
-[submodule "modules/kohana-mongodb"]
-	path = modules/kohana-mongodb
-	url = git://github.com/tchemineau/kohana-mongodb.git
-[submodule "modules/kohana-restful"]
-	path = modules/kohana-restful
-	url = git@github.com:tchemineau/kohana-restful.git
-[submodule "modules/kohana-smarty3"]
-	path = modules/kohana-smarty3
-	url = git://github.com/tchemineau/kohana-smarty3.git
-[submodule "modules/kohana-password"]
-	path = modules/kohana-password
-	url = git@github.com:tchemineau/kohana-password.git
-[submodule "modules/kohana-email"]
-	path = modules/kohana-email
+[submodule "vendor/kohana-email"]
+	path = vendor/kohana-email
 	url = git://github.com/tchemineau/kohana-email.git
+[submodule "vendor/kohana-mongodb"]
+	path = vendor/kohana-mongodb
+	url = git://github.com/tchemineau/kohana-mongodb.git
+[submodule "vendor/kohana-password"]
+	path = vendor/kohana-password
+	url = git://github.com/tchemineau/kohana-password.git
+[submodule "vendor/kohana-restful"]
+	path = vendor/kohana-restful
+	url = git://github.com/tchemineau/kohana-restful.git
+[submodule "vendor/kohana-smarty3"]
+	path = vendor/kohana-smarty3
+	url = git://github.com/tchemineau/kohana-smarty3.git
