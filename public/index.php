@@ -13,7 +13,7 @@ $application = '../application';
  *
  * @link http://kohanaframework.org/guide/about.install#modules
  */
-$modules = '../kohana/modules';
+$modules = '../vendor/kohana/modules';
 
 /**
  * The directory in which the Kohana resources are located. The system
@@ -21,7 +21,7 @@ $modules = '../kohana/modules';
  *
  * @link http://kohanaframework.org/guide/about.install#system
  */
-$system = '../kohana/system';
+$system = '../vendor/kohana/system';
 
 /**
  * The default extension of resource files. If you change this, all resources

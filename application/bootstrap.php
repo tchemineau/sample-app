@@ -118,11 +118,11 @@ Kohana::modules(array(
 	// 'unittest'   => MODPATH.'unittest',   // Unit testing
 	// 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
 
-	'email' => dirname(APPPATH).'/modules/kohana-email',
-	'mongodb' => dirname(APPPATH).'/modules/kohana-mongodb',
-	'password' => dirname(APPPATH).'/modules/kohana-password',
-	'restful' => dirname(APPPATH).'/modules/kohana-restful',
-	'smarty3' => dirname(APPPATH).'/modules/kohana-smarty3'
+	'email' => dirname(APPPATH).'/vendor/kohana-email',
+	'mongodb' => dirname(APPPATH).'/vendor/kohana-mongodb',
+	'password' => dirname(APPPATH).'/vendor/kohana-password',
+	'restful' => dirname(APPPATH).'/vendor/kohana-restful',
+	'smarty3' => dirname(APPPATH).'/vendor/kohana-smarty3'
 
 	));
 
