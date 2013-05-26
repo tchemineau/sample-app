@@ -27,72 +27,42 @@ class Controller_Api_V1_Account extends Controller_Api_V1_Core
 		// Get data from the body sent by backbone
 		$data = $this->request->body();
 
-		// Get the account model
-		$account = Model::factory('App_Account');
+		// Get the account service
+		$account = Service::factory('Account');
 
-		// Validate data according to account model rules
-		$validation = $account->validate_data((array) $data);
-
-		// If validation failed, return the appropriate errors
-		if (!$validation['status'])
+		try
 		{
-			return $this->response(self::build_response(
-				'Validation failed',
-				'failure',
-				array(),
-				array(
-					'error' => $validation['errors']
-				)
-			), 400);
+			// Create the account
+			$account->create((array) $data);
+
+			// Return appropriate HTTP code
+			$this->response(self::build_response(
+				'Account created',
+				'success'
+			), 201);
 		}
-
-		// Try to load the account by email (email is mandatory)
-		$account->load_by_email($data->email);
-
-		if ($account->loaded())
+		catch (Service_Exception_AlreadyExists $e)
 		{
-			return $this->response(self::build_response(
+			$this->response(self::build_response(
 				'Account already exists',
 				'failure'
 			), 409);
 		}
-
-		// Nothing wrong, save data
-		$account->values($data)->save();
-
-		// Send a mail
-		$this->_send_email($account, 'Account created');
-
-		// Return appropriate HTTP code
-		return $this->response(self::build_response(
-			'Account created',
-			'success'
-		), 201);
+		catch (Service_Exception_InvalidData $e)
+		{
+			$this->response(self::build_response(
+				'Validation failed',
+				'failure',
+				array(),
+				array(
+					'error' => $e->data()
+				)
+			), 400);
+		}
 	}
 
 	public function action_delete ()
 	{
-	}
-
-	private function _send_email ( $account, $title )
-	{
-		// Get the email service
-		$email = Service::factory('Email');
-
-		// Build headers
-		$headers = $email->build_headers($account->email, $title);
-
-		// Build content
-		$content = $email->build_content(
-			'Account.'.ucwords($this->request->action()),
-			array(
-				'email' => $account->email,
-				'firstname' => $account->firstname,
-				'lastname' => $account->lastname
-			)
-		);
-
-		return $email->send($headers, $content);
 	}
 
 }
