@@ -44,14 +44,14 @@ class Controller_Api_V1_Account extends Controller_Api_V1_Core
 		catch (Service_Exception_AlreadyExists $e)
 		{
 			$this->response(self::build_response(
-				'Account already exists',
+				$e->getMessage(),
 				'failure'
 			), 409);
 		}
 		catch (Service_Exception_InvalidData $e)
 		{
 			$this->response(self::build_response(
-				'Validation failed',
+				$e->getMessage(),
 				'failure',
 				array(),
 				array(

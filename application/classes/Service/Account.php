@@ -31,7 +31,7 @@ class Service_Account extends Service
 
 		if ($account->loaded())
 		{
-			throw Service_Exception::factory('AlreadyExists', 'Account already exists');
+			throw Service_Exception::factory('AlreadyExists', 'Account :email already exists', array(':email' => $data['email']));
 		}
 
 		// Nothing wrong, save data
