@@ -24,6 +24,11 @@ class Model_App_Account extends Model
 	public $password;
 
 	/**
+	 * Token
+	 */
+	public $token;
+
+	/**
 	 * Reserved values to not return
 	 */
 	public $_reserved = array();
@@ -39,6 +44,11 @@ class Model_App_Account extends Model
 		if (isset($data['password']))
 		{
 			$data['password'] = Password::instance()->hash($data['password']);
+		}
+
+		if (!isset($data['token']))
+		{
+			$data['token'] = Password::instance()->random();
 		}
 
 		return $data;
