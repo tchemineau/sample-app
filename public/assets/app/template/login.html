@@ -1,0 +1,41 @@
+<script id="loginTemplate" type="text/template">
+
+	<div>
+		<h1 class="apptitle">Sign in</h1>
+	</div>
+
+	<div id="login-alert-container"></div>
+
+	<form method="POST" class="form-horizontal">
+
+		<fieldset>
+
+			<legend>Your credentials</legend>
+
+			<div id="login-email-control" class="control-group">
+				<label class="control-label" for="login-email">Email</label>
+				<div class="controls">
+					<input id="login-email" type="email" name="email" placeholder="Type your email address…" data-field="email" />
+				</div>
+			</div>
+
+			<div id="login-password-control" class="control-group">
+				<label class="control-label" for="login-password">Password</label>
+				<div class="controls">
+					<input id="login-password" type="password" name="password" placeholder="password" data-field="password" />
+				</div>
+			</div>
+			
+		</fieldset>
+
+		<div class="form-actions">
+			<button id="login-btn" type="submit" class="btn btn-primary">Sign in</button>
+		</div>
+
+	</form>
+
+	<div>
+		<a href="" class="btn"><i class="icon-arrow-left"></i></a>
+	</div>
+
+</script>
