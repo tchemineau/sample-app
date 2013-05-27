@@ -6,6 +6,9 @@
  */
 $config = array(
 
+	// Enable email feature
+	'email_enabled' => true,
+
 	// Email sender address
 	'email_from_address' => 'no-reply@example.com',
 

@@ -57,6 +57,10 @@ class Service_Email extends Service
 	 */
 	public static function send ( $headers, $content )
 	{
+
+		if (!Kohana::$config->load('app.email_enabled'))
+			return TRUE;
+
 		try
 		{
 			// Set headers
