@@ -15,6 +15,18 @@ define([
 			App.vent.trigger('page:error', {request: actions});
 		},
 
+		login: function()
+		{
+			var App = this.options.app;
+			App.vent.trigger('page:login');
+		},
+
+		logout: function()
+		{
+			var App = this.options.app;
+			App.vent.trigger('page:logout');
+		},
+
 		welcome: function()
 		{
 			var App = this.options.app;

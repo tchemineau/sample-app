@@ -6,6 +6,8 @@ define([
 	var AppRouter = Marionette.AppRouter.extend(
 	{
 		appRoutes: {
+			'login': 'login',
+			'logout': 'logout',
 			'': 'welcome',
 			'*actions': 'default'
 		},
