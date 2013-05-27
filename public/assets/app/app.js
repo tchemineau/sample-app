@@ -21,12 +21,24 @@ define([
 		});
 	});
 
-	App.vent.on('page:welcome', function(options)
+	App.vent.on('page:login', function()
+	{
+		require(['view/login'], function(LoginView)
+		{
+			App.root.show(new LoginView({app: App}));
+		});
+	});
+
+	App.vent.on('page:logout', function()
+	{
+		console.log('Do logout process');
+	});
+
+	App.vent.on('page:welcome', function()
 	{
 		require(['view/welcome'], function(WelcomeView)
 		{
-			var welcomeView = new WelcomeView({app: App});
-			App.root.show(welcomeView);
+			App.root.show(new WelcomeView({app: App}));
 		});
 	});
 
@@ -36,10 +48,7 @@ define([
 
 		this.router = new AppRouter(options);
 		this.accountRouter = new AccountRouter(options);
-	});
 
-	App.addInitializer(function(options)
-	{
 		App.vent.trigger('page:welcome');
 	});
 
