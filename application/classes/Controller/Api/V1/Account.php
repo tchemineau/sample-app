@@ -1,14 +1,18 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 /**
- * User REST API
+ * REST API to manage account
  */
-class Controller_Api_V1_Account extends Controller_Api_V1_Core
+class Controller_Api_V1_Account extends Controller_Api_Rest
 {
 
 	public function action_get ()
 	{
-		return $this->response(self::build_response(
+		// Get api service
+		$api_service = Service::factory('Api');
+
+		// Return sample data
+		return $this->response($api_service->build_response(
 			'Account exists',
 			'success',
 			array(
@@ -28,35 +32,45 @@ class Controller_Api_V1_Account extends Controller_Api_V1_Core
 		$data = $this->request->body();
 
 		// Get the account service
-		$account = Service::factory('Account');
+		$account_service = Service::factory('Account');
+
+		// Get the api service
+		$api_service = Service::factory('Api');
 
 		try
 		{
 			// Create the account
-			$account->create((array) $data);
+			$account_service->create((array) $data);
 
 			// Return appropriate HTTP code
-			$this->response(self::build_response(
+			$this->response($api_service->build_response(
 				'Account created',
 				'success'
 			), 201);
 		}
 		catch (Service_Exception_AlreadyExists $e)
 		{
-			$this->response(self::build_response(
+			$this->response($api_service->build_response(
 				$e->getMessage(),
 				'failure'
 			), 409);
 		}
 		catch (Service_Exception_InvalidData $e)
 		{
-			$this->response(self::build_response(
+			$this->response($api_service->build_response(
 				$e->getMessage(),
 				'failure',
 				array(),
 				array(
 					'error' => $e->data()
 				)
+			), 400);
+		}
+		catch (Exception $e)
+		{
+			$this->response($api_service->build_response(
+				$e->getMessage(),
+				'failure'
 			), 400);
 		}
 	}

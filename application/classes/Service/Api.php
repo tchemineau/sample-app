@@ -1,9 +1,9 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 /**
- * Core REST API
+ * Api service class
  */
-abstract class Controller_Api_V1_Core extends RESTful_Controller
+class Service_Api extends Service
 {
 
 	/**
@@ -28,21 +28,24 @@ abstract class Controller_Api_V1_Core extends RESTful_Controller
 	}
 
 	/**
-	 * Return a correct response
+	 * Check if a valid token is found and return corresponding account
 	 *
-	 * @param {array} $response A response build by build_response method
-	 * @param {int} $code The HTTP code to return
+	 * @param {Request_Client} $request
+	 * @return {Modal_App_Account}
 	 */
-	public function response ( $response = NULL, $code = 200 )
+	public static function check_token ( $request )
 	{
-		if (is_null($response))
-			$response = self::build_response();
+		// Get authorization header
+		$token = $request->headers('Authorization');
 
-		$this->response->headers('Content-Type', 'application/json');
-		$this->response->status($code);
+		// Build data
+		$data = array('token' => $token);
 
-		parent::response($response);
+		// Get account service
+		$account_service = Service::factory('Account');
+
+		// Try to authenticate the user
+		return $account_service->authenticate($data);
 	}
 
 }
-
