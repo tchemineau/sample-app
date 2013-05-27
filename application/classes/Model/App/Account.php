@@ -29,6 +29,11 @@ class Model_App_Account extends Model
 	public $token;
 
 	/**
+	 * Token expiration date
+	 */
+	public $token_expired;
+
+	/**
 	 * Reserved values to not return
 	 */
 	public $_reserved = array();
@@ -46,22 +51,37 @@ class Model_App_Account extends Model
 			$data['password'] = Password::instance()->hash($data['password']);
 		}
 
-		if (!isset($data['token']))
-		{
-			$data['token'] = Password::instance()->random();
-		}
+		unset($data['token'], $data['token_expired']);
 
 		return $data;
 	}
 
 	/**
-	 * Load by email address ?
+	 * Load by email address
 	 *
 	 * @param {string} $email
 	 */
 	public function load_by_email ( $email )
 	{
 		$response = $this->_collection->findOne(array('email' => $email));
+
+		if ($response)
+		{
+			$this->values($response);
+			$this->_loaded = true;
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Load by token
+	 *
+	 * @param {string} $token
+	 */
+	public function load_by_token ( $token )
+	{
+		$response = $this->_collection->findOne(array('token' => $token));
 
 		if ($response)
 		{
@@ -85,6 +105,16 @@ class Model_App_Account extends Model
 			$data = $this->format_data((array) $data);
 		}
 
+		// This is the current time
+		$timestamp = time();
+
+		// Generate API token if necessary
+		if (!$this->token || $this->token_expired < $timestamp)
+		{
+			$data['token'] = Password::instance()->random();
+			$data['token_expired'] = $timestamp + Kohana::$config->load('app.token_expiration');
+		}
+
 		return parent::values((array) $data);
 	}
 
@@ -98,15 +128,11 @@ class Model_App_Account extends Model
 	{
 		$validation = Validation::factory($data)
 
-			// Username
-			->rule('username', 'min_length', array(':value', 4))
-			->rule('username', 'regex', array(':value', '/^[a-zA-Z0-9]+$/iD'))
+			// Email address
+			->rule('email', 'email')
 
 			// Password
 			->rule('password', 'min_length', array(':value', 8))
-
-			// Mail address
-			->rule('email', 'email')
 
 			// Firstname, lastname, displayname and pseudo
 			->rule('firstname', 'regex', array(':value', '/[-\w.,+]+/'))
@@ -116,6 +142,32 @@ class Model_App_Account extends Model
 			'status' => $validation->check(),
 			'errors' => $validation->errors()
 		);
+	}
+
+	/**
+	 * Validate the given password against the current password
+	 *
+	 * @param {string} $password
+	 * @return {boolean}
+	 */
+	public function validate_password ( $password )
+	{
+		$hash = Password::instance()->hash($password);
+
+		return $this->password && $this->password == $hash;
+	}
+
+	/**
+	 * Validate the given token against the token password
+	 *
+	 * @param {string} $token
+	 * @return {boolean}
+	 */
+	public function validate_token ( $token )
+	{
+		$timestamp = time();
+
+		return $this->token && $this->token_expired > $timestamp && $this->token == $token;
 	}
 
 }

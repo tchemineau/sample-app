@@ -14,12 +14,70 @@ class Service_Account extends Service
 	);
 
 	/**
+	 * Authenticate user
+	 *
+	 * @param {array} $data
+	 * @return {Model_App_Account}
+	 */
+	public function authenticate ( array $data )
+	{
+		// Get the account
+		$account = $this->get($data);
+
+		// If token found, then authenticate throw token
+		if (isset($data['token']) && !$account->validate_token($data['token']))
+			throw Service_Exception::factory('AuthError', 'Token authentication failed');
+
+		// Else, check password authentication
+		else if (!isset($data['password']) || !$account->validate_password($data['password']))
+
+		return $account;
+	}
+
+	/**
 	 * Create a user account
 	 *
 	 * @param {array} $data
-	 * @return {boolean}
+	 * @return {Model_App_Account}
 	 */
 	public function create ( array $data )
+	{
+		// This will store the account model
+		$account = Model::factory('App_Account');
+
+		// Check if the account already exists
+		try
+		{
+			$account = $this->get($data);
+
+			throw Service_Exception::factory('AlreadyExists', 'Account :email already exists',
+				array(':email' => $data['email']));
+		}
+		// Catch NotFound exception
+		catch (Service_Exception_NotFound $e) {}
+
+		// If nothing wrong, save data
+		$account->values($data)->save();
+
+		// Could not create account if mail is not sent
+		if (!$this->_send_email($account, 'CREATE'))
+		{
+			$account->remove();
+
+			throw Service_Exception::factory('EmailError', 'Unable to send email to :email',
+				array(':email' => $data['email']));
+		}
+
+		return $account;
+	}
+
+	/**
+	 * Get a user account
+	 *
+	 * @param {array} $data
+	 * @return {Model_App_Account}
+	 */
+	public function get ( array $data )
 	{
 		// Get the account model
 		$account = Model::factory('App_Account');
@@ -29,29 +87,21 @@ class Service_Account extends Service
 
 		// If validation failed, return the appropriate errors
 		if (!$validation['status'])
-		{
 			throw Service_Exception::factory('InvalidData', 'Account data validation failed')->data($validation['errors']);
-		}
 
-		// Try to load the account by email (email is mandatory)
-		$account->load_by_email($data['email']);
+		// Try to load the account by token
+		if (isset($data['token']))
+			$account->load_by_token($data['token']);
 
-		if ($account->loaded())
-		{
-			throw Service_Exception::factory('AlreadyExists', 'Account :email already exists', array(':email' => $data['email']));
-		}
+		// Try to load the account by email
+		else if (isset($data['email']))
+			$account->load_by_email($data['email']);
 
-		// Nothing wrong, save data
-		$account->values($data)->save();
+		// Raise an exception if account could not be loaded
+		if (!$account->loaded())
+			throw Service_Exception::factory('NotFound', 'Account not found');
 
-		// Send a mail
-		if (!$this->_send_email($account, 'CREATE'))
-		{
-			// Cancel account creation
-			// Throw exception
-		}
-
-		return TRUE;
+		return $account;
 	}
 
 	/**
