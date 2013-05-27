@@ -13,7 +13,7 @@ define([
 		/**
 		 * Register new account
 		 */
-		createAccount: function ()
+		create: function ()
 		{
 			var App = this.options.app;
 
@@ -34,7 +34,7 @@ define([
 		/**
 		 * Show account view
 		 */
-		showAccount: function ()
+		show: function ()
 		{
 			var App = this.options.app;
 
@@ -43,7 +43,7 @@ define([
 				'./view/modifyAccount'
 			], function(AccountModel, ModifyAccountView)
 			{
-				var accountModel = new AccountModel({app: App});
+				var accountModel = new AccountModel();
 
 				accountModel.fetch({
 					success: function()
@@ -54,7 +54,7 @@ define([
 					}
 				});
 			});
-		},
+		}
 
 	};
 
