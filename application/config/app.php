@@ -15,6 +15,9 @@ $config = array(
 	// Email sender name
 	'email_from_name' => 'Sample App',
 
+	// Token expiration time (in seconds)
+	'token_expiration' => 604800
+
 );
 
 /**
