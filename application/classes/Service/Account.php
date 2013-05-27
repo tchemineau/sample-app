@@ -7,12 +7,19 @@ class Service_Account extends Service
 {
 
 	/**
+	 * Mail titles
+	 */
+	private static $_titles = array (
+		'CREATE' => 'Account created'
+	);
+
+	/**
 	 * Create a user account
 	 *
 	 * @param {array} $data
 	 * @return {boolean}
 	 */
-	public static function create ( array $data )
+	public function create ( array $data )
 	{
 		// Get the account model
 		$account = Model::factory('App_Account');
@@ -38,7 +45,7 @@ class Service_Account extends Service
 		$account->values($data)->save();
 
 		// Send a mail
-		if (!$this->_send_email($account, 'Account created'))
+		if (!$this->_send_email($account, 'CREATE'))
 		{
 			// Cancel account creation
 			// Throw exception
@@ -51,11 +58,14 @@ class Service_Account extends Service
 	 * Send a mail to an account
 	 *
 	 * @param {Model_App_Account} $account
-	 * @param {string} $title
+	 * @param {string} $type
 	 * @return {boolean}
 	 */
-	private function _send_email ( $account, $title )
+	private function _send_email ( $account, $type )
 	{
+		// This is the mail title
+		$title = self::$_titles[$type];
+
 		// Get the email service
 		$email = Service::factory('Email');
 
@@ -64,7 +74,7 @@ class Service_Account extends Service
 
 		// Build content
 		$content = $email->build_content(
-			'Account.'.ucwords($this->request->action()),
+			'Account.'.ucwords(strtolower($type)),
 			array(
 				'email' => $account->email,
 				'firstname' => $account->firstname,
