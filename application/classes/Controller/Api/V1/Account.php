@@ -23,31 +23,15 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 			$account = $account_service->get(array('id' => $id));
 
 			// Return appropriate HTTP code
-			$this->response($api_service->build_response(
+			$this->response($api_service->build_response_succeed(
 				'Account found',
-				'success',
-				$account->get_public_vars()
+				$account->get_public_vars() + array('id' => $id)
 			), 201);
 		}
 		catch (Exception $e)
 		{
-			$this->response($api_service->build_response(
-				$e->getMessage(),
-				'failure'
-			), 400);
+			$this->response($api_service->build_response_failed($e->getMessage()), 400);
 		}
-
-		// Return sample data
-		/*
-		return $this->response($api_service->build_response(
-			'Account exists',
-			'success',
-			array(
-				'firstname' => 'John',
-				'lastname' => 'Doe'
-			)
-		));
-		*/
 	}
 
 	public function action_update ()
@@ -68,26 +52,22 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 		try
 		{
 			// Create the account
-			$account_service->create((array) $data);
+			$account = $account_service->create((array) $data);
 
 			// Return appropriate HTTP code
-			$this->response($api_service->build_response(
+			$this->response($api_service->build_response_succeed(
 				'Account created',
-				'success'
+				$account->get_public_vars() + array('id' => $id)
 			), 201);
 		}
 		catch (Service_Exception_AlreadyExists $e)
 		{
-			$this->response($api_service->build_response(
-				$e->getMessage(),
-				'failure'
-			), 409);
+			$this->response($api_service->build_response_failed($e->getMessage()), 409);
 		}
 		catch (Service_Exception_InvalidData $e)
 		{
-			$this->response($api_service->build_response(
+			$this->response($api_service->build_response_failed(
 				$e->getMessage(),
-				'failure',
 				array(),
 				array(
 					'error' => $e->data()
@@ -96,10 +76,7 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 		}
 		catch (Exception $e)
 		{
-			$this->response($api_service->build_response(
-				$e->getMessage(),
-				'failure'
-			), 400);
+			$this->response($api_service->build_response_failed($e->getMessage()), 400);
 		}
 	}
 

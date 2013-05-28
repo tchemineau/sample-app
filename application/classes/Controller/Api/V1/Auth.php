@@ -30,29 +30,21 @@ class Controller_Api_V1_Auth extends Controller_Api_Standard
 			$account = $account_service->authenticate($data);
 
 			// Return appropriate HTTP code
-			$this->response($api_service->build_response(
+			$this->response($api_service->build_response_succeed(
 				'Authentication succeed',
-				'success',
 				array(
 					'id' => $account->id(),
-					'token' => $account->token
+					'token' => $account->get_token()
 				)
-			), 201);
+			), 200);
 		}
 		catch (Service_Exception_AuthError $e)
 		{
-			$this->response($api_service->build_response(
-				$e->getMessage(),
-				'failure'
-			), 401);
+			$this->response($api_service->build_response_failed($e->getMessage()), 401);
 		}
 		catch (Exception $e)
 		{
-			var_dump($e);
-			$this->response($api_service->build_response(
-				'Bad authentication request',
-				'failure'
-			), 400);
+			$this->response($api_service->build_response('Bad authentication request'), 400);
 		}
 	}
 
