@@ -5,7 +5,7 @@
  * defaults for the URI.
  */
 
-Route::set('api_v1', 'api/v1/(<controller>(/<action>(/<id>)))')
+Route::set('api_v1', 'api/v1/(<controller>(/<id>))')
 	->defaults(array(
 		'directory'  => 'Api/V1'
 	));
