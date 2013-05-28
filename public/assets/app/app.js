@@ -8,10 +8,15 @@ define([
 
 	var App = new Marionette.Application();
 
+	// Add the main region
 	App.addRegions({
 		root: '#approot'
 	});
 
+	// This will store the user information
+	App.user = null;
+
+	// Catch page error event
 	App.vent.on('page:error', function()
 	{
 		require(['view/error'], function(ErrorView)
@@ -21,6 +26,7 @@ define([
 		});
 	});
 
+	// Catch page login event
 	App.vent.on('page:login', function()
 	{
 		require(['view/login'], function(LoginView)
@@ -29,11 +35,13 @@ define([
 		});
 	});
 
+	// Catch page logout event
 	App.vent.on('page:logout', function()
 	{
 		console.log('Do logout process');
 	});
 
+	// Catch welcome page event
 	App.vent.on('page:welcome', function()
 	{
 		require(['view/welcome'], function(WelcomeView)
@@ -42,6 +50,7 @@ define([
 		});
 	});
 
+	// Launch application once all is loaded
 	App.addInitializer(function(options)
 	{
 		options.app = App;
