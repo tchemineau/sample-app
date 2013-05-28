@@ -21,22 +21,22 @@ class Model_App_Account extends Model
 	/**
 	 * Password
 	 */
-	public $password;
+	protected $password;
 
 	/**
 	 * Token
 	 */
-	public $token;
+	protected $token;
 
 	/**
 	 * Token expiration date
 	 */
-	public $token_expired;
+	protected $token_expired;
 
 	/**
 	 * Reserved values to not return
 	 */
-	public $_reserved = array();
+	protected $_reserved = array();
 
 	/**
 	 * Format values
