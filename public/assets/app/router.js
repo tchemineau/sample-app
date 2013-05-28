@@ -23,6 +23,7 @@ define([
 				app: options.app
 			})
 
+			// Catch clicks on every a links
 			$(document).on('click', 'a:not([data-bypass])', function (evt)
 			{
 				var href = $(this).attr('href');
@@ -35,6 +36,7 @@ define([
 				}
 			});
 
+			// Start history
 			Backbone.history.start({
 				pushState: false,
 				root: Url
