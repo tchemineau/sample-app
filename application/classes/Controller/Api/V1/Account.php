@@ -50,6 +50,63 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 
 	public function action_update ()
 	{
+		// Get data from the body sent by backbone
+		$body = $this->request->body();
+
+		// Build request data
+		$data = array(
+			'id' => $body->id,
+			'email' => $body->email,
+			'firstname' => $body->firstname,
+			'lastname' => $body->lastname,
+			'password' => $body->password
+		);
+
+		// Get the account service
+		$account_service = Service::factory('Account');
+
+		// Get the api service
+		$api_service = Service::factory('Api');
+
+		try
+		{
+			// Get current logged in user account
+			$user = $api_service->check_token($this->request);
+
+			// Update the account
+			$account = $account_service->get(array('id' => $data['id']));
+
+			// Check if we could get the account
+			$api_service->check_access($account, $user);
+
+			// Return appropriate HTTP code
+			$this->response($api_service->build_response_succeed(
+				'Account updated',
+				$account->get_data()
+			), 200);
+		}
+		catch (Service_Exception_AlreadyExists $e)
+		{
+			$this->response($api_service->build_response_failed($e->getMessage()), 409);
+		}
+		catch (Service_Exception_InvalidData $e)
+		{
+			$this->response($api_service->build_response_failed(
+				$e->getMessage(),
+				array(),
+				array(
+					'error' => $e->data()
+				)
+			), 400);
+		}
+		catch (Service_Exception_PermissionDenied $e)
+		{
+			$this->response($api_service->build_response_failed($e->getMEssage()), 403);
+		}
+		catch (Exception $e)
+		{
+			$this->response($api_service->build_response_failed($e->getMessage()), 400);
+		}
 	}
 
 	public function action_create ()
