@@ -34,7 +34,7 @@ define([
 		/**
 		 * Show account view
 		 */
-		show: function ()
+		modify: function ()
 		{
 			var App = this.options.app;
 

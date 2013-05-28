@@ -9,7 +9,7 @@ define([
 	{
 		appRoutes: {
 			'account/create': 'create',
-			'account': 'show'
+			'account': 'modify'
 		},
 
 		controller: AccountController,
