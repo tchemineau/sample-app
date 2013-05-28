@@ -6,25 +6,53 @@
 class Service_Api extends Service
 {
 
+	public static $SUCCEED = 'success';
+
+	public static $FAILED = 'failure';
+
+	/**
+	 * Build a standard response
+	 *
+	 * @param {string} $status
+	 * @param {string} $message
+	 * @param {array} $data
+	 * @param {array} $errors
+	 * @return {array}
+	 */
+	public static function build_response ( $status, $message = '', $data = array(), $errors = array() )
+	{
+		return array(
+			'status' => $status,
+			'message' => $message,
+			'data' => $data,
+			'error' => $errors
+		);
+	}
+
 	/**
 	 * Build a standard response
 	 *
 	 * @param {string} $message
-	 * @param {string} $status
 	 * @param {array} $data
 	 * @param {array} $errors
-	 * @param {string} $type
 	 * @return {array}
 	 */
-	public static function build_response ( $message = '', $status = 'success', $data = array(), $errors = array(), $type = NULL )
+	public static function build_response_failed ( $message = '', $data = array(), $errors = array() )
 	{
-		return array(
-			'type' => $type,
-			'status' => $status,
-			'message' => $message,
-			'data' => $data,
-			'errors' => $errors
-		);
+		return self::build_response(self::$FAILED, $message, $data, $errors);
+	}
+
+	/**
+	 * Build a standard response
+	 *
+	 * @param {string} $message
+	 * @param {array} $data
+	 * @param {array} $errors
+	 * @return {array}
+	 */
+	public static function build_response_succeed ( $message = '', $data = array(), $errors = array() )
+	{
+		return self::build_response(self::$SUCCEED, $message, $data, $errors);
 	}
 
 	/**
