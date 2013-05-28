@@ -10,56 +10,37 @@ define([
 		template: LoginTemplate,
 
 		/**
-		 * Declare inputs that should be validate
-		 */
-		fields: {
-			email: {
-				el: '#login-email',
-				required: "Please enter a valid Email Address.",
-				validations: {
-					email: "Please enter a valid Email Address."
-				}
-			}
-		},
-
-		/**
 		 * Submit authentication request
 		 */
 		onSubmit: function (evt)
 		{
 			evt.preventDefault();
 
-			var url = 'api/v1/auth';
+			// This store this object
+			var me = this;
 
-			var formValues = {
-				'email': $('#login-email').val(),
-				'password': $('#login-password').val()
-			};
+			// Get application
+			var App = this.options.app;
 
+			// Do the request to log the user
 			$.ajax(
 			{
-				url: url,
+				url: 'api/v1/auth',
 				type: 'POST',
 				dataType: 'json',
-				data: formValues,
-				success: function (data)
+				data: {
+					'email': $('#login-email').val(),
+					'password': $('#login-password').val()
+				},
+				success: function (response)
 				{
-					console.log(['Login request details: ', data]);
-					Backbone.history.navigate('/#');
+					App.vent.trigger('login:success', response.data);
 				},
 				error: function (xhr, status)
 				{
-					showGlobalError('Error');
+					me.showGlobalError('Unable to authenticate');
 				}
 			});
-		},
-
-		/**
-		 * What to do if the submit fails
-		 */
-		onSubmitFail: function (errors)
-		{
-			
 		},
 
 		/**
