@@ -4,9 +4,24 @@ class Model_App_Account extends Model
 {
 
 	/**
+	 * Timestamp of creation
+	 */
+	public $date_created;
+
+	/**
+	 * Timestamp of last modification
+	 */
+	public $date_modified;
+
+	/**
 	 * Email
 	 */
 	public $email;
+
+	/**
+	 * EMail verified ?
+	 */
+	public $email_verified;
 
 	/**
 	 * Firstname
@@ -46,10 +61,30 @@ class Model_App_Account extends Model
 	 */
 	public function format_data ( array $data )
 	{
+		// This is the current time
+		$timestamp = time();
+
+		// Email is verified ?
+		if (!$this->email_verified)
+			$data['email_verified'] = false;
+
+		// If password found, securize it
 		if (isset($data['password']))
-		{
 			$data['password'] = Password::instance()->hash($data['password']);
+
+		// Generate API token if necessary
+		if (!$this->token || $this->token_expired < $timestamp)
+		{
+			$data['token'] = Password::instance()->random();
+			$data['token_expired'] = $timestamp + Kohana::$config->load('app.token_expiration');
 		}
+
+		// Set creation time
+		if (!$this->date_created)
+			$data['date_created'] = $timestamp;
+
+		// Store the last modification time
+		$data['date_modified'] = $timestamp;
 
 		return $data;
 	}
@@ -66,20 +101,13 @@ class Model_App_Account extends Model
 
 		return array(
 			'id' => $this->id(),
+			'date_created' => $this->date_created,
+			'date_modified' => $this->date_modified,
 			'email' => $this->email,
+			'email_verified' => $this->email_verified,
 			'firstname' => $this->firstname,
 			'lastname' => $this->lastname
 		);
-	}
-
-	/**
-	 * Return user token
-	 *
-	 * @return {string}
-	 */
-	public function get_token ()
-	{
-		return $this->token;
 	}
 
 	/**
@@ -131,17 +159,6 @@ class Model_App_Account extends Model
 			$data = $this->format_data($data);
 		}
 
-		// This is the current time
-		$timestamp = time();
-
-		// Generate API token if necessary
-		if (!$this->token || $this->token_expired < $timestamp)
-		{
-			$data['token'] = Password::instance()->random();
-			$data['token_expired'] = $timestamp + Kohana::$config->load('app.token_expiration');
-		}
-
-		// Set values
 		return $this->values($data);
 	}
 
