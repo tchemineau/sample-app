@@ -16,6 +16,9 @@ define([
 	// This will store the user information
 	App.user = null;
 
+	// This will store the user token
+	App.token = null;
+
 	// Catch page error event
 	App.vent.on('page:error', function()
 	{

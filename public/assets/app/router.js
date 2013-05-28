@@ -36,6 +36,33 @@ define([
 				}
 			});
 
+			// Store the native, default sync method
+			Backbone._nativeSync = Backbone.sync;
+
+			// Create our default options object
+			Backbone.defaultSyncOptions = {};
+
+			// Ever so gingerly wrap the native sync
+			// in a method that combines options
+			Backbone.sync = function (method, model, options)
+			{
+				Backbone._nativeSync(method, model,
+					_.extend({}, Backbone.defaultSyncOptions, options)
+				);
+			};
+
+			// Catch login event
+			App.vent.on('login:success', function (data)
+			{
+				// Store token into the application
+				App.token = data.token;
+
+				// Add token to every backbone request
+				Backbone.defaultSyncOptions = {headers: {
+					'Authorization': data.token
+				}};
+			});
+
 			// Start history
 			Backbone.history.start({
 				pushState: false,
