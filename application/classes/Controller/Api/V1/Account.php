@@ -8,10 +8,37 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 
 	public function action_get ()
 	{
+		// Get account id
+		$id = $this->request->param('id');
+
+		// Get the account service
+		$account_service = Service::factory('Account');
+
 		// Get api service
 		$api_service = Service::factory('Api');
 
+		try
+		{
+			// Create the account
+			$account = $account_service->get(array('id' => $id));
+
+			// Return appropriate HTTP code
+			$this->response($api_service->build_response(
+				'Account found',
+				'success',
+				$account->get_public_vars()
+			), 201);
+		}
+		catch (Exception $e)
+		{
+			$this->response($api_service->build_response(
+				$e->getMessage(),
+				'failure'
+			), 400);
+		}
+
 		// Return sample data
+		/*
 		return $this->response($api_service->build_response(
 			'Account exists',
 			'success',
@@ -20,6 +47,7 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 				'lastname' => 'Doe'
 			)
 		));
+		*/
 	}
 
 	public function action_update ()
