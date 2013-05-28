@@ -26,7 +26,7 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 			$this->response($api_service->build_response_succeed(
 				'Account found',
 				$account->get_public_vars() + array('id' => $id)
-			), 201);
+			), 200);
 		}
 		catch (Exception $e)
 		{
