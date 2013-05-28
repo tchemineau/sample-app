@@ -25,11 +25,20 @@ class Service_Account extends Service
 		$account = $this->get($data);
 
 		// If token found, then authenticate throw token
-		if (isset($data['token']) && !$account->validate_token($data['token']))
-			throw Service_Exception::factory('AuthError', 'Token authentication failed');
-
+		if (isset($data['token']))
+		{
+			if (!$account->validate_token($data['token']))
+				throw Service_Exception::factory('AuthError', 'Token authentication failed');
+		}
 		// Else, check password authentication
-		else if (!isset($data['password']) || !$account->validate_password($data['password']))
+		else if (isset($data['password']))
+		{
+			if (!$account->validate_password($data['password']))
+				throw Service_Exception::factory('AuthError', 'Standard authentication failed');
+		}
+		// Missing authentication parameter
+		else
+			throw Service_Exception::factory('AuthError', 'Invalid authentication scheme');
 
 		return $account;
 	}
@@ -57,7 +66,7 @@ class Service_Account extends Service
 		catch (Service_Exception_NotFound $e) {}
 
 		// If nothing wrong, save data
-		$account->values($data)->save();
+		$account->set_data($data)->save();
 
 		// Could not create account if mail is not sent
 		if (!$this->_send_email($account, 'CREATE'))
