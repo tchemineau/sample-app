@@ -89,8 +89,12 @@ class Service_Account extends Service
 		if (!$validation['status'])
 			throw Service_Exception::factory('InvalidData', 'Account data validation failed')->data($validation['errors']);
 
+		// Try to load by resource identifier
+		if (isset($data['id']))
+			$account->load($data['id']);
+
 		// Try to load the account by token
-		if (isset($data['token']))
+		else if (isset($data['token']))
 			$account->load_by_token($data['token']);
 
 		// Try to load the account by email
