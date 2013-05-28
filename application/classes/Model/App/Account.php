@@ -57,6 +57,16 @@ class Model_App_Account extends Model
 	}
 
 	/**
+	 * Return user token
+	 *
+	 * @return {string}
+	 */
+	public function get_token ()
+	{
+		return $this->token;
+	}
+
+	/**
 	 * Load by email address
 	 *
 	 * @param {string} $email
