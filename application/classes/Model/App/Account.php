@@ -21,17 +21,17 @@ class Model_App_Account extends Model
 	/**
 	 * Password
 	 */
-	protected $password;
+	public $password;
 
 	/**
 	 * Token
 	 */
-	protected $token;
+	public $token;
 
 	/**
 	 * Token expiration date
 	 */
-	protected $token_expired;
+	public $token_expired;
 
 	/**
 	 * Reserved values to not return
@@ -44,16 +44,32 @@ class Model_App_Account extends Model
 	 * @param {array} $data
 	 * @return {array}
 	 */
-	public static function format_data ( array $data )
+	public function format_data ( array $data )
 	{
 		if (isset($data['password']))
 		{
 			$data['password'] = Password::instance()->hash($data['password']);
 		}
 
-		unset($data['token'], $data['token_expired']);
-
 		return $data;
+	}
+
+	/**
+	 * Get loaded data
+	 *
+	 * @return {array}
+	 */
+	public function get_data ()
+	{
+		if (!$this->loaded())
+			return array();
+
+		return array(
+			'id' => $this->id(),
+			'email' => $this->email,
+			'firstname' => $this->firstname,
+			'lastname' => $this->lastname
+		);
 	}
 
 	/**
@@ -103,16 +119,16 @@ class Model_App_Account extends Model
 	}
 
 	/**
-	 * Set values
+	 * Set data
 	 *
 	 * @param {array} $data
 	 * @param {boolean} $format
 	 */
-	public function values ( $data, $format = true )
+	public function set_data ( array $data, $format = true )
 	{
 		if ($format)
 		{
-			$data = $this->format_data((array) $data);
+			$data = $this->format_data($data);
 		}
 
 		// This is the current time
@@ -125,7 +141,8 @@ class Model_App_Account extends Model
 			$data['token_expired'] = $timestamp + Kohana::$config->load('app.token_expiration');
 		}
 
-		return parent::values((array) $data);
+		// Set values
+		return $this->values($data);
 	}
 
 	/**
@@ -162,9 +179,7 @@ class Model_App_Account extends Model
 	 */
 	public function validate_password ( $password )
 	{
-		$hash = Password::instance()->hash($password);
-
-		return $this->password && $this->password == $hash;
+		return Password::instance()->check($this->password, $password);
 	}
 
 	/**
