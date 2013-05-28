@@ -9,7 +9,7 @@ class Service_Account extends Service
 	/**
 	 * Mail titles
 	 */
-	private static $_titles = array (
+	private static $_mail_titles = array (
 		'CREATE' => 'Account created'
 	);
 
@@ -118,7 +118,7 @@ class Service_Account extends Service
 	private function _send_email ( $account, $type )
 	{
 		// This is the mail title
-		$title = self::$_titles[$type];
+		$title = self::$_mail_titles[$type];
 
 		// Get the email service
 		$email = Service::factory('Email');
