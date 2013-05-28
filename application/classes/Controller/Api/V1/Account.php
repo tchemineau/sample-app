@@ -19,14 +19,20 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 
 		try
 		{
+			$api_service->check_token($this->request);
+
 			// Create the account
 			$account = $account_service->get(array('id' => $id));
 
 			// Return appropriate HTTP code
 			$this->response($api_service->build_response_succeed(
 				'Account found',
-				$account->get_public_vars() + array('id' => $id)
+				$account->get_data()
 			), 200);
+		}
+		catch (Service_Exception_AuthError $e)
+		{
+			$this->response($api_service->build_response_failed($e->getMEssage()), 403);
 		}
 		catch (Exception $e)
 		{
@@ -57,7 +63,7 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 			// Return appropriate HTTP code
 			$this->response($api_service->build_response_succeed(
 				'Account created',
-				$account->get_public_vars() + array('id' => $id)
+				$account->get_data()
 			), 201);
 		}
 		catch (Service_Exception_AlreadyExists $e)
