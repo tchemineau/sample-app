@@ -47,7 +47,15 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 	public function action_create ()
 	{
 		// Get data from the body sent by backbone
-		$data = $this->request->body();
+		$body = $this->request->body();
+
+		// Build request data
+		$data = array(
+			'email' => $body->email,
+			'firstname' => $body->firstname,
+			'lastname' => $body->lastname,
+			'password' => $body->password
+		);
 
 		// Get the account service
 		$account_service = Service::factory('Account');
