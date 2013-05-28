@@ -41,14 +41,19 @@ define([
 			lrequire([
 				'./model/account',
 				'./view/modifyAccount'
-			], function(AccountModel, ModifyAccountView)
+			], function (AccountModel, ModifyAccountView)
 			{
-				var accountModel = new AccountModel();
+				var data = {};
 
-				accountModel.fetch({
-					success: function()
+				if (App.user)
+					data.id = App.user.id;
+
+				var account = new AccountModel(data);
+
+				account.fetch({
+					success: function ()
 					{
-						var modifyAccountView = new ModifyAccountView({app: App, model: accountModel});
+						var modifyAccountView = new ModifyAccountView({app: App, model: account});
 
 						App.root.show(modifyAccountView);
 					}
