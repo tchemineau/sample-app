@@ -16,9 +16,7 @@ define([
 		parse: function (response, xhr)
 		{
 			if (_.isObject(response.data))
-			{
 				return response.data;
-			}
 
 			return response;
 		},
@@ -33,7 +31,10 @@ define([
 			}});
 		},
 
-		url: 'api/v1/account'
+		url: function ()
+		{
+			return this.id ? 'api/v1/account/' + this.id : 'api/v1/account';
+		}
 	});
 
 	return AccountModel;
