@@ -56,6 +56,18 @@ class Service_Api extends Service
 	}
 
 	/**
+	 * Check access to a resource by an other
+	 *
+	 * @param {Model_Mongo} $to
+	 * @param {Model_Mongo} $by
+	 */
+	public static function check_access ( $to, $by )
+	{
+		if ($to->id() != $by->id())
+			throw Service_Exception::factory('PermissionDenied', 'Permission denied');
+	}
+
+	/**
 	 * Check if a valid token is found and return corresponding account
 	 *
 	 * @param {Request_Client} $request
