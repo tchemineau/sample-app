@@ -1,17 +1,41 @@
-<script id="accountTemplate" type="text/template">
+<script id="modifyAccountTemplate" type="text/template">
+
 	<div>
 		<h1 class="apptitle">My account</h1>
 	</div>
-	<form>
+
+	<div id="account-alert-container"></div>
+
+	<form method="POST" class="form-horizontal">
+
 		<fieldset>
+
 			<legend>Personal information</legend>
-			<label>Firstname</label>
-			<input id="account-firstname" type="text" placeholder="Type your firstname…" value="<%= firstname %>">
-			<label>Lasttname</label>
-			<input id="account-lastname" type="text" placeholder="Type your lastname…" value="<%= lastname %>">
+
+			<div id="account-firstname-control" class="control-group">
+				<label class="control-label" for="account-firstname">Firstname</label>
+				<div class="controls">
+					<input id="account-firstname" type="text" name="firstname" placeholder="Type your firstname…" />
+				</div>
+			</div>
+
+			<div id="account-lastname-control" class="control-group">
+				<label class="control-label" for="account-lastname">Lastname</label>
+				<div class="controls">
+					<input id="account-lastname" type="text" name="lastname" placeholder="Type your lastname…" />
+				</div>
+			</div>
+
 		</fieldset>
+
+		<div class="form-actions">
+			<button id="account-create-btn" type="submit" class="btn btn-primary">Save</button>
+		</div>
+
 	</form>
+
 	<div>
 		<a href="" class="btn"><i class="icon-arrow-left"></i></a>
 	</div>
+
 </script>
