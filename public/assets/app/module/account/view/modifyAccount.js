@@ -1,28 +1,23 @@
 
 define([
 	'marionette',
-	'app',
+	'marionette.formview',
 	'text!module/account/template/modifyAccount.html'
-], function(Marionette, App, ModifyAccountTemplate)
+], function(Marionette, MarionetteFormView, ModifyAccountTemplate)
 {
-	var ModifyAccountView = Marionette.ItemView.extend(
+	var ModifyAccountView = Marionette.FormView.extend(
 	{
 		template: ModifyAccountTemplate,
 
-		events: {
-			'blur #account-firstname': 'actionSave',
-			'blur #account-lastname': 'actionSave',
-		},
-
-		ui: {
-			firstname: '#account-firstname',
-			lastname: '#account-lastname'
-		},
-
-		actionSave: function (event)
+		/**
+		 * Save model when submit me
+		 */
+		onSubmit: function (evt)
 		{
-			App.vent.trigger('account:save', this.model);
-		}
+			evt.preventDefault();
+
+			this.model.set(this.serializeFormData()).savedata();
+		},
 	});
 
 	return ModifyAccountView;
