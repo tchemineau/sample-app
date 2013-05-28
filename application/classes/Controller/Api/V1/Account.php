@@ -19,10 +19,14 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 
 		try
 		{
-			$api_service->check_token($this->request);
+			// Get current logged in user account
+			$user = $api_service->check_token($this->request);
 
 			// Create the account
 			$account = $account_service->get(array('id' => $id));
+
+			// Check if we could get the account
+			$api_service->check_access($account, $user);
 
 			// Return appropriate HTTP code
 			$this->response($api_service->build_response_succeed(
@@ -31,6 +35,10 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 			), 200);
 		}
 		catch (Service_Exception_AuthError $e)
+		{
+			$this->response($api_service->build_response_failed($e->getMEssage()), 403);
+		}
+		catch (Service_Exception_PermissionDenied $e)
 		{
 			$this->response($api_service->build_response_failed($e->getMEssage()), 403);
 		}
