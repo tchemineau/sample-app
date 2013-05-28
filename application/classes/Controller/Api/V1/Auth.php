@@ -34,7 +34,7 @@ class Controller_Api_V1_Auth extends Controller_Api_Standard
 				'Authentication succeed',
 				array(
 					'id' => $account->id(),
-					'token' => $account->get_token()
+					'token' => $account->token
 				)
 			), 200);
 		}
