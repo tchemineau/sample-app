@@ -10,6 +10,26 @@ define([
 		template: ModifyAccountTemplate,
 
 		/**
+		 * Declare variables to access template content
+		 */
+		ui: {
+			firstname: '#account-firstname',
+			lastname: '#account-lastname'
+		},
+
+		/**
+		 * Declare inputs
+		 */
+		fields: {
+			firstname: {
+				el: 'firstname'
+			},
+			lastname: {
+				el: 'lastname'
+			}
+		},
+
+		/**
 		 * Save model when submit me
 		 */
 		onSubmit: function (evt)
