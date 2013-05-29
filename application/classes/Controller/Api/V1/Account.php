@@ -36,7 +36,11 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 		}
 		catch (Service_Exception_AuthError $e)
 		{
-			$this->response($api_service->build_response_failed($e->getMEssage()), 403);
+			$this->response($api_service->build_response_failed($e->getMEssage()), 401);
+		}
+		catch (Service_Exception_NotFound $e)
+		{
+			$this->response($api_service->build_response_failed($e->getMEssage()), 404);
 		}
 		catch (Service_Exception_PermissionDenied $e)
 		{
@@ -55,7 +59,6 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 
 		// Build request data
 		$data = array(
-			'id' => $body->id,
 			'email' => $body->email,
 			'firstname' => $body->firstname,
 			'lastname' => $body->lastname,
@@ -74,10 +77,13 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 			$user = $api_service->check_token($this->request);
 
 			// Update the account
-			$account = $account_service->get(array('id' => $data['id']));
+			$account = $account_service->get(array('id' => $body->id));
 
 			// Check if we could get the account
 			$api_service->check_access($account, $user);
+
+			// Update data
+			$account_service->update($account, $data);
 
 			// Return appropriate HTTP code
 			$this->response($api_service->build_response_succeed(
@@ -85,9 +91,9 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 				$account->get_data()
 			), 200);
 		}
-		catch (Service_Exception_AlreadyExists $e)
+		catch (Service_Exception_AuthError $e)
 		{
-			$this->response($api_service->build_response_failed($e->getMessage()), 409);
+			$this->response($api_service->build_response_failed($e->getMEssage()), 401);
 		}
 		catch (Service_Exception_InvalidData $e)
 		{
@@ -98,6 +104,10 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 					'error' => $e->data()
 				)
 			), 400);
+		}
+		catch (Service_Exception_NotFound $e)
+		{
+			$this->response($api_service->build_response_failed($e->getMEssage()), 404);
 		}
 		catch (Service_Exception_PermissionDenied $e)
 		{
