@@ -118,6 +118,23 @@ class Service_Account extends Service
 	}
 
 	/**
+	 * Update a user account
+	 *
+	 * @param {App_Model_Account} $account
+	 * @param {array} $data
+	 * @return {Model_App_Account}
+	 */
+	public function update ( $account, array $data )
+	{
+		unset($data['id']);
+
+		if (!$account->set_data($data)->save())
+			throw Service_Exception::factory('InvalidData', $account->last_error());
+
+		return $account;
+	}
+
+	/**
 	 * Send a mail to an account
 	 *
 	 * @param {Model_App_Account} $account
