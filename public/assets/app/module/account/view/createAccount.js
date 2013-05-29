@@ -28,18 +28,24 @@ define([
 		},
 
 		/**
-		 * Declare inputs that should be validate
+		 * Declare inputs
 		 */
 		fields: {
 			email: {
-				el: '#account-email',
+				el: 'email',
 				required: "Please enter a valid Email Address.",
 				validations: {
 					email: "Please enter a valid Email Address."
 				}
 			},
+			firstname: {
+				el: 'firstname'
+			},
+			lastname: {
+				el: 'lastname'
+			},
 			password: {
-				el: '#account-password',
+				el: 'password',
 				required: "Please enter your password.",
 				validations: {
 					password: "Please enter a valid Password."
