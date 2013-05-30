@@ -52,6 +52,10 @@ class Service_Account extends Service
 		else
 			throw Service_Exception::factory('AuthError', 'Invalid authentication scheme');
 
+		// Check if the email have been confirmed
+		if (!$account->email_verified)
+			throw Service_Exception::factory('AuthError', 'Email has not been verified');
+
 		return $account;
 	}
 
