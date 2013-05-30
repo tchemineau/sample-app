@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<title>Apptest</title>
+	<title>{$APP.name}</title>
 	<link href="assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>
 

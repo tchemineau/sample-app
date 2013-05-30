@@ -6,6 +6,9 @@
  */
 $config = array(
 
+	// Application name
+	'name' => 'Sample App',
+
 	// Enable email feature
 	'email_enabled' => true,
 
