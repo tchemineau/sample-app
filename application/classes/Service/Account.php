@@ -124,7 +124,7 @@ class Service_Account extends Service
 
 		// Raise an exception if account could not be loaded
 		if (!$account->loaded())
-			throw Service_Exception::factory('NotFound', 'Account not found');
+			throw Service_Exception::factory('NotFound', 'Account not found')->data($data);
 
 		return $account;
 	}
