@@ -168,6 +168,7 @@ class Service_Account extends Service
 		$content = $email->build_content(
 			'Account.'.ucwords(strtolower($type)),
 			array(
+				'id' => $account->id(),
 				'email' => $account->email,
 				'firstname' => $account->firstname,
 				'lastname' => $account->lastname
