@@ -70,7 +70,12 @@ class Model_App_Account extends Model
 
 		// If password found, securize it
 		if (isset($data['password']))
-			$data['password'] = Password::instance()->hash($data['password']);
+		{
+			if (strlen(trim($data['password'])) == 0)
+				unset($data['password']);
+			else
+				$data['password'] = '**'.Password::instance()->hash($data['password']);
+		}
 
 		// Generate API token if necessary
 		if (!$this->token || $this->token_expired < $timestamp)
@@ -178,7 +183,7 @@ class Model_App_Account extends Model
 			// Password
 			->rule('password', 'min_length', array(':value', 8))
 
-			// Firstname, lastname, displayname and pseudo
+			// Firstname, lastname
 			->rule('firstname', 'regex', array(':value', '/[-\w.,+]+/'))
 			->rule('lastname', 'regex', array(':value', '/[-\w.,+]+/'));
 
@@ -196,7 +201,12 @@ class Model_App_Account extends Model
 	 */
 	public function validate_password ( $password )
 	{
-		return Password::instance()->check($this->password, $password);
+		$hash = preg_replace('/^\*\*/', '', $this->password);
+
+		if ($hash == $this->password)
+			return FALSE;
+
+		return Password::instance()->check($hash, $password);
 	}
 
 	/**
