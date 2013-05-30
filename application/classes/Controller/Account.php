@@ -15,10 +15,10 @@ class Controller_Account extends Controller
 		$id = $this->request->param('id');
 
 		// This will store the error message
-		$error = NULL;
+		$error = FALSE;
 
-		// This will store the account verification bit
-		$account_verified = FALSE;
+		// This will store the verification step
+		$confirmed = FALSE;
 
 		try
 		{
@@ -28,36 +28,33 @@ class Controller_Account extends Controller
 			// Get the account
 			$account = $account_service->get(array('id' => $id));
 
-			// Get account verifiction bit
-			$account_verified = $account->email_verified === TRUE;
-
 			// Verify the account if necessary
-			if (!$account_verified)
+			if ($account->email_verified !== TRUE)
 			{
 				$account_service->update($account, array(
 					'email_verified' => TRUE
 				));
-				$account_verified = TRUE;
+				$confirmed = TRUE;
 			}
 			// Else, set an error message
 			else
 			{
-				$error = 'This account has already been confirmed'
+				$error = 'This account has already been confirmed';
 			}
 		}
 		catch (Service_Exception_NotFound $e)
 		{
-			$error = 'Unable to confirm this account'
+			$error = 'Unable to confirm this account';
 		}
 		catch (Exception $e)
 		{
 			Kohana_Exception::log($e, Log::ERROR);
-			$error = 'Unable to confirm this account'
+			$error = 'Unable to confirm this account';
 		}
 
 		$app = array(
 			'name' => Kohana::$config->load('app.name'),
-			'confirm' => $account_verified,
+			'confirmed' => $confirmed,
 			'error' => $error,
 			'url' => URL::base(Request::current())
 		);

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<title>{$APP.name}</title>
-	<link href="assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="{$APP.url}assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -13,14 +13,14 @@
 
 			<div>
 				<h1>
-					{if $APP.confirm}
+					{if $APP.confirmed}
 						Your account has been confirmed
 					{else}
 						Oups
 					{/if}
 				</h1>
 				<p>
-					{if $APP.confirm}
+					{if $APP.confirmed}
 						You are now allowed to sign in with your account on our services.
 					{else}
 						{$APP.error}.
@@ -28,7 +28,7 @@
 				</p>
 			</div>
 			<div>
-				<a href="{$APP.url}" class="btn">Go to {$APP.name}</a>
+				<a href="{$APP.url}" class="btn">Go back to {$APP.name}</a>
 			</div>
 
 		</div>
