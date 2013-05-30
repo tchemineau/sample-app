@@ -7,11 +7,11 @@
       <td>
         <div style="width:100%;padding:2px">
           <h3 style="padding:0 0 6px 0;margin:0;font-family:Arial,Sans-serif;font-size:16px;font-weight:bold;color:#222">{$title}</h3>
-          <p style="padding:0 1em 10px 0;font-family:Arial,Sans-serif;font-size:13px;color:#888;white-space:nowrap">
-            Please confirm your email address by <a href="{$url}/account/confirm/{$to.id}">clicking this link</a> and you're ready to go.
+          <p>
+            Please confirm your email address by <a href="{$url}account/confirm/{$to.id}">clicking this link</a> and you're ready to go.
           </p>
           <p>
-            {$from.1}
+            The {$from.1} team.
           </p>
         </div>
       </td>
