@@ -130,6 +130,29 @@ class Service_Account extends Service
 	}
 
 	/**
+	 * Delete a user account
+	 *
+	 * @param {Model_App_Account}
+	 * @return {boolean}
+	 */
+	public function remove ( $account )
+	{
+		$account_tmp = $account;
+
+		if (!$account->remove())
+			throw Service_Exception::factory('UnknownError', $account->last_error());
+
+		// Could not create account if mail is not sent
+		if (!$this->_send_email($account_tmp, 'REMOVE'))
+		{
+			throw Service_Exception::factory('UnknownError', 'Unable to send email to :email',
+				array(':email' => $account_tmp->email));
+		}
+
+		return TRUE;
+	}
+
+	/**
 	 * Update a user account
 	 *
 	 * @param {App_Model_Account} $account
