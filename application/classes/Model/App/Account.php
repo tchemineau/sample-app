@@ -14,6 +14,11 @@ class Model_App_Account extends Model
 	public $date_modified;
 
 	/**
+	 * Timestamp of the email verification
+	 */
+	public $data_verified;
+
+	/**
 	 * Email
 	 */
 	public $email;
@@ -67,6 +72,13 @@ class Model_App_Account extends Model
 		// Email is verified ?
 		if (!$this->email_verified)
 			$data['email_verified'] = false;
+
+		// If email verification is set, add additionnal values
+		if (isset($data['email_verified']))
+		{
+			$data['email_verified'] = true;
+			$data['date_verified'] = $timestamp;
+		}
 
 		// If password found, securize it
 		if (isset($data['password']))
