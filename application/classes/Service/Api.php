@@ -64,7 +64,8 @@ class Service_Api extends Service
 	public static function check_access ( $to, $by )
 	{
 		if ($to->id() != $by->id())
-			throw Service_Exception::factory('PermissionDenied', 'Permission denied');
+			throw Service_Exception::factory('PermissionDenied', 'Permission denied')->data(array(
+				'to' => $to, 'by' => $by));
 	}
 
 	/**
