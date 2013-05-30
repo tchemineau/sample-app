@@ -22,7 +22,7 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 			// Get current logged in user account
 			$user = $api_service->check_token($this->request);
 
-			// Create the account
+			// Get the account
 			$account = $account_service->get(array('id' => $id));
 
 			// Check if we could get the account
