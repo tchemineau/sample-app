@@ -6,7 +6,12 @@
     <tr>
       <td>
         <div style="width:100%;padding:2px">
-          <h3 style="padding:0 0 6px 0;margin:0;font-family:Arial,Sans-serif;font-size:16px;font-weight:bold;color:#222">{$title}</h3>
+          <p>
+            Hey,
+          </p>
+          <p>
+            Your registration to {$from.1} is almost complete.
+          </p>
           <p>
             Please confirm your email address by <a href="{$url}account/confirm/{$id}">clicking this link</a> and you're ready to go.
           </p>
