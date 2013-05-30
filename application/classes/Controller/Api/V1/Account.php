@@ -48,6 +48,7 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 		}
 		catch (Exception $e)
 		{
+			Kohana_Exception::log($e, Log::ERROR);
 			$this->response($api_service->build_response_failed($e->getMessage()), 400);
 		}
 	}
@@ -115,6 +116,7 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 		}
 		catch (Exception $e)
 		{
+			Kohana_Exception::log($e, Log::ERROR);
 			$this->response($api_service->build_response_failed($e->getMessage()), 400);
 		}
 	}
@@ -165,6 +167,7 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 		}
 		catch (Exception $e)
 		{
+			Kohana_Exception::log($e, Log::ERROR);
 			$this->response($api_service->build_response_failed($e->getMessage()), 400);
 		}
 	}

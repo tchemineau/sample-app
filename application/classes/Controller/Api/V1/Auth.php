@@ -44,6 +44,7 @@ class Controller_Api_V1_Auth extends Controller_Api_Standard
 		}
 		catch (Exception $e)
 		{
+			Kohana_Exception::log($e, Log::ERROR);
 			$this->response($api_service->build_response('Bad authentication request'), 400);
 		}
 	}
