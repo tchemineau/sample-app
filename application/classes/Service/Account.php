@@ -10,8 +10,20 @@ class Service_Account extends Service
 	 * Mail titles
 	 */
 	private static $_mail_titles = array (
-		'CREATE' => 'Account created'
+		'CREATE' => '',
+		'REMOVE' => ''
 	);
+
+	/**
+	 * Just used to set mail titles correctly
+	 */
+	public function __construct ()
+	{
+		self::$_mail_titles = array (
+			'CREATE' => 'Welcome to '.Kohana::$config->load('app.name'),
+			'REMOVE' => 'Goodbye from '.Kohana::$config->load('app.name')
+		);
+	}
 
 	/**
 	 * Authenticate user
