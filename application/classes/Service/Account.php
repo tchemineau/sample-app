@@ -73,8 +73,8 @@ class Service_Account extends Service
 		{
 			$account->remove();
 
-			throw Service_Exception::factory('EmailError', 'Unable to send email to :email',
-				array(':email' => $data['email']));
+			throw Service_Exception::factory('UnknownError', 'Unable to send email to :email',
+				array(':email' => $data['email']))->trace();
 		}
 
 		return $account;
