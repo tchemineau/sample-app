@@ -35,6 +35,13 @@ define([
 					}
 				});
 			});
+
+			// On logout succeed, disconnect user
+			App.vent.on('logout:success', function ()
+			{
+				App.user = null;
+				Backbone.history.navigate('/#');
+			});
 		},
 	});
 
