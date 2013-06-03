@@ -41,7 +41,7 @@ define([
 	// Catch page logout event
 	App.vent.on('page:logout', function()
 	{
-		console.log('Do logout process');
+		App.vent.trigger('logout:success');
 	});
 
 	// Catch welcome page event

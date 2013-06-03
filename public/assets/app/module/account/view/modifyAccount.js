@@ -52,7 +52,7 @@ define([
 			this.model.destroy({
 				'success': function ()
 				{
-					App.vent.trigger('logout:success');
+					App.vent.trigger('page:logout');
 				}
 			});
 		},
