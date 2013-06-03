@@ -26,6 +26,12 @@
 				</div>
 			</div>
 
+			<div id="account-delete-control" class="control-group">
+				<div class="controls">
+					<button id="account-delete-btn" class="btn btn-danger">Delete my account</button>
+				</div>
+			</div>
+
 		</fieldset>
 
 		<div class="form-actions">
@@ -36,6 +42,24 @@
 
 	<div>
 		<a href="" class="btn"><i class="icon-arrow-left"></i></a>
+	</div>
+
+	<div id="account-delete-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="account-delete-modal-title" aria-hidden="true">
+		<div class="modal-header">
+			<button id="account-delete-modal-close" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="account-delete-modal-title">Delete account confirmation</h3>
+		</div>
+		<div class="modal-body">
+			<p>
+				<strong>Are you sure you want to delete your account ?</strong>
+			</p>
+			<p>
+				This action <strong>cannot</strong> be undone. This will delete your account permanently.
+			</p>
+		</div>
+		<div class="modal-footer">
+			<button id="account-delete-modal-ok" class="btn btn-danger">Yes, I want to delete my account now</button>
+		</div>
 	</div>
 
 </script>
