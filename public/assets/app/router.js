@@ -63,6 +63,16 @@ define([
 				}};
 			});
 
+			// Catch logout event
+			App.vent.on('logout:success', function ()
+			{
+				// Delete token
+				App.token = null;
+
+				// Delete token from every backbone request
+				Backbone.defaultSyncOptions = {};
+			});
+
 			// Start history
 			Backbone.history.start({
 				pushState: false,
