@@ -141,7 +141,7 @@ class Service_Account extends Service
 	 */
 	public function remove ( $account )
 	{
-		$account_tmp = $account;
+		$account_tmp = clone $account;
 
 		if (!$account->remove())
 			throw Service_Exception::factory('UnknownError', $account->last_error());
