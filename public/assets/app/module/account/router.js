@@ -31,6 +31,7 @@ define([
 					success: function ()
 					{
 						App.user = account;
+						App.vent.trigger('login:success:account');
 						Backbone.history.navigate('/#');
 					}
 				});
@@ -40,6 +41,7 @@ define([
 			App.vent.on('logout:success', function ()
 			{
 				App.user = null;
+				App.vent.trigger('logout:success:account');
 				Backbone.history.navigate('/#');
 			});
 		},
