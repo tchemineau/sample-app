@@ -1,0 +1,36 @@
+<script type="text/template" id="appMenuView">
+
+	<div class="navbar navbar-static-top">
+		<div class="navbar-inner">
+
+			<a class="brand" href="#">Sample App</a>
+
+			<% if (typeof user.id != 'undefined') { %>
+				<ul class="nav pull-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<%= user.email %>
+							<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="#account">My Account</a></li>
+							<li><a href="#logout">Sign Off</a></li>
+						</ul>
+					</li>
+				</ul>
+			<% } else { %>
+				<div class="pull-right">
+					<a class="btn btn-success" href="#account/create">Sign Up</a>
+				</div>
+				<div class="pull-right">
+					<span class="navbar-text">&nbsp;or&nbsp;</span>
+				</div>
+				<div class="pull-right">
+					<a class="btn" href="#login">Sign In</a>
+				</div>
+			<% } %>
+
+		</div>
+	</div>
+
+</script>
