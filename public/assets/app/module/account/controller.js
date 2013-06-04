@@ -27,7 +27,7 @@ define([
 					model: new AccountModel()
 				});
 
-				App.root.show(createAccountView);
+				App.root.currentView.page.show(createAccountView);
 			});
 		},
 
@@ -55,7 +55,7 @@ define([
 					{
 						var modifyAccountView = new ModifyAccountView({app: App, model: account});
 
-						App.root.show(modifyAccountView);
+						App.root.currentView.page.show(modifyAccountView);
 					}
 				});
 			});

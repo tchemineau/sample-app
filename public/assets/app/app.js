@@ -2,16 +2,12 @@ define([
 	'marionette',
 	'router',
 	'module/account/router',
-], function (Marionette, AppRouter, AccountRouter)
+	'view/appLayout'
+], function (Marionette, AppRouter, AccountRouter, AppLayout)
 {
 	"use strict";
 
 	var App = new Marionette.Application();
-
-	// Add the main region
-	App.addRegions({
-		root: '#approot'
-	});
 
 	// This will store the user information
 	App.user = null;
@@ -19,13 +15,18 @@ define([
 	// This will store the user token
 	App.token = null;
 
+	// Add the main region
+	App.addRegions({
+		root: '#approot'
+	});
+
 	// Catch page error event
 	App.vent.on('page:error', function()
 	{
 		require(['view/error'], function(ErrorView)
 		{
 			var errorView = new ErrorView({app: App});
-			App.root.show(errorView);
+			App.root.currentView.page.show(errorView);
 		});
 	});
 
@@ -34,7 +35,7 @@ define([
 	{
 		require(['view/login'], function(LoginView)
 		{
-			App.root.show(new LoginView({app: App}));
+			App.root.currentView.page.show(new LoginView({app: App}));
 		});
 	});
 
@@ -49,7 +50,7 @@ define([
 	{
 		require(['view/welcome'], function(WelcomeView)
 		{
-			App.root.show(new WelcomeView({app: App}));
+			App.root.currentView.page.show(new WelcomeView({app: App}));
 		});
 	});
 
@@ -58,9 +59,11 @@ define([
 	{
 		options.app = App;
 
+		this.layout = new AppLayout(options);
 		this.router = new AppRouter(options);
 		this.accountRouter = new AccountRouter(options);
 
+		App.root.show(this.layout);
 		App.vent.trigger('page:welcome');
 	});
 
