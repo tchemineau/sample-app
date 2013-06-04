@@ -8,11 +8,7 @@
 
 <body>
 
-	<div class="container-fluid">
-		<div class="row-fluid" id="approot">
-
-		</div>
-	</div>
+	<div class="row-fluid" id="approot"></div>
 
 	<script type="text/javascript" src="assets/app/require.js" data-main="assets/app/main"></script>
 
