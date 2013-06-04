@@ -9,7 +9,6 @@
 			'bootstrap': '../lib/bootstrap/js/bootstrap.min',
 			'jquery': '../lib/jquery-1.9.1.min',
 			'marionette': '../lib/backbone.marionette.min',
-			//'marionette.formview': '../lib/backbone.marionette.formview.min',
 			'marionette.formview': '../lib/backbone.marionette.formview',
 			'underscore': '../lib/underscore.min'
 		},
