@@ -1,55 +1,33 @@
 <script id="createAccountTemplate" type="text/template">
 
-	<div>
-		<h1 class="apptitle">Sign up for Sample App</h1>
-	</div>
-
 	<div id="account-alert-container"></div>
 
-	<form method="POST" class="form-horizontal">
+	<form class="form-horizontal form-signup" method="POST">
+
+		<h2 class="form-signin-heading">Sign up for Sample App</h2>
 
 		<fieldset>
 
-			<legend>Mandatory information</legend>
-
 			<div id="account-email-control" class="control-group">
-				<label class="control-label" for="account-email">Email</label>
-				<div class="controls">
-					<input id="account-email" type="email" name="email" placeholder="Type your email address…" data-field="email" />
-				</div>
+				<input class="input-block-level" id="account-email" type="email" name="email" placeholder="Type your email address…" data-field="email" />
 			</div>
 
 			<div id="account-password-control" class="control-group">
-				<label class="control-label" for="account-password">Password</label>
-				<div class="controls">
-					<input id="account-password" type="password" name="password" placeholder="password" data-field="password" />
-				</div>
-			</div>
-			
-		</fieldset>
-
-		<fieldset>
-
-			<legend>Personal information</legend>
-
-			<div id="account-firstname-control" class="control-group">
-				<label class="control-label" for="account-firstname">Firstname</label>
-				<div class="controls">
-					<input id="account-firstname" type="text" name="firstname" placeholder="Type your firstname…" data-field="firstname" />
-				</div>
+				<input class="input-block-level" id="account-password" type="password" name="password" placeholder="Your password" data-field="password" />
 			</div>
 
-			<div id="account-lastname-control" class="control-group">
-				<label class="control-label" for="account-lastname">Lastname</label>
-				<div class="controls">
-					<input id="account-lastname" type="text" name="lastname" placeholder="Type your lastname…" data-field="lastname" />
-				</div>
+			<div id="account-password2-control" class="control-group">
+				<input class="input-block-level" id="account-password2" type="password" name="password2" placeholder="Confirm your password" data-field="password" />
 			</div>
 
 		</fieldset>
 
-		<div class="form-actions">
-			<button id="account-create-btn" type="submit" class="btn btn-primary">Create an account</button>
+		<div class="alert">
+			By clicking on "Create an account" below, you will receiving an email which invites you to confirm your new account.
+		</div>
+
+		<div>
+			<button id="account-create-btn" type="submit" class="btn btn-large btn-primary">Create an account</button>
 		</div>
 
 	</form>
