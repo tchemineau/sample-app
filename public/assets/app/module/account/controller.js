@@ -19,7 +19,7 @@ define([
 
 			lrequire([
 				'./model/account',
-				'./view/createAccount'
+				'./view/createAccountView'
 			], function(AccountModel, CreateAccountView)
 			{
 				var createAccountView = new CreateAccountView({
@@ -40,7 +40,7 @@ define([
 
 			lrequire([
 				'./model/account',
-				'./view/modifyAccount'
+				'./view/modifyAccountView'
 			], function (AccountModel, ModifyAccountView)
 			{
 				var data = {};
