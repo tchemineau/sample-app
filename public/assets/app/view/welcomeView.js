@@ -13,7 +13,8 @@ define([
 			var app = this.options.app;
 
 			return {
-				user: app.user ? app.user.toJSON() : {}
+				user: app.user ? app.user.toJSON() : {},
+				url: app.url
 			};
 		}
 	});
