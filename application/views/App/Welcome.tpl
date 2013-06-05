@@ -4,6 +4,7 @@
 	<meta charset="utf-8" />
 	<title>{$APP.name}</title>
 	<link href="assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/app.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
