@@ -1,7 +1,7 @@
 
 define([
 	'marionette',
-	'text!template/welcome.html'
+	'text!template/welcomeView.html'
 ], function(Marionette, WelcomeTemplate)
 {
 	var WelcomeView = Marionette.ItemView.extend(
@@ -10,10 +10,10 @@ define([
 
 		serializeData: function()
 		{
-			var App = this.options.app;
+			var app = this.options.app;
 
 			return {
-				user: App.user ? App.user.toJSON() : {}
+				user: app.user ? app.user.toJSON() : {}
 			};
 		}
 	});

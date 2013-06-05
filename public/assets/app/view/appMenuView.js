@@ -2,35 +2,31 @@
 define([
 	'marionette',
 	'text!template/appMenuView.html'
-], function(Marionette, AppMenuTemplate)
+], function(Marionette, appMenuTemplate)
 {
-	var AppMenuView = Marionette.ItemView.extend(
+	var appMenuView = Marionette.ItemView.extend(
 	{
-		template: AppMenuTemplate,
+		template: appMenuTemplate,
 
 		initialize: function (options)
 		{
-			var App = options.app;
+			var app = options.app;
 
-			App.vent.on('login:success:account', this.refresh, this);
-			App.vent.on('logout:success:account', this.refresh, this);
-		},
-
-		refresh: function ()
-		{
-			this.render();
+			app.vent.on('login:success:account', this.render, this);
+			app.vent.on('logout:success:account', this.render, this);
 		},
 
 		serializeData: function()
 		{
-			var App = this.options.app;
+			var app = this.options.app;
 
 			return {
-				user: App.user ? App.user.toJSON() : {}
+				user: app.user ? app.user.toJSON() : {},
+				url: app.url
 			};
 		}
 	});
 
-	return AppMenuView;
+	return appMenuView;
 });
 

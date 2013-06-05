@@ -16,23 +16,26 @@ define([
 
 		initialize: function(options)
 		{
-			var App = options.app;
-			var Url = options.url;
+			var app = options.app;
+			var url = options.url;
 
-			this.controller.initialize({
-				app: options.app
-			})
+			// Store the url
+			app.url = url;
+
+			// Initialize the controller
+			this.controller.initialize(options);
 
 			// Catch clicks on every a links
-			$(document).on('click', 'a:not([data-bypass])', function (evt)
+			$(document).on('click', 'a[href^="/"]:not([data-bypass])', function (evt)
 			{
-				var href = $(this).attr('href');
-				var protocol = this.protocol + '//';
-
-				if (href.slice(protocol.length) !== protocol)
+				if (!evt.altKey && !evt.ctrlKey && !evt.metaKey && !evt.shiftKey)
 				{
 					evt.preventDefault();
-					App.router.navigate(href, {trigger: true});
+
+					var regexp = new RegExp(url, 'g');
+					var href = $(evt.currentTarget).attr('href').replace(regexp, '').replace(/^\//, '');
+
+					app.router.navigate(href, {trigger: true});
 				}
 			});
 
@@ -52,10 +55,10 @@ define([
 			};
 
 			// Catch login event
-			App.vent.on('login:success', function (data)
+			app.vent.on('login:success', function (data)
 			{
 				// Store token into the application
-				App.token = data.token;
+				app.token = data.token;
 
 				// Add token to every backbone request
 				Backbone.defaultSyncOptions = {headers: {
@@ -64,10 +67,10 @@ define([
 			});
 
 			// Catch logout event
-			App.vent.on('logout:success', function ()
+			app.vent.on('logout:success', function ()
 			{
 				// Delete token
-				App.token = null;
+				app.token = null;
 
 				// Delete token from every backbone request
 				Backbone.defaultSyncOptions = {};
@@ -75,8 +78,8 @@ define([
 
 			// Start history
 			Backbone.history.start({
-				pushState: false,
-				root: Url
+				pushState: true,
+				root: url
 			});
 		}
 	});

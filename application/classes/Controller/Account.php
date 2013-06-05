@@ -56,7 +56,7 @@ class Controller_Account extends Controller
 			'name' => Kohana::$config->load('app.name'),
 			'confirmed' => $confirmed,
 			'error' => $error,
-			'url' => URL::base(Request::current())
+			'url' => URL::base($this->request)
 		);
 
 		$view = View::factory('smarty:App/Account.Confirm.tpl');

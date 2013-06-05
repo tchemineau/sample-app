@@ -3,7 +3,7 @@
 	<div class="navbar navbar-static-top">
 		<div class="navbar-inner">
 
-			<a class="brand" href="#">Sample App</a>
+			<a class="brand" href="<%= url %>">Sample App</a>
 
 			<% if (typeof user.id != 'undefined') { %>
 				<ul class="nav pull-right">
@@ -13,20 +13,20 @@
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="#account">My Account</a></li>
-							<li><a href="#logout">Sign Off</a></li>
+							<li><a href="<%= url %>account">My Account</a></li>
+							<li><a href="<%= url %>logout">Sign Off</a></li>
 						</ul>
 					</li>
 				</ul>
 			<% } else { %>
 				<div class="pull-right">
-					<a class="btn btn-success" href="#account/create">Sign Up</a>
+					<a class="btn btn-success" href="<%= url %>account/create">Sign Up</a>
 				</div>
 				<div class="pull-right">
 					<span class="navbar-text">&nbsp;or&nbsp;</span>
 				</div>
 				<div class="pull-right">
-					<a class="btn" href="#login">Sign In</a>
+					<a class="btn" href="<%= url %>login">Sign In</a>
 				</div>
 			<% } %>
 

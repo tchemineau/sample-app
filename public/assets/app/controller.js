@@ -11,26 +11,26 @@ define([
 
 		default: function(actions)
 		{
-			var App = this.options.app;
-			App.vent.trigger('page:error', {request: actions});
+			var app = this.options.app;
+			app.vent.trigger('page:error', {request: actions});
 		},
 
 		login: function()
 		{
-			var App = this.options.app;
-			App.vent.trigger('page:login');
+			var app = this.options.app;
+			app.vent.trigger('page:login');
 		},
 
 		logout: function()
 		{
-			var App = this.options.app;
-			App.vent.trigger('page:logout');
+			var app = this.options.app;
+			app.vent.trigger('page:logout');
 		},
 
 		welcome: function()
 		{
-			var App = this.options.app;
-			App.vent.trigger('page:welcome');
+			var app = this.options.app;
+			app.vent.trigger('page:welcome');
 		}
 
 	};

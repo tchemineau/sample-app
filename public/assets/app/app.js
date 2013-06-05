@@ -3,69 +3,73 @@ define([
 	'router',
 	'module/account/router',
 	'view/appLayout'
-], function (Marionette, AppRouter, AccountRouter, AppLayout)
+], function (Marionette, appRouter, AccountRouter, appLayout)
 {
 	"use strict";
 
-	var App = new Marionette.Application();
+	var app = new Marionette.Application();
 
 	// This will store the user information
-	App.user = null;
+	app.user = null;
 
 	// This will store the user token
-	App.token = null;
+	app.token = null;
+
+	// This will store the application url
+	app.url = '/';
 
 	// Add the main region
-	App.addRegions({
+	app.addRegions({
 		root: '#approot'
 	});
 
 	// Catch page error event
-	App.vent.on('page:error', function()
+	app.vent.on('page:error', function()
 	{
-		require(['view/error'], function(ErrorView)
+		require(['view/errorView'], function(ErrorView)
 		{
-			var errorView = new ErrorView({app: App});
-			App.root.currentView.page.show(errorView);
+			var errorView = new ErrorView({app: app});
+			app.root.currentView.page.show(errorView);
 		});
 	});
 
 	// Catch page login event
-	App.vent.on('page:login', function()
+	app.vent.on('page:login', function()
 	{
-		require(['view/login'], function(LoginView)
+		require(['view/loginView'], function(LoginView)
 		{
-			App.root.currentView.page.show(new LoginView({app: App}));
+			app.root.currentView.page.show(new LoginView({app: app}));
 		});
 	});
 
 	// Catch page logout event
-	App.vent.on('page:logout', function()
+	app.vent.on('page:logout', function()
 	{
-		App.vent.trigger('logout:success');
+		app.vent.trigger('logout:success');
 	});
 
 	// Catch welcome page event
-	App.vent.on('page:welcome', function()
+	app.vent.on('page:welcome', function()
 	{
-		require(['view/welcome'], function(WelcomeView)
+		require(['view/welcomeView'], function(WelcomeView)
 		{
-			App.root.currentView.page.show(new WelcomeView({app: App}));
+			app.root.currentView.page.show(new WelcomeView({app: app}));
 		});
 	});
 
 	// Launch application once all is loaded
-	App.addInitializer(function(options)
+	app.addInitializer(function(options)
 	{
-		options.app = App;
+		options.app = app;
 
-		this.layout = new AppLayout(options);
-		this.router = new AppRouter(options);
+		this.layout = new appLayout(options);
+		this.router = new appRouter(options);
 		this.accountRouter = new AccountRouter(options);
 
-		App.root.show(this.layout);
-		App.vent.trigger('page:welcome');
+		app.root.show(this.layout);
+		app.vent.trigger('page:welcome');
 	});
 
-	return App;
+	return app;
 });
+

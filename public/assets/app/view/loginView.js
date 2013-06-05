@@ -2,7 +2,7 @@
 define([
 	'marionette',
 	'marionette.formview',
-	'text!template/login.html'
+	'text!template/loginView.html'
 ], function(Marionette, MarionetteFormView, LoginTemplate)
 {
 	var LoginView = Marionette.FormView.extend(
@@ -20,7 +20,7 @@ define([
 			var me = this;
 
 			// Get application
-			var App = this.options.app;
+			var app = this.options.app;
 
 			// Do the request to log the user
 			$.ajax(
@@ -34,7 +34,7 @@ define([
 				},
 				success: function (response)
 				{
-					App.vent.trigger('login:success', response.data);
+					app.vent.trigger('login:success', response.data);
 				},
 				error: function (xhr, status)
 				{
@@ -42,6 +42,16 @@ define([
 				}
 			});
 		},
+
+                serializeData: function()
+                {
+                        var app = this.options.app;
+
+                        return {
+                                user: app.user ? app.user.toJSON() : {},
+                                url: app.url
+                        };
+                },
 
 		/**
 		 * Show an error
@@ -54,7 +64,7 @@ define([
 				.append('<strong>Error</strong>: '+message);
 
 			alertbox.appendTo(container).alert();
-		},
+		}
 
 	});
 

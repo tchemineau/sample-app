@@ -45,14 +45,14 @@ define([
 		{
 			evt.preventDefault();
 
-			var App = this.options.app;
+			var app = this.options.app;
 
 			this.ui.deletemodal.modal('hide');
 
 			this.model.destroy({
 				'success': function ()
 				{
-					App.vent.trigger('page:logout');
+					app.vent.trigger('page:logout');
 				}
 			});
 		},

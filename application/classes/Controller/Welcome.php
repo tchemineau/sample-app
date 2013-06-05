@@ -12,7 +12,8 @@ class Controller_Welcome extends Controller
 	public function action_index()
 	{
 		$app = array(
-			'name' => Kohana::$config->load('app.name')
+			'name' => Kohana::$config->load('app.name'),
+			'url' => URL::base($this->request)
 		);
 
 		$view = View::factory('smarty:App/Welcome.tpl');

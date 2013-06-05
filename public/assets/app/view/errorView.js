@@ -1,7 +1,7 @@
 
 define([
 	'marionette',
-	'text!template/error.html'
+	'text!template/errorView.html'
 ], function(Marionette, ErrorTemplate)
 {
 	var ErrorView = Marionette.ItemView.extend(

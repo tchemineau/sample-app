@@ -16,33 +16,35 @@ define([
 
 		initialize: function(options)
 		{
-			var App = options.app;
+			var app = options.app;
 
 			this.controller.initialize({
-				app: App
+				app: app
 			});
 
 			// On login succeed, fetch user and set it into the application
-			App.vent.on('login:success', function (data)
+			app.vent.on('login:success', function (data)
 			{
 				var account = new AccountModel(data);
 
 				account.fetch({
 					success: function ()
 					{
-						App.user = account;
-						App.vent.trigger('login:success:account');
-						Backbone.history.navigate('/#');
+						app.user = account;
+						app.vent.trigger('login:success:account');
+						Backbone.history.navigate('');
+						app.vent.trigger('page:welcome');
 					}
 				});
 			});
 
 			// On logout succeed, disconnect user
-			App.vent.on('logout:success', function ()
+			app.vent.on('logout:success', function ()
 			{
-				App.user = null;
-				App.vent.trigger('logout:success:account');
-				Backbone.history.navigate('/#');
+				app.user = null;
+				app.vent.trigger('logout:success:account');
+				Backbone.history.navigate('');
+				app.vent.trigger('page:welcome');
 			});
 		},
 	});

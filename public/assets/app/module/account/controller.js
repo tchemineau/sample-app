@@ -15,7 +15,7 @@ define([
 		 */
 		create: function ()
 		{
-			var App = this.options.app;
+			var app = this.options.app;
 
 			lrequire([
 				'./model/account',
@@ -23,11 +23,11 @@ define([
 			], function(AccountModel, CreateAccountView)
 			{
 				var createAccountView = new CreateAccountView({
-					app: App,
+					app: app,
 					model: new AccountModel()
 				});
 
-				App.root.currentView.page.show(createAccountView);
+				app.root.currentView.page.show(createAccountView);
 			});
 		},
 
@@ -36,7 +36,7 @@ define([
 		 */
 		modify: function ()
 		{
-			var App = this.options.app;
+			var app = this.options.app;
 
 			lrequire([
 				'./model/account',
@@ -45,17 +45,17 @@ define([
 			{
 				var data = {};
 
-				if (App.user)
-					data.id = App.user.id;
+				if (app.user)
+					data.id = app.user.id;
 
 				var account = new AccountModel(data);
 
 				account.fetch({
 					success: function ()
 					{
-						var modifyAccountView = new ModifyAccountView({app: App, model: account});
+						var modifyAccountView = new ModifyAccountView({app: app, model: account});
 
-						App.root.currentView.page.show(modifyAccountView);
+						app.root.currentView.page.show(modifyAccountView);
 					}
 				});
 			});
