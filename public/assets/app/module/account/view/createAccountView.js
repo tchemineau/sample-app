@@ -23,6 +23,7 @@ define([
 		ui: {
 			email: '#account-email',
 			password: '#account-password',
+			password2: '#account-password2',
 			firstname: '#account-firstname',
 			lastname: '#account-lastname'
 		},
@@ -50,6 +51,14 @@ define([
 				validations: {
 					password: "Please enter a valid Password."
 				}
+			},
+			password2: {
+				el: 'password2',
+				required: "Please confirm your password.",
+				validations: {
+					password: "Please enter a valid password.",
+					confirmPassword: "The confirmed password doesn't match the password."
+				}
 			}
 		},
 
@@ -60,6 +69,10 @@ define([
 			password: function(val)
 			{
 				return /^['a-zA-Z0-9]{8,}$/.test(val);
+			},
+			confirmPassword: function(val)
+			{
+				return val == this.inputVal('password');
 			}
 		},
 
@@ -111,14 +124,14 @@ define([
 
 			_(errors).each(function (field)
 			{
-				$(field.el+'-control').addClass('error');
-				$(field.el).tooltip({
+				$('#account-'+field.el+'-control').addClass('error');
+				$('#account-'+field.el).tooltip({
 					placement: 'right',
 					title: field.error[0]}
 				);
 
 				if (cpt == 0)
-					$(field.el).tooltip('show');
+					$('#account-'+field.el).tooltip('show');
 
 				cpt++;
 			});

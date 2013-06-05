@@ -129,8 +129,6 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 		// Build request data
 		$data = array(
 			'email' => $body->email,
-			'firstname' => $body->firstname,
-			'lastname' => $body->lastname,
 			'password' => $body->password
 		);
 
