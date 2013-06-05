@@ -2,7 +2,7 @@
 define([
 	'marionette',
 	'marionette.formview',
-	'text!module/account/template/modifyAccount.html'
+	'text!module/account/template/modifyAccountView.html'
 ], function(Marionette, MarionetteFormView, ModifyAccountTemplate)
 {
 	var ModifyAccountView = Marionette.FormView.extend(
