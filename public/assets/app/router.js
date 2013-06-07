@@ -14,6 +14,18 @@ define([
 
 		controller: AppController,
 
+		loadFragment: function(fragment)
+		{
+			Backbone.history.loadUrl(fragment);
+		},
+
+		loadPage: function(page)
+		{
+			var app = this.options.app;
+
+			app.vent.trigger('page:'+page);
+		},
+
 		initialize: function(options)
 		{
 			var app = options.app;
