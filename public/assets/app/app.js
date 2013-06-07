@@ -67,7 +67,19 @@ define([
 		this.accountRouter = new AccountRouter(options);
 
 		app.root.show(this.layout);
-		app.vent.trigger('page:welcome');
+	});
+
+	// Launch the page
+	app.addInitializer(function(options)
+	{
+		// Get request from html
+		var fragment = $('#app').attr('data-fragment');
+
+		// What to load ?
+		if (fragment && fragment.length > 0)
+			this.router.loadFragment(fragment);
+		else
+			this.router.loadPage('welcome');
 	});
 
 	return app;
