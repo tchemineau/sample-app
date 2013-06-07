@@ -11,6 +11,7 @@ class Service_Account extends Service
 	 */
 	private static $_mail_titles = array (
 		'CREATE' => '',
+		'FORGOT_PASSWORD' => '',
 		'REMOVE' => ''
 	);
 
@@ -19,9 +20,12 @@ class Service_Account extends Service
 	 */
 	public function __construct ()
 	{
+		$app_name = Kohana::$config->load('app.name');
+
 		self::$_mail_titles = array (
-			'CREATE' => 'Welcome to '.Kohana::$config->load('app.name'),
-			'REMOVE' => 'Goodbye from '.Kohana::$config->load('app.name')
+			'CREATE' => 'Welcome to '.$app_name,
+			'FORGOT_PASSWORD' => 'How to reset your password on '.$app_name,
+			'REMOVE' => 'Goodbye from '.$app_name
 		);
 	}
 
@@ -91,6 +95,27 @@ class Service_Account extends Service
 
 			throw Service_Exception::factory('UnknownError', 'Unable to send email to :email',
 				array(':email' => $data['email']));
+		}
+
+		return $account;
+	}
+
+	/**
+	 * Send reset password instruction by mail if account exists
+	 *
+	 * @param {array} $data
+	 * @return {Model_App_Account}
+	 */
+	public function forgot_password ( array $data )
+	{
+		// Get the account
+		$account = $this->get($data);
+
+		// Could not create account if mail is not sent
+		if (!$this->_send_email($account, 'FORGOT_PASSWORD'))
+		{
+			throw Service_Exception::factory('UnknownError', 'Unable to send email to :email',
+				array(':email' => $account->email));
 		}
 
 		return $account;
@@ -191,9 +216,12 @@ class Service_Account extends Service
 		// Build headers
 		$headers = $email->build_headers($account->email, $title);
 
+		// Build mail template name
+		$template = str_replace(' ', '', ucwords(str_replace('_', ' ', strtolower($type))));
+
 		// Build content
 		$content = $email->build_content(
-			'Account.'.ucwords(strtolower($type)),
+			'Account.'.$template,
 			array(
 				'id' => $account->id(),
 				'email' => $account->email,
