@@ -1,41 +1,34 @@
 <script id="modifyAccountTemplate" type="text/template">
 
-	<div>
-		<h1 class="apptitle">My account</h1>
-	</div>
-
 	<div id="account-alert-container"></div>
 
-	<form method="POST" class="form-horizontal">
+	<form class="form-horizontal form-app" method="POST">
+
+		<h2 class="form-app-heading">My account</h2>
 
 		<fieldset>
 
-			<legend>Personal information</legend>
-
 			<div id="account-firstname-control" class="control-group">
-				<label class="control-label" for="account-firstname">Firstname</label>
-				<div class="controls">
-					<input id="account-firstname" type="text" name="firstname" placeholder="Type your firstname…" data-field="firstname" />
-				</div>
+				<label for="account-firstname">Firstname</label>
+				<input class="input-block-level" id="account-firstname" type="text" name="firstname" placeholder="Your firstname…" data-field="firstname" />
 			</div>
 
 			<div id="account-lastname-control" class="control-group">
-				<label class="control-label" for="account-lastname">Lastname</label>
-				<div class="controls">
-					<input id="account-lastname" type="text" name="lastname" placeholder="Type your lastname…" data-field="lastname" />
-				</div>
-			</div>
-
-			<div id="account-delete-control" class="control-group">
-				<div class="controls">
-					<button id="account-delete-btn" class="btn btn-danger">Delete my account</button>
-				</div>
+				<label for="account-lastname">Lastname</label>
+				<input class="input-block-level" id="account-lastname" type="text" name="lastname" placeholder="Your lastname…" data-field="lastname" />
 			</div>
 
 		</fieldset>
 
-		<div class="form-actions">
-			<button id="account-create-btn" type="submit" class="btn btn-primary">Save</button>
+		<div>
+			<button id="account-create-btn" type="submit" class="btn btn-large btn-primary">Save</button>
+		</div>
+
+		<hr/>
+
+		<div>
+			<button id="account-delete-btn" class="btn btn-danger">Delete my account</button>
+			<button id="account-password-btn" class="btn">Change my password</button>
 		</div>
 
 	</form>
