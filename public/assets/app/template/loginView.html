@@ -2,9 +2,9 @@
 
 	<div id="login-alert-container"></div>
 
-	<form class="form-horizontal form-signin" method="POST">
+	<form class="form-horizontal form-app" method="POST">
 
-		<h2 class="form-signin-heading">Please sign in</h2>
+		<h2 class="form-app-heading">Please sign in</h2>
 
 		<fieldset>
 
@@ -17,9 +17,13 @@
 			
 		</fieldset>
 
+		<div class="pull-right">
+			<a href="<%= url %>account/create">I don't have account</a><br/>
+			<a href="<%= url %>account/forgot_password">I forgot my password</a>
+		</div>
+
 		<div>
 			<button id="login-btn" type="submit" class="btn btn-large btn-primary">Sign in</button>
-			<span>&nbsp;<a href="<%= url %>account/create">I don't have account.</a></span>
 		</div>
 
 	</form>
