@@ -10,17 +10,17 @@ class Service_Token extends Service
 	 * Create a token for a given loaded mongo model
 	 *
 	 * @param {Model_Mongo} $model
-	 * @param {boolean} $permanent
+	 * @param {boolean} $is_permanent
 	 * @return {Model_App_Token}
 	 */
-	public function create ( $model, $permanent = false )
+	public function create ( $model, $is_permanent = false )
 	{
 		// Create a new empty token
 		$token = Model::factory('App_Token');
 
 		// Build data
 		$data = array(
-			'permanent' => $permanent,
+			'is_permanent' => $is_permanent,
 			'target' => $model->id(),
 			'target_type' => get_class($model)
 		);
