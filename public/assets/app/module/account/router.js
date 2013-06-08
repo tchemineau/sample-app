@@ -9,6 +9,8 @@ define([
 	{
 		appRoutes: {
 			'account/create': 'create',
+			'account/forgot_password': 'forgotPassword',
+			'account/reset_password/:id': 'resetPassword',
 			'account': 'modify'
 		},
 
@@ -16,11 +18,11 @@ define([
 
 		initialize: function(options)
 		{
+			// Get the application
 			var app = options.app;
 
-			this.controller.initialize({
-				app: app
-			});
+			// Initialize the controller
+			this.controller.initialize({app: app});
 
 			// On login succeed, fetch user and set it into the application
 			app.vent.on('login:success', function (data)
@@ -32,8 +34,9 @@ define([
 					{
 						app.user = account;
 						app.vent.trigger('login:success:account');
+
 						Backbone.history.navigate('');
-						app.vent.trigger('page:welcome');
+						app.router.loadPage('welcome');
 					}
 				});
 			});
@@ -43,8 +46,9 @@ define([
 			{
 				app.user = null;
 				app.vent.trigger('logout:success:account');
+
 				Backbone.history.navigate('');
-				app.vent.trigger('page:welcome');
+				app.router.loadPage('welcome');
 			});
 		},
 	});
