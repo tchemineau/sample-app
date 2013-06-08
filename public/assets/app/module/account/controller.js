@@ -32,6 +32,23 @@ define([
 		},
 
 		/**
+		 * Show a password reset form
+		 */
+		forgotPassword: function ()
+		{
+			var app = this.options.app;
+
+			lrequire([
+				'./view/forgotPasswordView'
+			], function (ForgotPasswordView)
+			{
+				var forgotPasswordView = new ForgotPasswordView({app: app});
+
+				app.root.currentView.page.show(forgotPasswordView);
+			});
+		},
+
+		/**
 		 * Show account view
 		 */
 		modify: function ()
@@ -58,6 +75,27 @@ define([
 						app.root.currentView.page.show(modifyAccountView);
 					}
 				});
+			});
+		},
+
+		/**
+		 * Show a reset password form
+		 */
+		resetPassword: function (id)
+		{
+			var app = this.options.app;
+
+			lrequire([
+				'./model/account',
+				'./view/resetPasswordView'
+			], function(AccountModel, ResetPasswordView)
+			{
+				var resetPasswordView = new ResetPasswordView({
+					app: app,
+					model: new AccountModel()
+				});
+
+				app.root.currentView.page.show(resetPasswordView);
 			});
 		}
 
