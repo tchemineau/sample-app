@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die();
+<?php defined('SYSPATH') or die('No direct script access.');
 
 class Model_App_Account extends Model
 {
@@ -44,14 +44,9 @@ class Model_App_Account extends Model
 	public $password;
 
 	/**
-	 * Token
+	 * Token identifier
 	 */
-	public $token;
-
-	/**
-	 * Token expiration date
-	 */
-	public $token_expired;
+	public $token_id;
 
 	/**
 	 * Reserved values to not return
@@ -87,13 +82,6 @@ class Model_App_Account extends Model
 				$data['password'] = '**'.Password::instance()->hash($data['password']);
 		}
 
-		// Generate API token if necessary
-		if (!$this->token || $this->token_expired < $timestamp)
-		{
-			$data['token'] = Password::instance()->random();
-			$data['token_expired'] = $timestamp + Kohana::$config->load('app.token_expiration');
-		}
-
 		// Set creation time
 		if (!$this->date_created)
 			$data['date_created'] = $timestamp;
@@ -105,7 +93,7 @@ class Model_App_Account extends Model
 	}
 
 	/**
-	 * Get loaded data
+	 * Get public loaded data
 	 *
 	 * @return {array}
 	 */
@@ -144,13 +132,13 @@ class Model_App_Account extends Model
 	}
 
 	/**
-	 * Load by token
+	 * Load by token identifier
 	 *
-	 * @param {string} $token
+	 * @param {string} $token_id
 	 */
-	public function load_by_token ( $token )
+	public function load_by_token ( $token_id )
 	{
-		$response = $this->_collection->findOne(array('token' => $token));
+		$response = $this->_collection->findOne(array('token_id' => $token_id));
 
 		if ($response)
 		{
@@ -217,19 +205,6 @@ class Model_App_Account extends Model
 			return FALSE;
 
 		return Password::instance()->check($hash, $password);
-	}
-
-	/**
-	 * Validate the given token against the token password
-	 *
-	 * @param {string} $token
-	 * @return {boolean}
-	 */
-	public function validate_token ( $token )
-	{
-		$timestamp = time();
-
-		return $this->token && $this->token_expired > $timestamp && $this->token == $token;
 	}
 
 }
