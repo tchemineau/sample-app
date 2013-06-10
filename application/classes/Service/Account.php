@@ -43,7 +43,9 @@ class Service_Account extends Service
 		// If token found, then authenticate throw token
 		if (isset($data['token']))
 		{
-			if (!$account->validate_token($data['token']))
+			$token = Service::factory('Token')->get($account->token_id);
+
+			if (!$token->is_valid())
 				throw Service_Exception::factory('AuthError', 'Token authentication failed');
 		}
 		// Else, check password authentication
@@ -84,6 +86,12 @@ class Service_Account extends Service
 		}
 		// Catch NotFound exception
 		catch (Service_Exception_NotFound $e) {}
+
+		// Create a new auth token for this account
+		$token = Service::factory('Token')->create($account, true);
+
+		// Associate the token to the account
+		$data['token_id'] = $token->id();
 
 		// If nothing wrong, save data
 		$account->set_data($data)->save();
@@ -144,8 +152,8 @@ class Service_Account extends Service
 			$account->load($data['id']);
 
 		// Try to load the account by token
-		else if (isset($data['token']))
-			$account->load_by_token($data['token']);
+		else if (isset($data['token_id']))
+			$account->load_by_token($data['token_id']);
 
 		// Try to load the account by email
 		else if (isset($data['email']))
@@ -166,6 +174,17 @@ class Service_Account extends Service
 	 */
 	public function remove ( $account )
 	{
+		if (!$account->loaded())
+			return FALSE;
+
+		// Clean the associated token
+		if ($account->token_id)
+		{
+			$token_service = Service::factory('Token');
+			$token_service->remove($token_service->get($account->token_id));
+		}
+
+		// Clone the account to have information for mail
 		$account_tmp = clone $account;
 
 		if (!$account->remove())
@@ -190,7 +209,7 @@ class Service_Account extends Service
 	 */
 	public function update ( $account, array $data )
 	{
-		unset($data['id']);
+		unset($data['id'], $data['token_id']);
 
 		if (!$account->set_data($data)->save())
 			throw Service_Exception::factory('InvalidData', $account->last_error());
