@@ -197,14 +197,14 @@ class Service_Account extends Service
 		if (!$account->loaded())
 			return FALSE;
 
-		// Get token service
-		$token_service = Service::factory('Token');
-
 		// Clone the account to have information for mail
 		$account_tmp = clone $account;
 
 		if (!$account->remove())
 			throw Service_Exception::factory('UnknownError', $account->last_error());
+
+		// Remove all tokens associated to this user
+		Service::factory('Token')->remove_all($account_tmp);
 
 		// Could not create account if mail is not sent
 		if (!$this->_send_email($account_tmp, 'REMOVE'))
