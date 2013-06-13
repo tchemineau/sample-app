@@ -220,6 +220,28 @@ class Service_Account extends Service
 	}
 
 	/**
+	 * Reset password
+	 *
+	 * @param {array} $data
+	 * @return {Model_App_Account}
+	 */
+	public function reset_password ( array $data )
+	{
+		// Try to get the token
+		$token = Service::factory('Token')->get($data['token']);
+
+		// Adn validate it
+		if (!$token->is_valid())
+			throw Service_Exception::factory('InvalidData', 'Token is not valid');
+
+		// Get the account
+		$account = $this->get(array('id' => $token->target_id));
+
+		// Update the password
+		return $this->update($account, array('password' => $data['password']));
+	}
+
+	/**
 	 * Update a user account
 	 *
 	 * @param {App_Model_Account} $account
