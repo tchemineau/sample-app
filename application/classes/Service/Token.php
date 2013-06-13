@@ -21,7 +21,7 @@ class Service_Token extends Service
 		// Build data
 		$data = array(
 			'is_permanent' => $is_permanent,
-			'target' => $model->id(),
+			'target_id' => $model->id(),
 			'target_type' => get_class($model)
 		);
 
@@ -50,6 +50,21 @@ class Service_Token extends Service
 			throw Service_Exception::factory('NotFound', 'Token not found')->data(array('id' => $id));
 
 		return $token;
+	}
+
+	/**
+	 * Get a all tokens for a given mongo model
+	 *
+	 * @param {App_Model_Mongo} $model
+	 * @param {boolean} $is_permanent Only permanent tokens
+	 * @return {array}
+	 */
+	public function get_all ( $model, $is_permanent = false )
+	{
+		if (!$model->loaded())
+			return array();
+
+		return Model::factory('App_Token')->search_by_target($model->id(), $is_permanent);
 	}
 
 	/**
