@@ -59,12 +59,11 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 		$body = $this->request->body();
 
 		// Build request data
-		$data = array(
-			'email' => $body->email,
-			'firstname' => $body->firstname,
-			'lastname' => $body->lastname,
-			'password' => $body->password
-		);
+		$data = array();
+		if (isset($body->email)) $data['email'] = $body->email;
+		if (isset($body->firstname)) $data['firstname'] = $body->firstname;
+		if (isset($body->lastname)) $data['lastname'] = $body->lastname;
+		if (isset($body->password)) $data['password'] = $body->password;
 
 		// Get the account service
 		$account_service = Service::factory('Account');
