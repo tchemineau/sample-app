@@ -19,7 +19,10 @@ $config = array(
 	'email_from_name' => 'Sample App',
 
 	// Token expiration time (in seconds)
-	'token_timeout' => 604800
+	'token_timeout' => 604800,
+
+	// Reset password timeout (in seconds)
+	'token_timeout_resetpassword' => 10800
 
 );
 
