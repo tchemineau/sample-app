@@ -81,18 +81,17 @@ define([
 		/**
 		 * Show a reset password form
 		 */
-		resetPassword: function (id)
+		resetPassword: function (token)
 		{
 			var app = this.options.app;
 
 			lrequire([
-				'./model/account',
 				'./view/resetPasswordView'
-			], function(AccountModel, ResetPasswordView)
+			], function(ResetPasswordView)
 			{
 				var resetPasswordView = new ResetPasswordView({
 					app: app,
-					model: new AccountModel()
+					token: token
 				});
 
 				app.root.currentView.page.show(resetPasswordView);

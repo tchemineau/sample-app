@@ -10,7 +10,7 @@ define([
 		appRoutes: {
 			'account/create': 'create',
 			'account/forgot_password': 'forgotPassword',
-			'account/reset_password/:id': 'resetPassword',
+			'account/reset_password/:token': 'resetPassword',
 			'account': 'modify'
 		},
 
