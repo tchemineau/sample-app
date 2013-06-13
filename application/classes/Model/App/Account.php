@@ -44,11 +44,6 @@ class Model_App_Account extends Model
 	public $password;
 
 	/**
-	 * Token identifier
-	 */
-	public $token_id;
-
-	/**
 	 * Reserved values to not return
 	 */
 	protected $_reserved = array();
@@ -121,24 +116,6 @@ class Model_App_Account extends Model
 	public function load_by_email ( $email )
 	{
 		$response = $this->_collection->findOne(array('email' => $email));
-
-		if ($response)
-		{
-			$this->values($response);
-			$this->_loaded = true;
-		}
-
-		return $this;
-	}
-
-	/**
-	 * Load by token identifier
-	 *
-	 * @param {string} $token_id
-	 */
-	public function load_by_token ( $token_id )
-	{
-		$response = $this->_collection->findOne(array('token_id' => $token_id));
 
 		if ($response)
 		{
