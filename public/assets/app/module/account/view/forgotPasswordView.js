@@ -94,7 +94,7 @@ define([
 				alertbox.append($('<button type="button" class="close" data-dismiss="alert">&times;</button>'));
 
 			// Append message
-			alertobx.append('<strong>Error</strong>: '+message);
+			alertbox.append(message);
 
 			// Show the message
 			alertbox.appendTo(container).alert();
