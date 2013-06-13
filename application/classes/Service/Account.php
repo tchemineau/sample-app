@@ -237,6 +237,9 @@ class Service_Account extends Service
 		// Get the account
 		$account = $this->get(array('id' => $token->target_id));
 
+		// Nothing wrong, delete the token
+		$token->remove();
+
 		// Update the password
 		return $this->update($account, array('password' => $data['password']));
 	}
