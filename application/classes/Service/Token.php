@@ -81,5 +81,20 @@ class Service_Token extends Service
 		return TRUE;
 	}
 
+	/**
+	 * Delete all token for a given mongo model
+	 *
+	 * @param {Model_App_Mongo}
+	 * @param {boolean} $is_permanent Only permanent tokens
+	 * @return {boolean}
+	 */
+	public function remove_all ( $model, $is_permanent = false )
+	{
+		foreach ($this->get_all($model, $is_permanent) as $token)
+			$this->remove($token);
+
+		return TRUE;
+	}
+
 }
 
