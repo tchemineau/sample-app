@@ -123,8 +123,11 @@ class Service_Account extends Service
 		// Get the account
 		$account = $this->get($data);
 
+		// Create a temporary token
+		$token = Service::factory('Token')->create($account, false, Kohana::$config->load('app.token_timeout_resetpassword'));
+
 		// Could not create account if mail is not sent
-		if (!$this->_send_email($account, 'FORGOT_PASSWORD'))
+		if (!$this->_send_email($account, 'FORGOT_PASSWORD', $token))
 		{
 			throw Service_Exception::factory('UnknownError', 'Unable to send email to :email',
 				array(':email' => $account->email));
@@ -238,9 +241,10 @@ class Service_Account extends Service
 	 *
 	 * @param {Model_App_Account} $account
 	 * @param {string} $type
+	 * @param {Model_App_Token} $token An optional token
 	 * @return {boolean}
 	 */
-	private function _send_email ( $account, $type )
+	private function _send_email ( $account, $type, $token = null )
 	{
 		// This is the mail title
 		$title = self::$_mail_titles[$type];
@@ -254,16 +258,23 @@ class Service_Account extends Service
 		// Build mail template name
 		$template = str_replace(' ', '', ucwords(str_replace('_', ' ', strtolower($type))));
 
-		// Build content
-		$content = $email->build_content(
-			'Account.'.$template,
-			array(
-				'id' => $account->id(),
-				'email' => $account->email,
-				'firstname' => $account->firstname,
-				'lastname' => $account->lastname
-			)
+		// Build data
+		$data = array(
+			'id' => $account->id(),
+			'email' => $account->email,
+			'firstname' => $account->firstname,
+			'lastname' => $account->lastname
 		);
+
+		// Add token id if not null
+		if (!is_null($token))
+		{
+			$data['token'] = $token->id();
+			$data['token_timeout'] = $token->timeout;
+		}
+
+		// Build content
+		$content = $email->build_content('Account.'.$template, $data);
 
 		return $email->send($headers, $content);
 	}
