@@ -16,7 +16,7 @@ class Model_App_Token extends Model
 	/**
 	 * Id of the concerned object
 	 */
-	public $target;
+	public $target_id;
 
 	/**
 	 * Model type of the target
@@ -56,7 +56,7 @@ class Model_App_Token extends Model
 	 */
 	public function is_valid ()
 	{
-		if (!$this->loaded)
+		if (!$this->loaded())
 			return FALSE;
 
 		// Get the expiration time
@@ -82,9 +82,35 @@ class Model_App_Token extends Model
 			'id' => $this->id(),
 			'date_created' => $this->date_created,
 			'is_permanent' => $this->permanent,
-			'target' => $this->target,
+			'target_id' => $this->target_id,
 			'target_type' => $this->target_type
 		);
+	}
+
+	/**
+	 * Search by target id
+	 *
+	 * @param {string} $id
+	 * @param {boolean} $only_permanent
+	 * @param {boolean} $only_temporary
+	 * @return {array}
+	 */
+	public function search_by_target ( $id, $only_permanent = false, $only_temporary = false )
+	{
+		$collection = new Mongo_Collection('App_Token');
+
+		// Build the query
+		$query = array('target_id' => $id);
+
+		// If we want only permanent tokens or not
+		if ($only_permanent)
+			$query['is_permanent'] = true;
+
+		// If wen want only temporary token
+		if ($only_temporary)
+			$query['is_permanent'] = false;
+
+		return $collection->find($query);
 	}
 
 	/**
