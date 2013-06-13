@@ -21,6 +21,35 @@ define([
 		 * Declare inputs
 		 */
 		fields: {
+			password: {
+				el: 'password',
+				required: "Please enter your password.",
+				validations: {
+					password: "Please enter a valid Password."
+				}
+			},
+			password2: {
+				el: 'password2',
+				required: "Please confirm your password.",
+				validations: {
+					password: "Please enter a valid password.",
+					confirmPassword: "The confirmed password doesn't match the password."
+				}
+			}
+		},
+
+		/**
+		 * Specific validation rules
+		 */
+		rules: {
+			password: function(val)
+			{
+				return /^['a-zA-Z0-9]{8,}$/.test(val);
+			},
+			confirmPassword: function(val)
+			{
+				return val == this.inputVal('password');
+			}
 		},
 
 		/**
@@ -47,19 +76,20 @@ define([
 			// Do the request to log the user
 			$.ajax(
 			{
-				url: 'api/v1/auth/forgot_password',
+				url: 'api/v1/auth/reset_password',
 				type: 'POST',
 				dataType: 'json',
 				data: {
-					'email': $('#account-email').val()
+					'token': me.options.token,
+					'password': $('#account-password').val()
 				},
 				success: function (response)
 				{
-					me.showGlobalSuccess('You will soon receive an email giving you steps to reset your password');
+					me.showGlobalSuccess('Your password has been updated');
 				},
 				error: function (xhr, status)
 				{
-					me.showGlobalError('Unable to send reset password instructions');
+					me.showGlobalError('Unable to update your password');
 				}
 			});
 		},
@@ -88,7 +118,7 @@ define([
 				alertbox.append($('<button type="button" class="close" data-dismiss="alert">&times;</button>'));
 
 			// Append message
-			alertobx.append('<strong>Error</strong>: '+message);
+			alertbox.append(message);
 
 			// Show the message
 			alertbox.appendTo(container).alert();
