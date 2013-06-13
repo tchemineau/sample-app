@@ -24,6 +24,11 @@ class Model_App_Token extends Model
 	public $target_type;
 
 	/**
+	 * Non default timeout
+	 */
+	public $timeout;
+
+	/**
 	 * Reserved values to not return
 	 */
 	protected $_reserved = array();
@@ -60,12 +65,12 @@ class Model_App_Token extends Model
 			return FALSE;
 
 		// Get the expiration time
-		$expiration_time = Kohana::$config->load('app.token_expiration');
+		$timeout = Kohana::$config->load('app.token_timeout');
 
 		// This is the current time
 		$timestamp = time();
 
-		return $this->is_permanent || $this->date_created + $expiration_time > $timestamp;
+		return $this->is_permanent || $this->date_created + $timeout > $timestamp;
 	}
 
 	/**
