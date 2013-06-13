@@ -29,12 +29,15 @@ class Controller_Api_V1_Auth extends Controller_Api_Standard
 			// Try to authenticate the user
 			$account = $account_service->authenticate($data);
 
+			// Get authentication token
+			$token = $account_service->get_authentication_token($account);
+
 			// Return appropriate HTTP code
 			$this->response($api_service->build_response_succeed(
 				'Authentication succeed',
 				array(
 					'id' => $account->id(),
-					'token_id' => $account->token_id
+					'token' => $token->id()
 				)
 			), 200);
 		}
