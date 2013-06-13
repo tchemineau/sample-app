@@ -11,9 +11,10 @@ class Service_Token extends Service
 	 *
 	 * @param {Model_Mongo} $model
 	 * @param {boolean} $is_permanent
+	 * @param {int} $timeout A optional timeout in seconds
 	 * @return {Model_App_Token}
 	 */
-	public function create ( $model, $is_permanent = false )
+	public function create ( $model, $is_permanent = false, $timeout = null )
 	{
 		// Create a new empty token
 		$token = Model::factory('App_Token');
@@ -24,6 +25,10 @@ class Service_Token extends Service
 			'target_id' => $model->id(),
 			'target_type' => get_class($model)
 		);
+
+		// Set timeout if not null
+		if (!is_null($timeout))
+			$data['timeout'] = $timeout;
 
 		// Save data
 		$token->set_data($data)->save();
