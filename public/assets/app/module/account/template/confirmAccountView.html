@@ -1,0 +1,33 @@
+<script id="confirmAccountTemplate" type="text/template">
+
+	<% if (checked) { %>
+
+		<div class="form-app">
+
+			<% if (confirmed) { %>
+
+				<h2 class="form-app-heading">Your account has been confirmed</h2>
+
+				<div class="alert alert-success">
+					You are now allowed to sign in with your account on our services.
+				</div>
+
+				<div>
+					<a href="<%= url %>login" class="btn btn-large btn-primary">Sign in</a>
+				</div>
+
+			<% } else { %>
+
+				<h2 class="form-app-heading">Oups</h2>
+
+				<div class="alert alert-error">
+					We are not able to confirm your account.
+				</div>
+
+			<% } %>
+
+		</div>
+
+	<% } %>
+
+</script>
