@@ -13,7 +13,7 @@
             Your registration to {$from.1} is almost complete.
           </p>
           <p>
-            Please confirm your email address by <a href="{$url}account/confirm/{$id}">clicking this link</a> and you're ready to go.
+            Please confirm your email address by <a href="{$url}account/confirm/{$token}">clicking this link</a> and you're ready to go.
           </p>
           <p>
             The {$from.1} team.
