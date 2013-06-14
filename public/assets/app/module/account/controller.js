@@ -11,6 +11,26 @@ define([
 		},
 
 		/**
+		 * Confirm a new account
+		 */
+		confirm: function (token)
+		{
+			var app = this.options.app;
+
+			lrequire([
+				'./view/confirmAccountView'
+			], function(ConfirmAccountView)
+			{
+				var confirmAccountView = new ConfirmAccountView({
+					app: app,
+					token: token
+				});
+
+				app.root.currentView.page.show(confirmAccountView);
+			});
+		},
+
+		/**
 		 * Register new account
 		 */
 		create: function ()
