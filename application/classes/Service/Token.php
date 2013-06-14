@@ -7,6 +7,14 @@ class Service_Token extends Service
 {
 
 	/**
+	 * Just used to do initialize stuff
+	 */
+	public function __construct ()
+	{
+		$this->purge_all();
+	}
+
+	/**
 	 * Create a token for a given loaded mongo model
 	 *
 	 * @param {Model_Mongo} $model
@@ -70,6 +78,15 @@ class Service_Token extends Service
 			return array();
 
 		return Model::factory('App_Token')->search_by_target($model->id(), $is_permanent);
+	}
+
+	/**
+	 * Purge all expired tokens
+	 */
+	public function purge_all ()
+	{
+		foreach (Model::factory('App_Token')->search_by_timeout() as $token)
+			$token->remove();
 	}
 
 	/**
