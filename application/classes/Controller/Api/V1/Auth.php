@@ -6,6 +6,40 @@
 class Controller_Api_V1_Auth extends Controller_Api_Standard
 {
 
+	/**
+	 * Confirm email of the account corresponding to the given token
+	 */
+	public function action_confirm_email ()
+	{
+		// Get the token
+		$token = $this->request->post('token');
+
+		// Build request data
+		$data = array('token' => $token);
+
+		// Get the account service
+		$account_service = Service::factory('Account');
+
+		// Get the api service
+		$api_service = Service::factory('Api');
+
+		try
+		{
+			// Confirm account
+			$account = $account_service->confirm($data);
+
+			// Return appropriate HTTP result
+			$this->response($api_service->build_response_succeed(
+				'Account has been confirmed'
+			), 200);
+		}
+		catch (Exception $e)
+		{
+			Kohana_Exception::log($e, Log::ERROR);
+			$this->response($api_service->build_response('Bad request'), 400);
+		}
+	}
+
 	public function action_forgot_password ()
 	{
 		// Get request parameters
