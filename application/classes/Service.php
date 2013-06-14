@@ -7,6 +7,11 @@ abstract class Service
 {
 
 	/**
+	 * Store build instances
+	 */
+	private static $_instances = array();
+
+	/**
 	 * Create a new service instance.
 	 *
 	 *     $service = Service::factory($name);
@@ -16,10 +21,13 @@ abstract class Service
 	 */
 	public static function factory ( $name )
 	{
-		// Add the service prefix
-		$class = 'Service_'.$name;
+		if (!isset(self::$_instances[$name]))
+		{
+			$class = 'Service_'.$name;
+			self::$_instances[$name] = new $class;
+		}
 
-		return new $class;
+		return self::$_instances[$name];
 	}
 
 } // End Service
