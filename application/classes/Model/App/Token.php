@@ -119,6 +119,30 @@ class Model_App_Token extends Model
 	}
 
 	/**
+	 * Search all tokens which are in timeout
+	 *
+	 * @return {array}
+	 */
+	public function search_by_timeout ()
+	{
+		$collection = new Mongo_Collection('App_Token');
+
+		// This is the current time
+		$timestamp = time();
+
+		// Build the query filter into JS
+		$query_where_js = "function()
+		{
+			return (this.date_created + this.timeout) <= $timestamp;
+		}";
+
+		// Now build the query that use the filter
+		$query = array('$where' => $query_where_js);
+
+		return $collection->find($query);
+	}
+
+	/**
 	 * Set data
 	 *
 	 * @param {array} $data
