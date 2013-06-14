@@ -72,6 +72,38 @@ class Service_Account extends Service
 	}
 
 	/**
+	 * Confirm account
+	 *
+	 * @param {array} $data
+	 * @return {Model_App_Account}
+	 */
+	public function confirm ( array $data )
+	{
+		// Try to get the token
+		$token = Service::factory('Token')->get($data['token']);
+
+		// Validate it
+		if (!$token->is_valid())
+			throw Service_Exception::factory('InvalidData', 'Token is not valid');
+
+		// Get the target identifier
+		$target_id = $token->target_id;
+
+		// Delete the token
+		$token->remove();
+
+		// Get the account
+		$account = $this->get(array('id' => $target_id));
+
+		// Check if account has already been confirmed
+		if ($account->email_verified === TRUE)
+			throw Service_Exception::factory('InvalidData', 'Account is already confirmed');
+
+		// Confirm the account
+		return $this->update($account, array('email_verified' => TRUE));
+	}
+
+	/**
 	 * Create a user account
 	 *
 	 * @param {array} $data
@@ -96,11 +128,11 @@ class Service_Account extends Service
 		// If nothing wrong, save account data
 		$account->set_data($data)->save();
 
-		// Create a new auth token for this account
-		$token = Service::factory('Token')->create($account, true);
+		// Create a temporary token
+		$token = Service::factory('Token')->create($account, false, Kohana::$config->load('app.token_timeout_confirmemail'));
 
 		// Could not create account if mail is not sent
-		if (!$this->_send_email($account, 'CREATE'))
+		if (!$this->_send_email($account, 'CREATE', $token))
 		{
 			$account->remove();
 			$token->remove();
@@ -108,6 +140,9 @@ class Service_Account extends Service
 			throw Service_Exception::factory('UnknownError', 'Unable to send email to :email',
 				array(':email' => $data['email']));
 		}
+
+		// Create a new auth token for this account
+		$token = Service::factory('Token')->create($account, true);
 
 		return $account;
 	}
@@ -129,6 +164,8 @@ class Service_Account extends Service
 		// Could not create account if mail is not sent
 		if (!$this->_send_email($account, 'FORGOT_PASSWORD', $token))
 		{
+			$token->remove();
+
 			throw Service_Exception::factory('UnknownError', 'Unable to send email to :email',
 				array(':email' => $account->email));
 		}
@@ -230,15 +267,18 @@ class Service_Account extends Service
 		// Try to get the token
 		$token = Service::factory('Token')->get($data['token']);
 
-		// Adn validate it
+		// Validate it
 		if (!$token->is_valid())
 			throw Service_Exception::factory('InvalidData', 'Token is not valid');
 
-		// Get the account
-		$account = $this->get(array('id' => $token->target_id));
+		// Get the target identifier
+		$target_id = $token->target_id;
 
-		// Nothing wrong, delete the token
+		// Delete the token
 		$token->remove();
+
+		// Get the account
+		$account = $this->get(array('id' => $target_id));
 
 		// Update the password
 		return $this->update($account, array('password' => $data['password']));
