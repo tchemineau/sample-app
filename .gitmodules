@@ -16,3 +16,6 @@
 [submodule "vendor/kohana-smarty3"]
 	path = vendor/kohana-smarty3
 	url = git://github.com/tchemineau/kohana-smarty3.git
+[submodule "vendor/kohana-assets"]
+	path = vendor/kohana-assets
+	url = git://github.com/tchemineau/kohana-assets.git

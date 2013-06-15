@@ -118,6 +118,7 @@ Kohana::modules(array(
 	// 'unittest'   => MODPATH.'unittest',   // Unit testing
 	// 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
 
+	'assets' => dirname(APPPATH).'/vendor/kohana-assets',
 	'email' => dirname(APPPATH).'/vendor/kohana-email',
 	'mongodb' => dirname(APPPATH).'/vendor/kohana-mongodb',
 	'password' => dirname(APPPATH).'/vendor/kohana-password',
