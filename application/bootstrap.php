@@ -91,7 +91,8 @@ if (isset($_SERVER['KOHANA_ENV']))
  */
 Kohana::init(array(
 	'base_url'   => '/sample-app/',
-	'cache_dir'  => dirname(APPPATH).'/data/cache/'
+	'cache_dir'  => dirname(APPPATH).'/data/cache/',
+	'index_file' => FALSE
 ));
 
 /**
