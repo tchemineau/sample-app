@@ -3,7 +3,7 @@
 return array
 (
 	'source_dir' => 'assets/',
-	'target_dir' => Kohana::$cache_dir.'assets/',
+	'target_dir' => Kohana::$cache_dir.'/assets/',
 
 	'concatable' => array(),
 
