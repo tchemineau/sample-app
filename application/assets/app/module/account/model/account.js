@@ -25,10 +25,16 @@ define([
 		{
 			var me = this;
 
-			this.save({}, {error: function (response, xhr)
-			{
-				me.trigger('account:error', JSON.parse(xhr.responseText), xhr);
-			}});
+			this.save({}, {
+				error: function (response, xhr)
+				{
+					me.trigger('account:save:error', JSON.parse(xhr.responseText), xhr);
+				},
+				success: function (model, response, options)
+				{
+					me.trigger('account:save:success', model, response, options);
+				}
+			});
 		},
 
 		url: function ()
