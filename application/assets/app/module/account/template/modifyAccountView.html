@@ -1,10 +1,16 @@
 <script id="modifyAccountTemplate" type="text/template">
 
-	<div id="account-alert-container"></div>
-
 	<form class="form-horizontal form-app" method="POST">
 
 		<h2 class="form-app-heading">My account</h2>
+
+		<div id="account-alert-container"></div>
+
+		<% if (accountModified) { %>
+			<div class="alert alert-success fade in">
+				<i class="icon-ok"></i> Information saved
+			</div>
+		<% } %>
 
 		<fieldset>
 

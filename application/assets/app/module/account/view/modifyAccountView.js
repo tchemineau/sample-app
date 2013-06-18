@@ -5,9 +5,16 @@ define([
 	'text!module/account/template/modifyAccountView.html'
 ], function(Marionette, MarionetteFormView, ModifyAccountTemplate)
 {
+	var accountModified = false;
+
 	var ModifyAccountView = Marionette.FormView.extend(
 	{
 		template: ModifyAccountTemplate,
+
+		initialize: function (options)
+		{
+			this.listenTo(this.model, 'account:save:success', this.onAccountSave);
+		},
 
 		/**
 		 * Declare variables to access template content
@@ -58,6 +65,23 @@ define([
 		},
 
 		/**
+		 * What to do when account information has been save
+		 */
+		onAccountSave: function ()
+		{
+			accountModified = true;
+			this.render();
+		},
+
+		onRender: function ()
+		{
+			window.setTimeout(function()
+			{
+				$(".alert-success").alert('close');
+			}, 5000);
+		},
+
+		/**
 		 * Save model when submit me
 		 */
 		onSubmit: function (evt)
@@ -65,6 +89,16 @@ define([
 			evt.preventDefault();
 
 			this.model.set(this.serializeFormData()).savedata();
+		},
+
+		serializeData: function ()
+		{
+			var app = this.options.app;
+
+			return $.extend({}, this.model.toJSON(), {
+				accountModified: accountModified,
+				url: app.url
+			});
 		},
 
 		/**
