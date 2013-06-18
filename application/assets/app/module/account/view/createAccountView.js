@@ -5,6 +5,8 @@ define([
 	'text!module/account/template/createAccountView.html'
 ], function(Marionette, MarionetteFormView, CreateAccountTemplate)
 {
+	var accountCreated = false;
+
 	var CreateAccountView = Marionette.FormView.extend(
 	{
 		template: CreateAccountTemplate,
@@ -14,7 +16,8 @@ define([
 		 */
 		initialize: function ()
 		{
-			this.listenTo(this.model, 'account:error', this.onModelError);
+			this.listenTo(this.model, 'account:save:error', this.onModelError);
+			this.listenTo(this.model, 'account:save:success', this.onModelSuccess);
 		},
 
 		/**
@@ -85,6 +88,15 @@ define([
 		},
 
 		/**
+		 * What to do in success
+		 */
+		onModelSuccess: function (model, response, options)
+		{
+			accountCreated = true;
+			this.render();
+		},
+
+		/**
 		 * Save model when submit me
 		 */
 		onSubmit: function (evt)
@@ -100,6 +112,14 @@ define([
 		onSubmitFail: function (errors)
 		{
 			this.showLocalErrors(errors);
+		},
+
+		/**
+		 * Serialize data
+		 */
+		serializeData: function ()
+		{
+			return $.extend({}, this.model.toJSON(), {created: accountCreated});
 		},
 
 		/**

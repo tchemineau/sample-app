@@ -5,6 +5,8 @@ define([
 	'text!module/account/template/resetPasswordView.html'
 ], function(Marionette, MarionetteFormView, ResetPasswordTemplate)
 {
+	var passwordUpdated = false;
+
 	var ResetPasswordView = Marionette.FormView.extend(
 	{
 		template: ResetPasswordTemplate,
@@ -53,14 +55,6 @@ define([
 		},
 
 		/**
-		 * What to do if an error occurs on the model
-		 */
-		onModelError: function (response, xhr)
-		{
-			this.showGlobalError(response.message);
-		},
-
-		/**
 		 * Save model when submit me
 		 */
 		onSubmit: function (evt)
@@ -85,7 +79,8 @@ define([
 				},
 				success: function (response)
 				{
-					me.showGlobalSuccess('Your password has been updated');
+					passwordUpdated = true;
+					me.render();
 				},
 				error: function (xhr, status)
 				{
@@ -100,6 +95,16 @@ define([
 		onSubmitFail: function (errors)
 		{
 			this.showLocalErrors(errors);
+		},
+
+		serializeData: function()
+		{
+			var app = this.options.app;
+
+			return {
+				passwordUpdated: passwordUpdated,
+				url: app.url
+			};
 		},
 
 		/**
@@ -130,14 +135,6 @@ define([
 		showGlobalError: function (message)
 		{
 			this.showGlobalAlert('error', message);
-		},
-
-		/**
-		 * Show success
-		 */
-		showGlobalSuccess: function (message)
-		{
-			this.showGlobalAlert('success', message, false);
 		},
 
 		/**

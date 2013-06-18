@@ -1,34 +1,44 @@
 <script id="createAccountTemplate" type="text/template">
 
-	<div id="account-alert-container"></div>
-
 	<form class="form-horizontal form-app" method="POST">
 
 		<h2 class="form-app-heading">Sign up for Sample App</h2>
 
-		<fieldset>
+		<div id="account-alert-container"></div>
 
-			<div id="account-email-control" class="control-group">
-				<input class="input-block-level" id="account-email" type="email" name="email" placeholder="Type your email address…" data-field="email" />
+		<% if (!created) { %>
+
+			<fieldset>
+
+				<div id="account-email-control" class="control-group">
+					<input class="input-block-level" id="account-email" type="email" name="email" placeholder="Type your email address…" data-field="email" />
+				</div>
+
+				<div id="account-password-control" class="control-group">
+					<input class="input-block-level" id="account-password" type="password" name="password" placeholder="Your password" data-field="password" />
+				</div>
+
+				<div id="account-password2-control" class="control-group">
+					<input class="input-block-level" id="account-password2" type="password" name="password2" placeholder="Confirm your password" data-field="password2" />
+				</div>
+
+			</fieldset>
+
+			<div class="alert">
+				By clicking on "Create an account" below, you will receiving an email which invites you to confirm your new account.
 			</div>
 
-			<div id="account-password-control" class="control-group">
-				<input class="input-block-level" id="account-password" type="password" name="password" placeholder="Your password" data-field="password" />
+			<div>
+				<button id="account-create-btn" type="submit" class="btn btn-large btn-primary">Create an account</button>
 			</div>
 
-			<div id="account-password2-control" class="control-group">
-				<input class="input-block-level" id="account-password2" type="password" name="password2" placeholder="Confirm your password" data-field="password2" />
+		<% } else { %>
+
+			<div class="alert alert-success">
+				Your registration is almost complete. Please, check your mailbox to confirm your new account.
 			</div>
 
-		</fieldset>
-
-		<div class="alert">
-			By clicking on "Create an account" below, you will receiving an email which invites you to confirm your new account.
-		</div>
-
-		<div>
-			<button id="account-create-btn" type="submit" class="btn btn-large btn-primary">Create an account</button>
-		</div>
+		<% } %>
 
 	</form>
 

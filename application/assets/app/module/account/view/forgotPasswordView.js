@@ -5,6 +5,8 @@ define([
 	'text!module/account/template/forgotPasswordView.html'
 ], function(Marionette, MarionetteFormView, ForgotPasswordTemplate)
 {
+	var passwordSent = false;
+
 	var ForgotPasswordView = Marionette.FormView.extend(
 	{
 		template: ForgotPasswordTemplate,
@@ -27,14 +29,6 @@ define([
 					email: "Please enter a valid Email Address."
 				}
 			}
-		},
-
-		/**
-		 * What to do if an error occurs on the model
-		 */
-		onModelError: function (response, xhr)
-		{
-			this.showGlobalError(response.message);
 		},
 
 		/**
@@ -61,7 +55,8 @@ define([
 				},
 				success: function (response)
 				{
-					me.showGlobalSuccess('You will soon receive an email giving you steps to reset your password');
+					passwordSent = true;
+					me.render();
 				},
 				error: function (xhr, status)
 				{
@@ -76,6 +71,11 @@ define([
 		onSubmitFail: function (errors)
 		{
 			this.showLocalErrors(errors);
+		},
+
+		serializeData: function ()
+		{
+			return {passwordSent: passwordSent};
 		},
 
 		/**
@@ -106,14 +106,6 @@ define([
 		showGlobalError: function (message)
 		{
 			this.showGlobalAlert('error', message);
-		},
-
-		/**
-		 * Show success
-		 */
-		showGlobalSuccess: function (message)
-		{
-			this.showGlobalAlert('success', message, false);
 		},
 
 		/**
