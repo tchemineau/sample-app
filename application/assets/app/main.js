@@ -5,12 +5,12 @@
  	// Configure Requirement
 	require.config({
 		paths: {
-			'backbone': '../../static/backbone/backbone.min',
-			'bootstrap': '../../static/bootstrap/js/bootstrap.min',
-			'jquery': '../../static/jquery/jquery-1.9.1.min',
-			'marionette': '../../static/marionette/backbone.marionette.min',
-			'marionette.formview': '../../static/marionette/backbone.marionette.formview',
-			'underscore': '../../static/underscore/underscore.min'
+			'backbone': '../../static/library/backbone/backbone.min',
+			'bootstrap': '../../static/library/bootstrap/js/bootstrap.min',
+			'jquery': '../../static/library/jquery/jquery-1.9.1.min',
+			'marionette': '../../static/library/marionette/backbone.marionette.min',
+			'marionette.formview': '../../static/library/marionette/backbone.marionette.formview',
+			'underscore': '../../static/library/underscore/underscore.min'
 		},
 		shim: {
 			'backbone': {
