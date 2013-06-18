@@ -1,10 +1,21 @@
 
+body {
+	background-image:url('../img/bg-noise-tile.png');
+}
+
 #apppage-container {
 	margin-top:30px;
 }
 
 div[class^="form-app"], div[class*=" form-app"],
 form[class^="form-app"], form[class*=" form-app"] {
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	border: 1px solid #d4d4d4;
+	-webkit-box-shadow: 0 1px 10px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0 1px 10px rgba(0,0,0,0.1);
+	box-shadow: 0 1px 10px rgba(0,0,0,0.1);
 	padding: 15px 29px 29px;
 	margin: 20px auto 20px;
 	background-color: #fff;
