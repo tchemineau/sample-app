@@ -106,6 +106,8 @@ define([
 		 */
 		showDeleteAccountModal: function (evt)
 		{
+			evt.preventDefault();
+
 			this.ui.deletemodal.modal('show');
 		}
 
