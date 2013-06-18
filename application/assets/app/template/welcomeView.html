@@ -1,13 +1,30 @@
 <script type="text/template" id="welcomeTemplate">
-	<div>
-		<h1>Welcome</h1>
-		<p>
-			What do you want to do now ?
-		</p>
+
+	<div class="jumbotron masthead">
+		<div class="inner">
+			    <h1>Welcome on Sample-App</h1>
+
+			    <p>This is a demo application using Kohana 3.3+ with REST, MongoDB, Backbone.js and Marionette.js</p>
+
+			    <p class="download-info">
+				<a href="https://github.com/tchemineau/sample-app" class="btn btn-primary btn-large">View the project on GitHub</a>
+			    </p>
+		</div>
+		<div>
+			<ul class="masthead-links">
+				<li class="follow-btn">
+					<iframe class="twitter-follow-button" allowtransparency="true" frameborder="0" scrolling="no"
+						src="//platform.twitter.com/widgets/follow_button.html?id=twitter-widget-0&amp;screen_name=tchemineau&amp;show_screen_name=true&amp;size=m&amp;lang=en&amp;show_count=false"
+						title="Twitter Follow Button"
+						style="width:200px; height:20px;"></iframe>
+				</li>
+				<li class="tweet-btn">
+					<iframe class="twitter-share-button twitter-count-horizontal" allowtransparency="true" frameborder="0" scrolling="no"
+						src="//platform.twitter.com/widgets/tweet_button.html?id=twitter-widget-1&amp;via=tchemineau&amp;lang=en;&amp;text=A%20demo%20application%20using%20Kohana%203.3+%20with%20REST,%20MongoDB,%20Backbone.js%20and%20Marionette.js"
+						style="width:109px; height:20px;"></iframe>
+				</li>
+			</ul>
+		</div>
 	</div>
-	<div>
-		<% if (typeof user.id != 'undefined') { %>
-			<a href="<%= url %>account" class="btn"><i class="icon-user"></i> My account</a>
-		<% } %>
-	</div>
+
 </script>
