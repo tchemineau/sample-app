@@ -3,6 +3,19 @@ body {
 	background-image:url('../img/bg-noise-tile.png');
 }
 
+#appprogress-container {
+	bottom:0;
+	position:absolute;
+	width:100%;
+}
+#appprogress {
+	float:right;
+	margin-bottom:7px;
+	margin-right:10px;
+	text-align:right;
+	width:50%;
+}
+
 #apppage-container {
 	margin-top:30px;
 }

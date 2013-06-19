@@ -14,4 +14,8 @@
 
 <body>
 
+<div class="row-fluid" id="appprogress-container">
+	<div class="row-fluid" id="appprogress"><i class="icon-refresh"></i></div>
+</div>
+
 {/strip}

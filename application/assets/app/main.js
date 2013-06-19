@@ -43,7 +43,25 @@
 	{
 		return root.moment;
 	});
- 
+
+	// Update the loading status
+	require(['jquery'], function($)
+	{
+	        var progress = $("#appprogress");
+
+	        window.require = (function(){
+	                var orig_require = window.require;
+	                return function(_list, _callback) {
+	                        var callback_fn = function(_args){ _callback.apply(null, _args); }
+	                        progress.show(0, function(){
+	                                orig_require.call(null, _list, function(){
+	                                        progress.hide(0, callback_fn(arguments));
+	                                });
+	                        });
+	                }
+	        })();
+	});
+
  	// Run the application
 	require(['app'], function (App)
 	{
