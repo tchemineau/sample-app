@@ -77,6 +77,7 @@ define([
 		{
 			window.setTimeout(function()
 			{
+				accountModified = false;
 				$(".alert-success").alert('close');
 			}, 5000);
 		},
