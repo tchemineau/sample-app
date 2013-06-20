@@ -22,6 +22,10 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 			// Get current logged in user account
 			$user = $api_service->check_token($this->request);
 
+			// If id is null, then try to use the one found into token
+			if (is_null($id))
+				$id = $user->id();
+
 			// Get the account
 			$account = $account_service->get(array('id' => $id));
 
