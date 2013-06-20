@@ -1,13 +1,25 @@
 
 define([
+	'backbone',
 	'marionette',
 	'marionette.formview',
 	'text!template/loginView.html'
-], function(Marionette, MarionetteFormView, LoginTemplate)
+], function(Backbone, Marionette, MarionetteFormView, LoginTemplate)
 {
 	var LoginView = Marionette.FormView.extend(
 	{
 		template: LoginTemplate,
+
+		initialize: function (options)
+		{
+			var app = options.app;
+
+			if (app.user)
+			{
+				Backbone.history.navigate('');
+				app.router.loadPage('welcome');
+			}
+		},
 
 		/**
 		 * Submit authentication request
