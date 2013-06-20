@@ -12,9 +12,6 @@ define([
 	// This will store the user information
 	app.user = null;
 
-	// This will store the user token
-	app.token = null;
-
 	// This will store the application url
 	app.url = '/';
 
@@ -57,25 +54,36 @@ define([
 		});
 	});
 
-	// Launch application once all is loaded
+	// Launch routers and application main view
 	app.addInitializer(function(options)
 	{
+		// Add this app to default options for all objects
 		options.app = app;
 
+		// Store the url
+		app.url = options.url;
+
+		// Initialize the layout
 		this.layout = new appLayout(options);
+
+		// Initialize routers
 		this.router = new appRouter(options);
 		this.accountRouter = new AccountRouter(options);
-
-		app.root.show(this.layout);
 	});
 
-	// Launch the page
+	// Get session and launch page
 	app.addInitializer(function(options)
 	{
+		// Start the session
+		this.router.startSession();
+
+		// Load the application view
+		app.root.show(this.layout);
+
 		// Get request from html
 		var fragment = $('#app').attr('data-fragment');
 
-		// What to load ?
+		// What to load next ?
 		if (fragment && fragment.length > 0)
 			this.router.loadFragment(fragment);
 		else

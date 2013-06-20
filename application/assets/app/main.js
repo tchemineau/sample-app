@@ -6,6 +6,7 @@
 	require.config({
 		paths: {
 			'backbone': '../../static/library/backbone/backbone.min',
+			'backbone.session': '../../static/library/backbone/backbone.session',
 			'bootstrap': '../../static/library/bootstrap/js/bootstrap.min',
 			'jquery': '../../static/library/jquery/jquery-1.9.1.min',
 			'marionette': '../../static/library/marionette/backbone.marionette.min',
@@ -17,6 +18,9 @@
 				deps: ['underscore', 'jquery', 'bootstrap'],
 				exports: 'Backbone'
 			},
+			'backbone.session': {
+				deps: ['backbone']
+			},
 			'bootstrap': {
 				deps: ['jquery'],
 				exports: "bootstrap"
@@ -25,7 +29,7 @@
 				exports: '$'
 			},
 			'marionette': {
-				deps: ['backbone'],
+				deps: ['backbone', 'backbone.session'],
 				exports: 'Backbone.Marionette'
 			},
 			'marionette.formview': {

@@ -34,7 +34,7 @@ define([
 				},
 				success: function (response)
 				{
-					app.vent.trigger('login:success', response.data);
+					app.vent.trigger('login:success', response.data, true);
 				},
 				error: function (xhr, status)
 				{
