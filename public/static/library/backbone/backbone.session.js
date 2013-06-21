@@ -102,7 +102,7 @@ APP.Session = Backbone.Model.extend({
 			this.trigger("loaded");
 		};
 		// caching is triggered after every model update (fetch/set)
-		if( this.get("updated") ){
+		if( this.get("updated") || !this.options["remote"] ){
 			this.cache();
 		}
 	},
@@ -134,7 +134,6 @@ APP.Session = Backbone.Model.extend({
 	// if data request fails request offline mode.
 	error: function( model, req, options, error ){
 		// consider redirecting based on statusCode
-		console.log( 'error' );
 		console.log( model );
 	},
 
