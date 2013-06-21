@@ -48,9 +48,7 @@ define([
 			this.controller.initialize(options);
 
 			// Initialize the session
-			session = new APP.Session(null, {
-				url: url+'api/v1/auth/session'
-			});
+			session = new APP.Session(null, {remote: false});
 
 			// Catch login event
 			app.vent.on('login:success', this.login, this);
@@ -108,7 +106,6 @@ define([
 			// Store token into session
 			session.set('auth', true);
 			session.set('token', data.token);
-			session.save();
 
 			// Add token to every backbone request
 			Backbone.defaultSyncOptions = {headers: {

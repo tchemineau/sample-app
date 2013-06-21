@@ -151,13 +151,4 @@ class Controller_Api_V1_Auth extends Controller_Api_Standard
 		}
 	}
 
-	public function action_session ()
-	{
-		// Get the api service
-		$api_service = Service::factory('Api');
-
-		// Always return true
-		$this->response($api_service->build_response_succeed(), 200);
-	}
-
 }
