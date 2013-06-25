@@ -1,23 +1,23 @@
 
 body {
-	background-image:url('../img/bg-noise-tile.png');
+	background-image: url('../img/bg-noise-tile.png');
 }
 
 #appprogress-container {
-	bottom:0;
-	position:absolute;
-	width:100%;
+	bottom: 0;
+	position: absolute;
+	width: 100%;
 }
 #appprogress {
-	float:right;
-	margin-bottom:7px;
-	margin-right:10px;
-	text-align:right;
-	width:50%;
+	float: right;
+	margin-bottom: 7px;
+	margin-right: 10px;
+	text-align: right;
+	width: 50%;
 }
 
 #apppage-container {
-	margin-top:30px;
+	margin-top: 30px;
 }
 
 div[class^="form-app"], div[class*=" form-app"],
@@ -46,4 +46,14 @@ form[class*=" form-app"] input[type="password"], form[class*=" form-app"] input[
 	height: auto;
 	padding: 7px 9px;
 }
+div[class^="form-app"], div[class*=" form-app"] .row,
+form[class^="form-app"], form[class*=" form-app"] .row {
+	margin-bottom: 20px;
+	margin-left: 0;
+}
 
+img.gravatar {
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
