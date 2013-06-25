@@ -70,7 +70,7 @@
 	require(['app'], function (App)
 	{
 		App.start({
-			url: '/sample-app/'
+			url: CONFIG.url
 		});
 	});
  
