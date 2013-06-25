@@ -14,7 +14,7 @@ class Controller_Welcome extends Controller
 		$app = array(
 			'name' => Kohana::$config->load('app.name'),
 			'fragment' => $this->request->param('fragment'),
-			'url' => URL::base($this->request)
+			'url' => URL::base()
 		);
 
 		$view = View::factory('smarty:App/Welcome.tpl');
