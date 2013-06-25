@@ -34,6 +34,11 @@ class Model_App_Account extends Model
 	public $firstname;
 
 	/**
+	 * Gravatar email
+	 */
+	public $gravatar_email;
+
+	/**
 	 * Lastname
 	 */
 	public $lastname;
@@ -97,6 +102,7 @@ class Model_App_Account extends Model
 		if (!$this->loaded())
 			return array();
 
+		// Return data
 		return array(
 			'id' => $this->id(),
 			'date_created' => $this->date_created,
@@ -104,6 +110,8 @@ class Model_App_Account extends Model
 			'email' => $this->email,
 			'email_verified' => $this->email_verified,
 			'firstname' => $this->firstname,
+			'gravatar_email' => $this->gravatar_email,
+			'gravatar_url' => $this->gravatar_email ? 'http://www.gravatar.com/avatar/'.md5(strtolower(trim($this->gravatar_email))).'?d=mm&s=64&r=g' : null,
 			'lastname' => $this->lastname
 		);
 	}
@@ -134,6 +142,10 @@ class Model_App_Account extends Model
 	 */
 	public function set_data ( array $data, $format = true )
 	{
+		// Unset
+		unset($data['gravatar_url']);
+
+		// Format
 		if ($format)
 		{
 			$data = $this->format_data($data);
@@ -154,6 +166,7 @@ class Model_App_Account extends Model
 
 			// Email address
 			->rule('email', 'email')
+			->rule('gravatar_email', 'email')
 
 			// Password
 			->rule('password', 'min_length', array(':value', 8))
