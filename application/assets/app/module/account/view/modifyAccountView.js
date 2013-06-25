@@ -40,6 +40,9 @@ define([
 			firstname: {
 				el: 'firstname'
 			},
+			gravatar_email: {
+				el: 'gravatar_email'
+			},
 			lastname: {
 				el: 'lastname'
 			}
@@ -69,7 +72,12 @@ define([
 		 */
 		onAccountSave: function ()
 		{
+			var app = this.options.app;
+
 			accountModified = true;
+
+			app.vent.trigger('account:updated', this.model);
+
 			this.render();
 		},
 

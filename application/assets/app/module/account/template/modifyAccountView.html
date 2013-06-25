@@ -12,28 +12,52 @@
 			</div>
 		<% } %>
 
-		<fieldset>
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#account-profile-panel" data-toggle="tab">Profile</a></li>
+			<li><a href="#account-settings-panel" data-toggle="tab">Settings</a></li>
+		</ul>
 
-			<div id="account-firstname-control" class="control-group">
-				<label for="account-firstname">Firstname</label>
-				<input class="input-block-level" id="account-firstname" type="text" name="firstname" placeholder="Your firstname…" data-field="firstname" />
+		<div class="tab-content">
+			<div class="tab-pane active" id="account-profile-panel">
+
+				<div id="account-firstname-control" class="control-group">
+					<label for="account-firstname">Firstname</label>
+					<input class="input-block-level" id="account-firstname" type="text" name="firstname" placeholder="Your firstname…" data-field="firstname" />
+				</div>
+
+				<div id="account-lastname-control" class="control-group">
+					<label for="account-lastname">Lastname</label>
+					<input class="input-block-level" id="account-lastname" type="text" name="lastname" placeholder="Your lastname…" data-field="lastname" />
+				</div>
+
+				<div id="account-gravatar-control" class="control-group">
+					<label for="account-gravatar">Gravatar Email (private)</label>
+					<input class="input-block-level" id="account-gravatar" type="text" name="gravatar" placeholder="Your Gravatar email…" data-field="gravatar_email" />
+				</div>
+
+				<% if (gravatar_url) { %>
+					<div class="row">
+						<div class="span2"><img src="<%= gravatar_url %>" class="gravatar" border="0" height="32" width="32" alt="" /></div>
+						<div class="span10"><a href="https://gravatar.com/" target="_blank">Change your avatar at Gravatar.com</a></div>
+					</div>
+				<% } %>
+
+				<div>
+					<button id="account-create-btn" type="submit" class="btn btn-large btn-primary">Save</button>
+				</div>
 			</div>
 
-			<div id="account-lastname-control" class="control-group">
-				<label for="account-lastname">Lastname</label>
-				<input class="input-block-level" id="account-lastname" type="text" name="lastname" placeholder="Your lastname…" data-field="lastname" />
+			<div class="tab-pane" id="account-settings-panel">
+				<p>
+					If your want to delete your account, click on the button below.
+				</p>
+				<div class="alert alert-warning">
+					This action <strong>cannot</strong> be undone. This will delete your account permanently.
+				</div>
+				<div>
+					<button id="account-delete-btn" class="btn btn-large btn-danger">Delete my account</button>
+				</div>
 			</div>
-
-		</fieldset>
-
-		<div>
-			<button id="account-create-btn" type="submit" class="btn btn-large btn-primary">Save</button>
-		</div>
-
-		<hr/>
-
-		<div>
-			<button id="account-delete-btn" class="btn btn-danger">Delete my account</button>
 		</div>
 
 	</form>
