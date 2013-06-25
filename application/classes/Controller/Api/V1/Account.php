@@ -66,6 +66,7 @@ class Controller_Api_V1_Account extends Controller_Api_Rest
 		$data = array();
 		if (isset($body->email)) $data['email'] = $body->email;
 		if (isset($body->firstname)) $data['firstname'] = $body->firstname;
+		if (isset($body->gravatar_email)) $data['gravatar_email'] = $body->gravatar_email;
 		if (isset($body->lastname)) $data['lastname'] = $body->lastname;
 		if (isset($body->password)) $data['password'] = $body->password;
 
