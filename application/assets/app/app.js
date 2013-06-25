@@ -9,15 +9,21 @@ define([
 
 	var app = new Marionette.Application();
 
-	// This will store the user information
-	app.user = null;
-
 	// This will store the application url
 	app.url = '/';
+
+	// This will store the user information
+	app.user = null;
 
 	// Add the main region
 	app.addRegions({
 		root: '#approot'
+	});
+
+	// Catch account updates
+	app.vent.on('account:updated', function (account)
+	{
+		app.user = account;
 	});
 
 	// Catch page error event
