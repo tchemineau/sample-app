@@ -90,7 +90,7 @@ if (isset($_SERVER['KOHANA_ENV']))
  * - boolean  expose      set the X-Powered-By header                        FALSE
  */
 Kohana::init(array(
-	'base_url'   => '/sample-app/',
+	'base_url'   => '/',
 	'cache_dir'  => dirname(APPPATH).'/data/cache/',
 	'index_file' => FALSE
 ));
