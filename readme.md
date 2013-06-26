@@ -75,7 +75,7 @@ This project uses the following components:
   *   [jQuery](http://jquery.com/)
   *   [Backbone.js](http://backbonejs.org/)
   *   [backbone.session.js](https://github.com/makesites/backbone-session)
-  *   [Marionette.js](http://marionettejs.com/)
+  *   [marionette.js](http://marionettejs.com/)
   *   [marionette.formview.js](https://github.com/onehealth/marionette.formview)
   *   [Bootstrap](http://twitter.github.io/bootstrap/)
 
