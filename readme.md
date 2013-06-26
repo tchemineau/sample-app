@@ -20,10 +20,21 @@ This application needs the following dependencies:
 Quick installation notes
 ------------------------
 
+Clone the repository, and init its dependencies:
+
+    # git clone https://github.com/tchemineau/sample-app.git
+    # git submodule init && git submodule update
+    # cd vendor/kohana && git submodule init && git submodule update
+    # cd ../kohana-email && git submodule init && git submodule update
+
 On the system:
 
     # mkdir ./data/cache ./data/log
     # chown www-data:www-data ./data/cache ./data/log
+
+Adjust your settings into the following files:
+  *   application/config/app.local.php
+  *   application/config/mongodb.php
 
 This is a example of Lighttpd configuration:
 
