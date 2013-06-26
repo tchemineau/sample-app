@@ -64,7 +64,8 @@ define([
 					evt.preventDefault();
 
 					var regexp = new RegExp(url, 'g');
-					var href = $(evt.currentTarget).attr('href').replace(regexp, '').replace(/^\//, '');
+					var href = $(evt.currentTarget).attr('href').replace(regexp, '/').replace(/^\/+/, '/');
+					//var href = $(evt.currentTarget).attr('href').replace(regexp, '').replace(/^\//, '');
 
 					app.router.navigate(href, {trigger: true});
 				}
