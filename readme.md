@@ -37,8 +37,8 @@ On the system:
 
 Adjust your settings into the following files:
 
-  *   application/config/app.local.php
-  *   application/config/mongodb.php
+  *   `application/config/app.local.php`
+  *   `application/config/mongodb.local.php`
 
 This is a example of Lighttpd configuration:
 
@@ -78,5 +78,4 @@ This project uses the following components:
   *   [Marionette.js](http://marionettejs.com/)
   *   [marionette.formview.js](https://github.com/onehealth/marionette.formview)
   *   [Bootstrap](http://twitter.github.io/bootstrap/)
-
 
