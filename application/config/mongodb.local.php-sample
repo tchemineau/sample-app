@@ -1,0 +1,18 @@
+<?php defined('SYSPATH') or die('No direct script access.');
+
+/**
+ * Define your local settings here.
+ * They will not be overriden by software update.
+ */
+$local = array(
+
+	// Define your database settings
+	'default' => array(
+		'host' => 'localhost',
+		'port' => 27017,
+		'database' => 'sample-app',
+		'username' => '',
+		'password' => '',
+	)
+);
+
