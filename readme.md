@@ -7,6 +7,9 @@ Overview
 This is a demo application using Kohana 3.3+ with REST, MongoDB, Backbone.js and Marionette.js.
 My goal is to learn how to use Marionette.js and MongoDB with a REST backend based on Kohana 3.3.
 
+You can see a demo here:
+http://sampleapp.li/
+
 Requirements
 ------------
 
@@ -33,6 +36,7 @@ On the system:
     # chown www-data:www-data ./data/cache ./data/log
 
 Adjust your settings into the following files:
+
   *   application/config/app.local.php
   *   application/config/mongodb.php
 
@@ -53,4 +57,26 @@ This is a example of Lighttpd configuration:
                 "KOHANA_ENV" => "production"
         )
     }
+
+Thanks
+------
+
+This project uses the following components:
+
+  *   [Kohana](http://kohanaframework.org/)
+  *   [Kohana-Assets](https://github.com/tchemineau/kohana-assets)
+  *   [Kohana-Email](https://github.com/tchemineau/kohana-email)
+  *   [Kohana-Mongodb](https://github.com/tchemineau/kohana-mongodb)
+  *   [Kohana-Password](https://github.com/tchemineau/kohana-password)
+  *   [Kohana-Restful](https://github.com/tchemineau/kohana-restful)
+  *   [Kohana-Smarty3](https://github.com/tchemineau/kohana-smarty3)
+  *   [RequireJS](http://requirejs.org/)
+  *   [Underscore.js](http://underscorejs.org/)
+  *   [jQuery](http://jquery.com/)
+  *   [Backbone.js](http://backbonejs.org/)
+  *   [backbone.session.js](https://github.com/makesites/backbone-session)
+  *   [marionette.js](http://marionettejs.com/)
+  *   [marionette.formview.js](https://github.com/onehealth/marionette.formview)
+  *   [Bootstrap](http://twitter.github.io/bootstrap/)
+
 
