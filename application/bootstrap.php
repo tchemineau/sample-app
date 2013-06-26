@@ -106,6 +106,11 @@ Kohana::$log->attach(new Log_File(dirname(APPPATH).'/data/log/'));
 Kohana::$config->attach(new Config_File);
 
 /**
+ * Update the base directory
+ */
+Kohana::$base_url = Kohana::$config->load('app.base_url');
+
+/**
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
 Kohana::modules(array(

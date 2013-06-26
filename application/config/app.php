@@ -2,9 +2,12 @@
 
 /**
  * !! This is default settings.
- * !! To configure your settings, please do it into config.local.php
+ * !! To configure your settings, please do it into app.local.php
  */
 $config = array(
+
+	// Base URL of the application
+	'base_url' => '/sample-app/',
 
 	// Application name
 	'name' => 'Sample App',
