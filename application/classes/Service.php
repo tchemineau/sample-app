@@ -17,7 +17,7 @@ abstract class Service
 	 *     $service = Service::factory($name);
 	 *
 	 * @param {string} $name
-	 * @return {Model}
+	 * @return {Service}
 	 */
 	public static function factory ( $name )
 	{
