@@ -24,6 +24,9 @@ $config = array(
 	// Token expiration time (in seconds)
 	'token_timeout' => 604800,
 
+	// Confirm email timeout (in seconds)
+	'token_timeout_confirmemail' => 10800,
+
 	// Reset password timeout (in seconds)
 	'token_timeout_resetpassword' => 10800
 
