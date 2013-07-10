@@ -15,10 +15,10 @@ Requirements
 
 This application needs the following dependencies:
 
-  *   PHP 5.3
+  *   PHP 5.3, and PHP modules: cURL, iconv, mcrypt, mongodb
   *   A HTTP server (like Apache or Lighttpd)
-  *   MongoDB
-
+  *   A local mail server which is allowed to send emails to Internet
+  *   A MongoDB server
 
 Quick installation notes
 ------------------------
@@ -28,6 +28,8 @@ Clone the repository, and init its dependencies:
     # git clone https://github.com/tchemineau/sample-app.git
     # git submodule init && git submodule update
     # cd vendor/kohana && git submodule init && git submodule update
+    # curl -sS https://getcomposer.org/installer | php
+    # php composer.phar install
     # cd ../kohana-email && git submodule init && git submodule update
 
 On the system:
