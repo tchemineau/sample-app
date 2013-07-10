@@ -133,7 +133,7 @@ class Model_App_Token extends Model
 		// Build the query filter into JS
 		$query_where_js = "function()
 		{
-			return (this.date_created + this.timeout) <= $timestamp;
+			return this.timeout != null && (this.date_created + this.timeout) <= $timestamp;
 		}";
 
 		// Now build the query that use the filter
