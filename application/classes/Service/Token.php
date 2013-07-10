@@ -85,10 +85,8 @@ class Service_Token extends Service
 	 */
 	public function purge_all ()
 	{
-		return;
-
 		foreach (Model::factory('App_Token')->search_by_timeout() as $token)
-			$token->remove();
+			$this->remove($token);
 	}
 
 	/**
