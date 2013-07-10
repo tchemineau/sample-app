@@ -46,8 +46,8 @@ form[class*=" form-app"] input[type="password"], form[class*=" form-app"] input[
 	height: auto;
 	padding: 7px 9px;
 }
-div[class^="form-app"], div[class*=" form-app"] .row,
-form[class^="form-app"], form[class*=" form-app"] .row {
+div[class*=" form-app"] .row,
+form[class*=" form-app"] .row {
 	margin-bottom: 20px;
 	margin-left: 0;
 }
