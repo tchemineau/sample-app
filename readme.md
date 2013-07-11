@@ -25,12 +25,9 @@ Quick installation notes
 
 Clone the repository, and init its dependencies:
 
-    # git clone https://github.com/tchemineau/sample-app.git
-    # git submodule init && git submodule update
-    # cd vendor/kohana && git submodule init && git submodule update
+    # git clone --recursive https://github.com/tchemineau/sample-app.git
+    # cd vendor/kohana
     # curl -sS https://getcomposer.org/installer | php
-    # php composer.phar install
-    # cd ../kohana-email && git submodule init && git submodule update
 
 On the system:
 
