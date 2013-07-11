@@ -60,6 +60,15 @@ This is a example of Lighttpd configuration:
         )
     }
 
+Tests
+-----
+
+Use PHPUnit to tests the project:
+
+    phpunit --bootstrap=application/bootstrap.tests.php --group=sampleapp tests.php
+
+All tests are stored into the `application/tests/` directory.
+
 Thanks
 ------
 
