@@ -113,25 +113,7 @@ Kohana::$base_url = Kohana::$config->load('app.base_url');
 /**
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
-Kohana::modules(array(
-	// 'auth'       => MODPATH.'auth',       // Basic authentication
-	// 'cache'      => MODPATH.'cache',      // Caching with multiple backends
-	// 'codebench'  => MODPATH.'codebench',  // Benchmarking tool
-	// 'database'   => MODPATH.'database',   // Database access
-	// 'image'      => MODPATH.'image',      // Image manipulation
-	// 'minion'     => MODPATH.'minion',     // CLI Tasks
-	// 'orm'        => MODPATH.'orm',        // Object Relationship Mapping
-	// 'unittest'   => MODPATH.'unittest',   // Unit testing
-	// 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
-
-	'assets' => dirname(APPPATH).'/vendor/kohana-assets',
-	'email' => dirname(APPPATH).'/vendor/kohana-email',
-	'mongodb' => dirname(APPPATH).'/vendor/kohana-mongodb',
-	'password' => dirname(APPPATH).'/vendor/kohana-password',
-	'restful' => dirname(APPPATH).'/vendor/kohana-restful',
-	'smarty3' => dirname(APPPATH).'/vendor/kohana-smarty3'
-
-	));
+Kohana::modules(Kohana::$config->load('app.module'));
 
 /**
  * Set cookie salt.

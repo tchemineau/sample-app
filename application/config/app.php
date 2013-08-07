@@ -21,6 +21,27 @@ $config = array(
 	// Email sender name
 	'email_from_name' => 'Sample App',
 
+	// This is application module that should be loaded at initialization
+	'module' => array(
+
+		// 'auth'       => MODPATH.'auth',       // Basic authentication
+		// 'cache'      => MODPATH.'cache',      // Caching with multiple backends
+		// 'codebench'  => MODPATH.'codebench',  // Benchmarking tool
+		// 'database'   => MODPATH.'database',   // Database access
+		// 'image'      => MODPATH.'image',      // Image manipulation
+		// 'minion'     => MODPATH.'minion',     // CLI Tasks
+		// 'orm'	=> MODPATH.'orm',	// Object Relationship Mapping
+		// 'unittest'   => MODPATH.'unittest',   // Unit testing
+		// 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
+
+		'assets' => dirname(APPPATH).'/vendor/kohana-assets',
+		'email' => dirname(APPPATH).'/vendor/kohana-email',
+		'mongodb' => dirname(APPPATH).'/vendor/kohana-mongodb',
+		'password' => dirname(APPPATH).'/vendor/kohana-password',
+		'restful' => dirname(APPPATH).'/vendor/kohana-restful',
+		'smarty3' => dirname(APPPATH).'/vendor/kohana-smarty3'
+	),
+
 	// Token expiration time (in seconds)
 	'token_timeout' => 604800,
 
@@ -37,9 +58,9 @@ $config = array(
  */
 if (file_exists(APPPATH.'config/app.local.php'))
 {
-        require_once APPPATH.'config/app.local.php';
-        $config = array_merge($config, $local);
-        unset($local);
+	require_once APPPATH.'config/app.local.php';
+	$config = array_merge_recursive($config, $local);
+	unset($local);
 }
 
 /**
