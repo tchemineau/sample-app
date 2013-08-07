@@ -1,9 +1,8 @@
 define([
 	'marionette',
 	'router',
-	'module/account/router',
 	'view/appLayout'
-], function (Marionette, appRouter, AccountRouter, appLayout)
+], function (Marionette, appRouter, appLayout)
 {
 	"use strict";
 
@@ -72,9 +71,8 @@ define([
 		// Initialize the layout
 		this.layout = new appLayout(options);
 
-		// Initialize routers
+		// Initialize the main router
 		this.router = new appRouter(options);
-		this.accountRouter = new AccountRouter(options);
 	});
 
 	// Get session and launch page

@@ -28,7 +28,7 @@ define([
 			'login': 'login',
 			'logout': 'logout',
 			'': 'welcome',
-			'*actions': 'defaultAction'
+			'*action': 'defaultAction'
 		},
 
 		controller: AppController,
@@ -55,6 +55,9 @@ define([
 
 			// Catch logout event
 			app.vent.on('logout:success', this.logout, this);
+
+			// Module load event
+			app.vent.on('module:load', this.loadModule, this);
 
 			// Catch clicks on every a links
 			$(document).on('click', 'a[href^="/"]:not([data-bypass])', function (evt)
@@ -84,6 +87,24 @@ define([
 		loadFragment: function(fragment)
 		{
 			Backbone.history.loadUrl(fragment);
+		},
+
+		/**
+		 * Load module
+		 */
+		loadModule: function(path)
+		{
+			var self = this;
+			var request = path;
+
+			if (typeof request != 'object')
+				request = {route: 'unknown', module: request};
+
+			require([request.module], function (Module)
+			{
+				new Module(self.options);
+				self.loadFragment(request.route);
+			});
 		},
 
 		/**

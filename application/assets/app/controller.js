@@ -10,10 +10,28 @@ define([
 			this.options = options;
 		},
 
-		defaultAction: function(actions)
+		defaultAction: function(route)
 		{
 			var app = this.options.app;
-			app.vent.trigger('page:error', {request: actions});
+
+			// Check for an existing dynamic modules
+			$.ajax(
+			{
+				url: 'api/v1/app/require_js',
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					'route': route,
+				},
+				success: function (response)
+				{
+					app.vent.trigger('module:load', {route: route, module: response.data.path}, true);
+				},
+				error: function (xhr, status)
+				{
+					app.vent.trigger('page:error', {route: route});
+				}
+			});
 		},
 
 		login: function()
