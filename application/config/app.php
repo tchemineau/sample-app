@@ -9,6 +9,9 @@ $config = array(
 	// Base URL of the application
 	'base_url' => '/sample-app/',
 
+	// Cookie salt
+	'cookie_salt' => 'foobar',
+
 	// Application name
 	'name' => 'Sample App',
 

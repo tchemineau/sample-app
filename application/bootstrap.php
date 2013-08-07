@@ -118,7 +118,7 @@ Kohana::modules(Kohana::$config->load('app.module'));
 /**
  * Set cookie salt.
  */
-Cookie::$salt = 'foobar';
+Cookie::$salt = Kohana::$config->load('app.cookie_salt');
 
 /**
  * Load routes
