@@ -121,6 +121,12 @@ Kohana::modules(Kohana::$config->load('app.module'));
 Cookie::$salt = Kohana::$config->load('app.cookie_salt');
 
 /**
- * Load routes
+ * Set the routes. Each route must have a minimum of a name, a URI and a set of
+ * defaults for the URI.
  */
-require APPPATH.'routes'.EXT;
+Route::set('default', '(<controller>(/<action>(/<id>)))')
+	->defaults(array(
+		'controller' => 'welcome',
+		'action'     => 'index',
+	));
+

@@ -3,7 +3,7 @@
 /**
  * This is the default controller which deserved the main page.
  */
-class Controller_Welcome extends Controller
+class Controller_App_Welcome extends Controller
 {
 
 	/**

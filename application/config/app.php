@@ -42,7 +42,9 @@ $config = array(
 		'mongodb' => dirname(APPPATH).'/vendor/kohana-mongodb',
 		'password' => dirname(APPPATH).'/vendor/kohana-password',
 		'restful' => dirname(APPPATH).'/vendor/kohana-restful',
-		'smarty3' => dirname(APPPATH).'/vendor/kohana-smarty3'
+		'smarty3' => dirname(APPPATH).'/vendor/kohana-smarty3',
+
+		'sampleapp' => dirname(APPPATH).'/modules/sampleapp'
 	),
 
 	// Token expiration time (in seconds)
