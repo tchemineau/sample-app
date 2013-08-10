@@ -17,7 +17,7 @@ class Controller_App_Welcome extends Controller
 			'url' => URL::base()
 		);
 
-		$view = View::factory('smarty:App/Welcome.tpl');
+		$view = Twig::factory('App/Welcome');
 		$view->set('APP', $app);
 		$this->response->body($view);
 	}
