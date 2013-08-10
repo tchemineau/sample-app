@@ -19,3 +19,6 @@
 [submodule "vendor/kohana-smarty3"]
 	path = vendor/kohana-smarty3
 	url = http://github.com/tchemineau/kohana-smarty3.git
+[submodule "vendor/kohana-twig"]
+	path = vendor/kohana-twig
+	url = http://github.com/tchemineau/kohana-twig.git
