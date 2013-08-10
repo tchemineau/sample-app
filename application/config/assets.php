@@ -12,11 +12,13 @@ return array
 		'css'    => array('.css'),
 		'js'     => array('.js'),
 		'less'   => array('.less'),
+		'twig'   => array('.html')
 	),
 
 	'target_types' => array(
-		'css' => array('css', 'less'),
-		'js'  => array('js', 'coffee'),
+		'css'  => array('css', 'less'),
+		'js'   => array('js', 'coffee'),
+		'twig' => array('twig')
 	),
 
 	'watch' => Kohana::$environment === Kohana::DEVELOPMENT,
