@@ -15,7 +15,7 @@ class Service_Email extends Service
 		$url = URL::base(Request::current());
 
 		// Load the mail template
-		$content = View::factory('smarty:Mail/'.$view.'.tpl');
+		$content = Twig::factory('Mail/'.$view);
 
 		// Set data
 		foreach ($data as $key => $value)
