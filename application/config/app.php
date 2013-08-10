@@ -42,8 +42,10 @@ $config = array(
 		'mongodb' => dirname(APPPATH).'/vendor/kohana-mongodb',
 		'password' => dirname(APPPATH).'/vendor/kohana-password',
 		'restful' => dirname(APPPATH).'/vendor/kohana-restful',
-		'smarty3' => dirname(APPPATH).'/vendor/kohana-smarty3',
+		//'smarty3' => dirname(APPPATH).'/vendor/kohana-smarty3',
+		'twig' => dirname(APPPATH).'/vendor/kohana-twig',
 
+		// This module have to be loaded at the end because of routing.
 		'sampleapp' => dirname(APPPATH).'/modules/sampleapp'
 	),
 
