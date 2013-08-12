@@ -4,6 +4,9 @@
 [submodule "vendor/kohana-assets"]
 	path = vendor/kohana-assets
 	url = http://github.com/tchemineau/kohana-assets.git
+[submodule "vendor/kohana-browser"]
+	path = vendor/kohana-browser
+	url = http://github.com/tchemineau/kohana-browser
 [submodule "vendor/kohana-email"]
 	path = vendor/kohana-email
 	url = http://github.com/tchemineau/kohana-email.git
