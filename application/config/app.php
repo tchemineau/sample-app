@@ -38,6 +38,7 @@ $config = array(
 		// 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
 
 		'assets' => dirname(APPPATH).'/vendor/kohana-assets',
+		'browser' => dirname(APPPATH).'/vendor/kohana-browser',
 		'email' => dirname(APPPATH).'/vendor/kohana-email',
 		'mongodb' => dirname(APPPATH).'/vendor/kohana-mongodb',
 		'password' => dirname(APPPATH).'/vendor/kohana-password',
