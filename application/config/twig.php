@@ -25,9 +25,4 @@ return array(
 		'strict_variables'    => FALSE,
 	),
 
-	/**
-	 * Load Twig extensions
-	 */
-	'extensions' => array ('i18n')
-
 );
