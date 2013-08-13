@@ -26,9 +26,6 @@ Quick installation notes
 Clone the repository, and init its dependencies:
 
     # git clone --recursive https://github.com/tchemineau/sample-app.git
-    # cd vendor/kohana
-    # curl -sS https://getcomposer.org/installer | php
-    # php composer.phar install
 
 On the system:
 
