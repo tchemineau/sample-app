@@ -33,7 +33,7 @@ $config = array(
 		// 'database'   => MODPATH.'database',   // Database access
 		// 'image'      => MODPATH.'image',      // Image manipulation
 		// 'minion'     => MODPATH.'minion',     // CLI Tasks
-		// 'orm'	=> MODPATH.'orm',	// Object Relationship Mapping
+		// 'orm'        => MODPATH.'orm',        //  Object Relationship Mapping
 		// 'unittest'   => MODPATH.'unittest',   // Unit testing
 		// 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
 
@@ -43,7 +43,6 @@ $config = array(
 		'mongodb' => dirname(APPPATH).'/vendor/kohana-mongodb',
 		'password' => dirname(APPPATH).'/vendor/kohana-password',
 		'restful' => dirname(APPPATH).'/vendor/kohana-restful',
-		//'smarty3' => dirname(APPPATH).'/vendor/kohana-smarty3',
 		'twig' => dirname(APPPATH).'/vendor/kohana-twig',
 
 		// This module have to be loaded at the end because of routing.
@@ -67,7 +66,7 @@ $config = array(
 if (file_exists(APPPATH.'config/app.local.php'))
 {
 	require_once APPPATH.'config/app.local.php';
-	$config = array_merge_recursive($config, $local);
+	$config = array_merge($config, $local);
 	unset($local);
 }
 
