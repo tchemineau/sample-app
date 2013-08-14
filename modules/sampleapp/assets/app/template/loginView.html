@@ -2,7 +2,7 @@
 
 	<form class="form-horizontal form-app" method="POST">
 
-		<h2 class="form-app-heading">Please sign in</h2>
+		<h2 class="form-app-heading"><%= __('Please sign in') %></h2>
 
 		<div id="login-alert-container"></div>
 
@@ -10,22 +10,22 @@
 
 			<div class="control-group">
 				<input class="input-block-level" id="login-email"
-					type="email" name="email" placeholder="Your email…" data-field="email" />
+					type="email" name="email" placeholder="<%= __('Your email') %>…" data-field="email" />
 			</div>
 			<div class="control-group">
 				<input class="input-block-level" id="login-password"
-					type="password" name="password" placeholder="Your password…" data-field="password" />
+					type="password" name="password" placeholder="<%= __('Your password') %>…" data-field="password" />
 			</div>
 			
 		</fieldset>
 
 		<div class="pull-right">
-			<a href="<%= url %>account/create">I don't have account</a><br/>
-			<a href="<%= url %>account/forgot_password">I forgot my password</a>
+			<a href="<%= url %>account/create"><%= __('I don&#039;t have account') %></a><br/>
+			<a href="<%= url %>account/forgot_password"><%= ('I forgot my password') %></a>
 		</div>
 
 		<div>
-			<button id="login-btn" type="submit" class="btn btn-large btn-primary">Sign in</button>
+			<button id="login-btn" type="submit" class="btn btn-large btn-primary"><%= __('Sign In') %></button>
 		</div>
 
 	</form>

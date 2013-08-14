@@ -3,12 +3,15 @@ define([
 	'backbone',
 	'marionette',
 	'marionette.formview',
+	'helper/template',
 	'text!template/loginView.html'
-], function(Backbone, Marionette, MarionetteFormView, LoginTemplate)
+], function(Backbone, Marionette, MarionetteFormView, TemplateHelper, LoginTemplate)
 {
 	var LoginView = Marionette.FormView.extend(
 	{
 		template: LoginTemplate,
+
+		templateHelpers: TemplateHelper,
 
 		initialize: function (options)
 		{
@@ -55,15 +58,15 @@ define([
 			});
 		},
 
-                serializeData: function()
-                {
-                        var app = this.options.app;
+		serializeData: function()
+		{
+			var app = this.options.app;
 
-                        return {
-                                user: app.user ? app.user.toJSON() : {},
-                                url: app.url
-                        };
-                },
+			return {
+				user: app.user ? app.user.toJSON() : {},
+				url: app.url
+			};
+		},
 
 		/**
 		 * Show an error
