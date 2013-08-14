@@ -2,16 +2,46 @@ define([
 	'require',
 	'marionette',
 	'i18n!nls/i18n.js'
-], function(lrequire, Marionette, Lang)
+], function(lrequire, Marionette, Translate)
 {
+
+	/**
+	 * strtr() for JavaScript
+	 * Translate characters or replace substrings
+	 * The above licence and copyright is only applied to this function.
+	 *
+	 * @author Dmitry Sheiko 
+	 * @version strtr.js, v 1.0 
+	 * @license MIT
+	 * @copyright (c) Dmitry Sheiko http://dsheiko.com
+	 * @see https://gist.github.com/dsheiko/2774533
+	 */
+	String.prototype.strtr = function (replacePairs)
+	{
+		"use strict";
+		var str = this.toString(), key, re;
+		for (key in replacePairs) {
+			if (replacePairs.hasOwnProperty(key)) {
+				re = new RegExp(key, "g");
+				str = str.replace(re, replacePairs[key]);
+			}
+		}
+		return str;
+	};
 
 	var helper = {
 
-		__: function (key)
+		__: function (string, values)
 		{
-			if (Lang[key] && typeof Lang[key] !== 'undefined')
-				return Lang[key];
-			return key;
+			// Find the translation string
+			if (Translate[string] && typeof Translate[string] !== 'undefined')
+				string = Translate[string];
+
+			// Inject values if necessary
+			if (typeof values === 'object')
+				string = string.strtr(values);
+
+			return string;
 		}
 
 	};
