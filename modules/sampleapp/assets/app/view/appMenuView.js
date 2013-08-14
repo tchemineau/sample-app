@@ -15,7 +15,7 @@ define([
 		{
 			var app = options.app;
 
-			app.vent.on('account:updated', this.render, this);
+			app.vent.on('account:updated:post', this.render, this);
 			app.vent.on('login:success:account', this.render, this);
 			app.vent.on('logout:success:account', this.render, this);
 		},
