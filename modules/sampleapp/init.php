@@ -23,6 +23,15 @@ Route::set('api_v1', 'api/v1/(<controller>(/<id>))')
 		'directory'  => 'Api/V1'
 	));
 
+Route::set('app_i18n', 'nls/<fragment>', array(
+		'fragment' => '.*'
+	))
+	->defaults(array(
+		'action' => 'i18n',
+		'controller' => 'Assets',
+		'directory' => 'App'
+	));
+
 Route::set('app_default', '<fragment>', array(
 		'fragment' => '.*'
 	))
