@@ -33,6 +33,9 @@ define([
 
 			// On logout succeed, disconnect user
 			app.vent.on('logout:success:post', this.logout, this);
+
+			// Trigger that this module is loaded
+			app.vent.trigger('module:init');
 		},
 
 		/**

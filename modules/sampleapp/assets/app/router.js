@@ -59,6 +59,9 @@ define([
 			// Module load event
 			app.vent.on('module:load', this.loadModule, this);
 
+			// Module load post event
+			app.vent.on('module:load:post', this.startSession, this);
+
 			// Catch clicks on every a links
 			$(document).on('click', 'a[href^="/"]:not([data-bypass])', function (evt)
 			{
@@ -73,6 +76,9 @@ define([
 					app.router.navigate(href, {trigger: true});
 				}
 			});
+
+			// Load modules
+			this.controller.loadModules();
 
 			// Start history
 			Backbone.history.start({
@@ -95,16 +101,31 @@ define([
 		loadModule: function(path)
 		{
 			var self = this;
-			var request = path;
 
-			if (typeof request != 'object')
-				request = {route: 'unknown', module: request};
+			// Default request
+			var request = {
+				'loadFragment': true,
+				'request': null,
+				'route': 'unknow'
+			};
 
-			require([request.module], function (Module)
+			// Build coming request
+			if (typeof path == 'object')
+				request = path;
+			else
+				request = $.extend({}, request, {module: request});
+
+			// If module, load it
+			if (request.module)
 			{
-				new Module(self.options);
-				self.loadFragment(request.route);
-			});
+				require([request.module], function (Module)
+				{
+					new Module(self.options);
+
+					if (request.loadFragment)
+						self.loadFragment(request.route);
+				});
+			}
 		},
 
 		/**

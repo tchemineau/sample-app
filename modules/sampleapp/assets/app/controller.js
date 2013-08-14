@@ -12,20 +12,48 @@ define([
 
 		defaultAction: function(route)
 		{
+			this.loadModules(route);
+		},
+
+		/**
+		 * Too complex function :-(
+		 * Need to found another way to launch actions after all modules are loaded.
+		 */
+		loadModules: function(route)
+		{
 			var app = this.options.app;
 
-			// Check for an existing dynamic modules
+			if (typeof route == 'undefined')
+				route = 'init';
+
 			$.ajax(
 			{
 				url: 'api/v1/app/require_js',
 				type: 'POST',
 				dataType: 'json',
-				data: {
-					'route': route,
-				},
+				data: {'route': route},
+				async: route != 'init',
 				success: function (response)
 				{
-					app.vent.trigger('module:load', {route: route, module: response.data.path}, true);
+					var counter = response.data.length;
+
+					// Catch module init event
+					app.vent.on('module:init', function()
+					{
+						counter--;
+						if (route == 'init' && counter == 0)
+							app.vent.trigger('module:load:post');
+					});
+
+					// Load all found modules
+					for (var i=0, m=counter; i < m; i++)
+					{
+						app.vent.trigger('module:load', {
+							loadFragment: route != 'init',
+							module: response.data[i],
+							route: route
+						}, true);
+					}
 				},
 				error: function (xhr, status)
 				{

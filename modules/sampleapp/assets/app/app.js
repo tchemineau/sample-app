@@ -23,6 +23,7 @@ define([
 	app.vent.on('account:updated', function (account)
 	{
 		app.user = account;
+		app.vent.trigger('account:updated:post');
 	});
 
 	// Catch page error event
@@ -76,7 +77,7 @@ define([
 	});
 
 	// Get session and launch page
-	app.addInitializer(function(options)
+	app.on('start', function(options)
 	{
 		// Start the session
 		this.router.startSession();
