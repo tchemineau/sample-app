@@ -2,14 +2,17 @@
 define([
 	'marionette',
 	'marionette.formview',
+	'helper/template',
 	'text!module/account/template/createAccountView.html'
-], function(Marionette, MarionetteFormView, CreateAccountTemplate)
+], function(Marionette, MarionetteFormView, TemplateHelper, CreateAccountTemplate)
 {
 	var accountCreated = false;
 
 	var CreateAccountView = Marionette.FormView.extend(
 	{
 		template: CreateAccountTemplate,
+
+		templateHelpers: TemplateHelper,
 
 		/**
 		 * Initialize stuff like event listeners
