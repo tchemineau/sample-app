@@ -2,14 +2,17 @@
 define([
 	'marionette',
 	'marionette.formview',
+	'helper/template',
 	'text!module/account/template/resetPasswordView.html'
-], function(Marionette, MarionetteFormView, ResetPasswordTemplate)
+], function(Marionette, MarionetteFormView, TemplateHelper, ResetPasswordTemplate)
 {
 	var passwordUpdated = false;
 
 	var ResetPasswordView = Marionette.FormView.extend(
 	{
 		template: ResetPasswordTemplate,
+
+		templateHelpers: TemplateHelper,
 
 		/**
 		 * Declare variables to access template content

@@ -2,14 +2,17 @@
 define([
 	'marionette',
 	'marionette.formview',
+	'helper/template',
 	'text!module/account/template/forgotPasswordView.html'
-], function(Marionette, MarionetteFormView, ForgotPasswordTemplate)
+], function(Marionette, MarionetteFormView, TemplateHelper, ForgotPasswordTemplate)
 {
 	var passwordSent = false;
 
 	var ForgotPasswordView = Marionette.FormView.extend(
 	{
 		template: ForgotPasswordTemplate,
+
+		templateHelpers: TemplateHelper,
 
 		/**
 		 * Declare variables to access template content
