@@ -1,0 +1,17 @@
+{# Twig #}
+{# This is the template for RequireJS i18n plugin #}
+{% spaceless %}
+
+define({{ '{' }}
+	"root": {{ '{' }}
+
+		{% for key, value in LANG %}
+
+			"{{ key }}": "{{ value }}"{% if not loop.last %},{% endif %}
+
+		{% endfor %}
+
+	{{ '}' }}
+{{ '}' }});
+
+{% endspaceless %}
