@@ -11,7 +11,7 @@ class Controller_App_Assets extends Controller_Assets {
 		$table = Service::factory('I18n')->get_table(Language::getLanguage());
 
                 // Render application core layout
-                $view = Twig::factory('App/I18n');
+                $view = Twig::factory('App/I18n.js');
                 $view->set('LANG', $table);
 
 		// Render view to apply compression
@@ -19,6 +19,7 @@ class Controller_App_Assets extends Controller_Assets {
 
 		// Return compressed output
                 $this->response->body($output);
+		$this->response->headers('Content-Type', 'application/javascript');
 	}
 
 }
