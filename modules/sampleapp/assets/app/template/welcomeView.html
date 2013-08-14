@@ -2,30 +2,33 @@
 
 	<div class="jumbotron masthead">
 		<div class="inner">
-			<h1>Welcome on Sample-App</h1>
+			<h1><%= __('Welcome on :title', {':title': 'Sample-App'}) %></h1>
 
 			<p>
-				This is a demo application using <a href="http://kohanaframework.org" target="_blank">Kohana 3.3+</a>
-				with REST, <a href="http://www.mongodb.org" target="_blank">MongoDB</a>,
-				<a href="http://backbonejs.org" target="_blank">Backbone.js</a> and
-				<a href="http://marionettejs.com" target="_blank">Marionette.js</a>.
+				<%= __('This is a demo application using :kohana with REST, :mongodb, :backbonejs and :marionettejs.', {
+					':kohana': '<a href="http://kohanaframework.org" target="_blank">Kohana 3.3+</a>',
+					':mongodb': '<a href="http://www.mongodb.org" target="_blank">MongoDB</a>',
+					':backbonejs': '<a href="http://backbonejs.org" target="_blank">Backbone.js</a>',
+					':marionettejs': '<a href="http://marionettejs.com" target="_blank">Marionette.js</a>' }) %>
 			</p>
 
 			<p class="download-info">
-				<a href="https://github.com/tchemineau/sample-app" class="btn btn-primary btn-large">View the project on GitHub</a>
+				<a href="https://github.com/tchemineau/sample-app" class="btn btn-primary btn-large">
+					<%= __('View the project on GitHub') %>
+				</a>
 			</p>
 		</div>
 		<div>
 			<ul class="masthead-links">
 				<li class="follow-btn">
 					<iframe class="twitter-follow-button" allowtransparency="true" frameborder="0" scrolling="no"
-						src="//platform.twitter.com/widgets/follow_button.html?id=twitter-widget-0&amp;screen_name=tchemineau&amp;show_screen_name=true&amp;size=m&amp;lang=en&amp;show_count=false"
+						src="//platform.twitter.com/widgets/follow_button.html?id=twitter-widget-0&amp;screen_name=tchemineau&amp;show_screen_name=true&amp;size=m&amp;show_count=false"
 						title="Twitter Follow Button"
 						style="width:200px; height:20px;"></iframe>
 				</li>
 				<li class="tweet-btn">
 					<iframe class="twitter-share-button twitter-count-horizontal" allowtransparency="true" frameborder="0" scrolling="no"
-						src="//platform.twitter.com/widgets/tweet_button.html?id=twitter-widget-1&amp;via=tchemineau&amp;lang=en;&amp;text=A%20demo%20application%20using%20Kohana%203.3+%20with%20REST,%20MongoDB,%20Backbone.js%20and%20Marionette.js"
+						src="//platform.twitter.com/widgets/tweet_button.html?id=twitter-widget-1&amp;via=tchemineau;&amp;text=A%20demo%20application%20using%20Kohana%203.3+%20with%20REST,%20MongoDB,%20Backbone.js%20and%20Marionette.js"
 						style="width:109px; height:20px;"></iframe>
 				</li>
 			</ul>

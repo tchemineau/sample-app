@@ -16,20 +16,20 @@
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="<%= url %>account">My Account</a></li>
-							<li><a href="<%= url %>logout">Sign Off</a></li>
+							<li><a href="<%= url %>account"><%= __('My Account') %></a></li>
+							<li><a href="<%= url %>logout"><%= __('Sign Off') %></a></li>
 						</ul>
 					</li>
 				</ul>
 			<% } else { %>
 				<div class="pull-right">
-					<a class="btn btn-success" href="<%= url %>account/create">Sign Up</a>
+					<a class="btn btn-success" href="<%= url %>account/create"><%= __('Sign Up') %></a>
 				</div>
 				<div class="pull-right">
-					<span class="navbar-text">&nbsp;or&nbsp;</span>
+					<span class="navbar-text">&nbsp;<%= __('or') %>&nbsp;</span>
 				</div>
 				<div class="pull-right">
-					<a class="btn" href="<%= url %>login">Sign In</a>
+					<a class="btn" href="<%= url %>login"><%= __('Sign In') %></a>
 				</div>
 			<% } %>
 

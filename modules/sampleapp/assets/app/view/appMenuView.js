@@ -1,12 +1,15 @@
 
 define([
 	'marionette',
+	'helper/template',
 	'text!template/appMenuView.html'
-], function(Marionette, appMenuTemplate)
+], function(Marionette, TemplateHelper, appMenuTemplate)
 {
 	var appMenuView = Marionette.ItemView.extend(
 	{
 		template: appMenuTemplate,
+
+		templateHelpers: TemplateHelper,
 
 		initialize: function (options)
 		{
