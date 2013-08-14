@@ -2,19 +2,19 @@
 
 	<form class="form-horizontal form-app" method="POST">
 
-		<h2 class="form-app-heading">My account</h2>
+		<h2 class="form-app-heading"><%= __('My account') %></h2>
 
 		<div id="account-alert-container"></div>
 
 		<% if (accountModified) { %>
 			<div class="alert alert-success fade in">
-				<i class="icon-ok"></i> Information saved
+				<i class="icon-ok"></i> <%= __('Information saved') %>
 			</div>
 		<% } %>
 
 		<ul class="nav nav-tabs">
-			<li class="active"><a href="#account-profile-panel" data-toggle="tab">Profile</a></li>
-			<li><a href="#account-settings-panel" data-toggle="tab">Settings</a></li>
+			<li class="active"><a href="#account-profile-panel" data-toggle="tab"><%= __('Profile') %></a></li>
+			<li><a href="#account-settings-panel" data-toggle="tab"><%= __('Settings') %></a></li>
 		</ul>
 
 		<div class="tab-content">
@@ -22,40 +22,43 @@
 
 				<div id="account-firstname-control" class="control-group">
 					<label for="account-firstname">Firstname</label>
-					<input class="input-block-level" id="account-firstname" type="text" name="firstname" placeholder="Your firstname…" data-field="firstname" />
+					<input class="input-block-level" id="account-firstname" type="text"
+						name="firstname" placeholder="<% __('Your firstname') %>…" data-field="firstname" />
 				</div>
 
 				<div id="account-lastname-control" class="control-group">
 					<label for="account-lastname">Lastname</label>
-					<input class="input-block-level" id="account-lastname" type="text" name="lastname" placeholder="Your lastname…" data-field="lastname" />
+					<input class="input-block-level" id="account-lastname" type="text"
+						name="lastname" placeholder="<% __('Your lastname') %>…" data-field="lastname" />
 				</div>
 
 				<div id="account-gravatar-control" class="control-group">
 					<label for="account-gravatar">Gravatar Email (private)</label>
-					<input class="input-block-level" id="account-gravatar" type="text" name="gravatar" placeholder="Your Gravatar email…" data-field="gravatar_email" />
+					<input class="input-block-level" id="account-gravatar" type="text"
+						name="gravatar" placeholder="<%= __('Your Gravatar email') %>…" data-field="gravatar_email" />
 				</div>
 
 				<% if (gravatar_url) { %>
 					<div class="row">
 						<div class="span2"><img src="<%= gravatar_url %>" class="gravatar" border="0" height="32" width="32" alt="" /></div>
-						<div class="span10"><a href="https://gravatar.com/" target="_blank">Change your avatar at Gravatar.com</a></div>
+						<div class="span10"><a href="https://gravatar.com/" target="_blank"><%= __('Change your avatar at Gravatar.com') %></a></div>
 					</div>
 				<% } %>
 
 				<div>
-					<button id="account-create-btn" type="submit" class="btn btn-large btn-primary">Save</button>
+					<button id="account-create-btn" type="submit" class="btn btn-large btn-primary"><%= __('Save') %></button>
 				</div>
 			</div>
 
 			<div class="tab-pane" id="account-settings-panel">
 				<p>
-					If you want to delete your account, click on the button below.
+					<%= __('If you want to delete your account, click on the button below.') %>
 				</p>
 				<div class="alert alert-warning">
-					This action <strong>cannot</strong> be undone. This will delete your account permanently.
+					<%= __('This action cannot be undone. This will delete your account permanently.') %>
 				</div>
 				<div>
-					<button id="account-delete-btn" class="btn btn-large btn-danger">Delete my account</button>
+					<button id="account-delete-btn" class="btn btn-large btn-danger"><%= __('Delete my account') %></button>
 				</div>
 			</div>
 		</div>
@@ -65,18 +68,18 @@
 	<div id="account-delete-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="account-delete-modal-title" aria-hidden="true">
 		<div class="modal-header">
 			<button id="account-delete-modal-close" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<h3 id="account-delete-modal-title">Delete account confirmation</h3>
+			<h3 id="account-delete-modal-title"><%= __('Delete account confirmation') %></h3>
 		</div>
 		<div class="modal-body">
 			<p>
-				<strong>Are you sure you want to delete your account ?</strong>
+				<strong><%= __('Are you sure you want to delete your account ?') %></strong>
 			</p>
 			<p>
-				This action <strong>cannot</strong> be undone. This will delete your account permanently.
+				<%= __('This action cannot be undone. This will delete your account permanently.') %>
 			</p>
 		</div>
 		<div class="modal-footer">
-			<button id="account-delete-modal-ok" class="btn btn-danger">Yes, I want to delete my account now</button>
+			<button id="account-delete-modal-ok" class="btn btn-danger"><%= __('Yes, I want to delete my account now') %></button>
 		</div>
 	</div>
 

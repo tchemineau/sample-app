@@ -2,14 +2,17 @@
 define([
 	'marionette',
 	'marionette.formview',
+	'helper/template',
 	'text!module/account/template/modifyAccountView.html'
-], function(Marionette, MarionetteFormView, ModifyAccountTemplate)
+], function(Marionette, MarionetteFormView, TemplateHelper, ModifyAccountTemplate)
 {
 	var accountModified = false;
 
 	var ModifyAccountView = Marionette.FormView.extend(
 	{
 		template: ModifyAccountTemplate,
+
+		templateHelpers: TemplateHelper,
 
 		initialize: function (options)
 		{
