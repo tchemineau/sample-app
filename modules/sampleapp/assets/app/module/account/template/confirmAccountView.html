@@ -6,22 +6,22 @@
 
 			<% if (confirmed) { %>
 
-				<h2 class="form-app-heading">Your account has been confirmed</h2>
+				<h2 class="form-app-heading"><%= __('Your account has been confirmed') %></h2>
 
 				<div class="alert alert-success">
-					You are now allowed to sign in with your account on our services.
+					<%= __('You are now allowed to sign in with your account on our services.') %>
 				</div>
 
 				<div>
-					<a href="<%= url %>login" class="btn btn-large btn-primary">Sign in</a>
+					<a href="<%= url %>login" class="btn btn-large btn-primary"><%= __('Sign In') %></a>
 				</div>
 
 			<% } else { %>
 
-				<h2 class="form-app-heading">Oups</h2>
+				<h2 class="form-app-heading"><%= __('Oups') %></h2>
 
 				<div class="alert alert-error">
-					We are not able to confirm your account.
+					<%= __('We are not able to confirm your account.') %>
 				</div>
 
 			<% } %>

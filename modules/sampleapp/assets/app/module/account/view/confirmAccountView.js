@@ -1,12 +1,15 @@
 
 define([
 	'marionette',
+	'helper/template',
 	'text!module/account/template/confirmAccountView.html'
-], function(Marionette, ConfirmAccountTemplate)
+], function(Marionette, TemplateHelper, ConfirmAccountTemplate)
 {
 	var ConfirmAccountView = Marionette.ItemView.extend(
 	{
 		template: ConfirmAccountTemplate,
+
+		templateHelpers: TemplateHelper,
 
 		/**
 		 * Do stuff at initialization

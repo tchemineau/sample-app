@@ -2,6 +2,9 @@
 
 return array(
 
+	'An unexpected error occurs, we are investigating on it.' =>
+		'Une erreur inconnue est survenue, nous allons la résoudre.'
+
 	'Are you sure you want to delete your account ?' =>
 		'Êtes vous sur de vouloir supprimer votre compte ?',
 
@@ -43,6 +46,8 @@ return array(
 
 	'or' => 'ou',
 
+	'Oups' => 'Aie',
+
 	'Please sign in' => 'Connexion',
 
 	'Private' => 'Privé',
@@ -73,13 +78,21 @@ return array(
 
 	'View the project on GitHub' => 'Voir le projet sur GitHub',
 
+	'We are not able to confirm your account.' =>
+		'Votre compte n\'a pas pu être confirmé',
+
 	'Welcome on :title' => 'Bienvenue sur :title',
 
 	'Yes, I want to delete my account now' =>
 		'Oui, je veux supprimer mon compte maintenant',
 
+	'You are now allowed to sign in with your account on our services.' =>
+		'Vous pouvez maintenant vous connecter avec votre compte à nos services.',
+
 	'You will soon receive an email giving you steps to reset your password.' =>
 		'Vous allez bientôt recevoir un e-mail vous indiquant les étapes de réinitialisation de votre mot de passe',
+
+	'Your account has been confirmed' => 'Vous avez confirmé votre compte',
 
 	'Your email' => 'Votre e-mail',
 
