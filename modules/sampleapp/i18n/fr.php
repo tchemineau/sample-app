@@ -69,7 +69,7 @@ return array(
 		'Cette action ne peut pas être annulée. Votre compte sera définitivement supprimé.',
 
 	'This is a demo application using :kohana with REST, :mongodb, :backbonejs and :marionettejs.' =>
-		'C\'est application de démonstration utilisant :kohana avec REST, :mongodb, :backbonejs et :marionettejs.',
+		'Une application de démonstration utilisant :kohana avec REST, :mongodb, :backbonejs et :marionettejs.',
 
 	'View the project on GitHub' => 'Voir le projet sur GitHub',
 
