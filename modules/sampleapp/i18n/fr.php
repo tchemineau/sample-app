@@ -3,7 +3,7 @@
 return array(
 
 	'An unexpected error occurs, we are investigating on it.' =>
-		'Une erreur inconnue est survenue, nous allons la résoudre.'
+		'Une erreur inconnue est survenue, nous allons la résoudre.',
 
 	'Are you sure you want to delete your account ?' =>
 		'Êtes vous sur de vouloir supprimer votre compte ?',
