@@ -11,12 +11,14 @@ class Controller_App_Welcome extends Controller
 	 */
 	public function action_index()
 	{
+		// Build configuration
 		$app = array(
 			'name' => Kohana::$config->load('app.name'),
 			'fragment' => $this->request->param('fragment'),
 			'url' => URL::base()
 		);
 
+		// Render application core layout
 		$view = Twig::factory('App/Welcome');
 		$view->set('APP', $app);
 		$this->response->body($view);
