@@ -24,6 +24,10 @@ return array(
 
 	'Delete my account' => 'Supprimer mon compte',
 
+	'Firstname' => 'Prénom',
+
+	'Gravatar email' => 'E-mail Gravatar',
+
 	'I don\'t have account' => 'Je n\'ai pas de compte',
 
 	'I forgot my password' => 'J\'ai oublié mon mot de passe',
@@ -33,11 +37,15 @@ return array(
 
 	'Information saved' => 'Vos informations ont été sauvegardées',
 
+	'Lastname' => 'Nom',
+
 	'My account' => 'Mon compte',
 
 	'or' => 'ou',
 
 	'Please sign in' => 'Connexion',
+
+	'Private' => 'Privé',
 
 	'Profile' => 'Profil',
 
