@@ -58,3 +58,9 @@ Service::factory('Application')->set_js_route('module/account/router',
 	)
 );
 
+/**
+ * Set javascript module to be load at initialization
+ */
+
+Service::factory('Application')->set_js_init('module/account/router');
+

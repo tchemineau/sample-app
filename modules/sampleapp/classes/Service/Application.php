@@ -7,27 +7,54 @@ class Service_Application extends Service
 {
 
 	/**
-	 * Internal JS routes
+	 * Internal JS module to load at initialization
 	 */
-	private static $_js_route = array();
+	private static $_js_init = array();
 
 	/**
-	 * Return JS route depending of a given URI
+	 * Internal JS routes
+	 */
+	private static $_js_uris = array();
+
+	/**
+	 * Return JS module to load a initialization
+	 *
+	 * @return {array}
+	 */
+	public static function get_js_init ()
+	{
+		return self::$_js_init;
+	}
+
+	/**
+	 * Return JS module depending of a given route
 	 *
 	 * @param {string} $uri An URI
 	 */
-	public static function get_js_route ( $uri )
+	public static function get_js_path ( $uri )
 	{
-		foreach (self::$_js_route as $path => $uris_regex)
+		$matches = array();
+
+		foreach (self::$_js_uris as $path => $uris_regex)
 		{
 			foreach ($uris_regex as $uri_regex)
 			{
 				if (preg_match($uri_regex, $uri))
-					return $path;
+					$matches[] = $path;
 			}
 		}
 
-		throw Service_Exception::factory('NotFound', 'JS route not found');
+		return $matches;
+	}
+
+	/**
+	 * Register a JS module to be load at initialization
+	 *
+	 * @param {string} $path Path of the JS module to load
+	 */
+	public static function set_js_init ( $path )
+	{
+		self::$_js_init[] = $path;
 	}
 
 	/**
@@ -39,16 +66,16 @@ class Service_Application extends Service
 	 */
 	public static function set_js_route ( $path, array $uris, array $regex = NULL )
 	{
-		if (!isset(self::$_js_route[$path]))
+		if (!isset(self::$_js_uris[$path]))
 		{
-			self::$_js_route[$path] = array();
+			self::$_js_uris[$path] = array();
 		}
 
 		foreach ($uris as $uri)
 		{
 			$uri_regex = Route::compile($uri, $regex);
 
-			self::$_js_route[$path][] = $uri_regex;
+			self::$_js_uris[$path][] = $uri_regex;
 		}
 	}
 

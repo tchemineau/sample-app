@@ -20,22 +20,33 @@ class Controller_Api_V1_App extends Controller_Api_Standard
 		// Get the api service
 		$api_service = Service::factory('Api');
 
-		try
+		if (!is_null($route))
 		{
-			// Get the JS to load
-			$module = $app_service->get_js_route($route);
+			// Store modules to load
+			$modules = array();
+
+			// Store return message
+			$message = 'Modules not found';
+
+			// Get JS to load
+			switch ($route)
+			{
+				case 'init':
+					$modules = $app_service->get_js_init();
+					break;
+				default:
+					$modules = $app_service->get_js_path($route);
+			}
+
+			// Set a correct message
+			if (sizeof($modules) > 0)
+				$message = 'Modules found';
 
 			// Return appropriate HTTP result
-			$this->response($api_service->build_response_succeed(
-				'JS module found',
-				array(
-					'path' => $module
-				)
-			), 200);
+			$this->response($api_service->build_response_succeed($message, $modules), 200);
 		}
-		catch (Exception $e)
+		else
 		{
-			Kohana_Exception::log($e, Log::ERROR);
 			$this->response($api_service->build_response_failed('Bad request'), 400);
 		}
 	}
