@@ -133,9 +133,10 @@ define([
 		 */
 		loadPage: function(page)
 		{
-			var app = this.options.app;
+			var action = 'do' + page.charAt(0).toUpperCase() + page.slice(1);
 
-			app.vent.trigger('page:'+page);
+			if (typeof this.controller[action] !== 'undefined')
+				this.controller[action]();
 		},
 
 		/**
