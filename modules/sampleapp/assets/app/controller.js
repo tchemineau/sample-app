@@ -91,7 +91,7 @@ define([
 		{
 			var app = this.options.app;
 			app.vent.trigger('page:welcome');
-		}
+		},
 
 		/**
 		 * Load modules.
@@ -120,7 +120,7 @@ define([
 				numberOfModulesToLoad = response.data.length;
 
 				// Load all found modules
-				for (var i=0, m=counter; i < m; i++)
+				for (var i=0, m=numberOfModulesToLoad; i < m; i++)
 				{
 					app.vent.trigger('module:load', {
 						loadFragment: !isModulesInit,
