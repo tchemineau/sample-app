@@ -25,10 +25,10 @@ define([
 	var AppRouter = Marionette.AppRouter.extend(
 	{
 		appRoutes: {
-			'login': 'login',
-			'logout': 'logout',
-			'': 'welcome',
-			'*action': 'defaultAction'
+			'login': 'doLogin',
+			'logout': 'doLogout',
+			'': 'doWelcome',
+			'*action': 'doDefault'
 		},
 
 		controller: AppController,
@@ -60,7 +60,7 @@ define([
 			app.vent.on('module:load', this.loadModule, this);
 
 			// Module load post event
-			app.vent.on('module:load:post', this.startSession, this);
+			app.vent.on('module:boot:success', this.startSession, this);
 
 			// Catch clicks on every a links
 			$(document).on('click', 'a[href^="/"]:not([data-bypass])', function (evt)
