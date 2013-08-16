@@ -72,7 +72,11 @@ define([
 		doLogin: function()
 		{
 			var app = this.options.app;
-			app.vent.trigger('page:login');
+
+			require(['view/loginView'], function(LoginView)
+			{
+				app.root.currentView.page.show(new LoginView({app: app}));
+			});
 		},
 
 		/**
@@ -81,7 +85,8 @@ define([
 		doLogout: function()
 		{
 			var app = this.options.app;
-			app.vent.trigger('page:logout');
+
+			app.vent.trigger('logout:success');
 		},
 
 		/**
@@ -90,7 +95,11 @@ define([
 		doWelcome: function()
 		{
 			var app = this.options.app;
-			app.vent.trigger('page:welcome');
+
+			require(['view/welcomeView'], function(WelcomeView)
+			{
+				app.root.currentView.page.show(new WelcomeView({app: app}));
+			});
 		},
 
 		/**

@@ -23,41 +23,7 @@ define([
 	app.vent.on('account:updated', function (account)
 	{
 		app.user = account;
-		app.vent.trigger('account:updated:post');
-	});
-
-	// Catch page error event
-	app.vent.on('page:error', function()
-	{
-		require(['view/errorView'], function(ErrorView)
-		{
-			var errorView = new ErrorView({app: app});
-			app.root.currentView.page.show(errorView);
-		});
-	});
-
-	// Catch page login event
-	app.vent.on('page:login', function()
-	{
-		require(['view/loginView'], function(LoginView)
-		{
-			app.root.currentView.page.show(new LoginView({app: app}));
-		});
-	});
-
-	// Catch page logout event
-	app.vent.on('page:logout', function()
-	{
-		app.vent.trigger('logout:success');
-	});
-
-	// Catch welcome page event
-	app.vent.on('page:welcome', function()
-	{
-		require(['view/welcomeView'], function(WelcomeView)
-		{
-			app.root.currentView.page.show(new WelcomeView({app: app}));
-		});
+		app.vent.trigger('account:updated:success');
 	});
 
 	// Launch routers and application main view
