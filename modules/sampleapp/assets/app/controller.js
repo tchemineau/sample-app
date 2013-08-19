@@ -40,6 +40,9 @@ define([
 					}
 				}
 			});
+
+			// Display the error page
+			app.vent.on('page:error', this.doError, this);
 		},
 
 		/**

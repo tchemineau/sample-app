@@ -88,7 +88,11 @@ define([
 				var account = new AccountModel(data);
 
 				account.fetch({
-					success: function ()
+					error: function()
+					{
+						app.vent.trigger('page:error');
+					},
+					success: function()
 					{
 						var modifyAccountView = new ModifyAccountView({app: app, model: account});
 
