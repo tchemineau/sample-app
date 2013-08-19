@@ -8,7 +8,7 @@ class Controller_App_Assets extends Controller_Assets {
 	public function action_i18n ()
 	{
 		// Get the i18n table
-		$table = Service::factory('I18n')->get_table(Language::getLanguage());
+		$table = Service::factory('I18n')->get_table();
 
                 // Render application core layout
                 $view = Twig::factory('App/I18n.js');
