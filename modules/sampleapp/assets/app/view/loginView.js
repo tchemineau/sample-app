@@ -50,7 +50,7 @@ define([
 				success: function (response)
 				{
 					app.vent.trigger('login:success', response.data, true);
-					app.vent.trigger('notify:success', 'Welcome on board !');
+					app.vent.trigger('notify:success', 'Welcome on board!');
 				},
 				error: function (xhr, status)
 				{
