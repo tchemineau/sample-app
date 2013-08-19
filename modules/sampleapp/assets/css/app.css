@@ -3,6 +3,23 @@ body {
 	background-image: url('../img/bg-noise-tile.png');
 }
 
+#appnotification {
+	display: none;
+	position: absolute;
+	top: 3px;
+	width: 100%;
+}
+#appnotification-content {
+	margin: auto;
+	width: 50%;
+}
+#appnotification-content .alert {
+	-webkit-box-shadow: inset 0 1px 10px rgba(0,0,0,0.1);
+	-moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.1);
+	box-shadow: inset 0 1px 10px rgba(0,0,0,0.1);
+	padding: 5px 32px 5px 11px;
+}
+
 #appprogress-container {
 	bottom: 0;
 	position: absolute;
