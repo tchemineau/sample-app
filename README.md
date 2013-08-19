@@ -76,7 +76,6 @@ This project uses the following components:
   *   [Kohana-Mongodb](https://github.com/tchemineau/kohana-mongodb)
   *   [Kohana-Password](https://github.com/tchemineau/kohana-password)
   *   [Kohana-Restful](https://github.com/tchemineau/kohana-restful)
-  *   [Kohana-Smarty3](https://github.com/tchemineau/kohana-smarty3)
   *   [Kohana-Twig](https://github.com/tchemineau/kohana-twig)
   *   [RequireJS](http://requirejs.org/)
   *   [Underscore.js](http://underscorejs.org/)
