@@ -1,4 +1,4 @@
-# How to create my first module into Sample-App
+# My first HelloWorld module
 
 ## Initialize the module
 
