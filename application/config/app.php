@@ -37,16 +37,19 @@ $config = array(
 		// 'unittest'   => MODPATH.'unittest',   // Unit testing
 		// 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
 
+		// Load module that need routing
 		'assets' => dirname(APPPATH).'/vendor/kohana-assets',
+
+		// Load the sampleapp module
+                'sampleapp' => dirname(APPPATH).'/modules/sampleapp',
+
+		// Finaly load additionnal module that do not need routing
 		'browser' => dirname(APPPATH).'/vendor/kohana-browser',
 		'email' => dirname(APPPATH).'/vendor/kohana-email',
 		'mongodb' => dirname(APPPATH).'/vendor/kohana-mongodb',
 		'password' => dirname(APPPATH).'/vendor/kohana-password',
 		'restful' => dirname(APPPATH).'/vendor/kohana-restful',
 		'twig' => dirname(APPPATH).'/vendor/kohana-twig',
-
-		// This module have to be loaded at the end because of routing.
-		'sampleapp' => dirname(APPPATH).'/modules/sampleapp'
 	),
 
 	// Token expiration time (in seconds)
