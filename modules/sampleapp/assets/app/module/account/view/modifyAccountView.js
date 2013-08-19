@@ -80,17 +80,9 @@ define([
 			accountModified = true;
 
 			app.vent.trigger('account:updated', this.model);
+			app.vent.trigger('notify:success', TemplateHelper.__('Information saved'));
 
 			this.render();
-		},
-
-		onRender: function ()
-		{
-			window.setTimeout(function()
-			{
-				accountModified = false;
-				$(".alert-success").alert('close');
-			}, 5000);
 		},
 
 		/**

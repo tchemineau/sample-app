@@ -50,10 +50,11 @@ define([
 				success: function (response)
 				{
 					app.vent.trigger('login:success', response.data, true);
+					app.vent.trigger('notify:success', 'Welcome on board !');
 				},
 				error: function (xhr, status)
 				{
-					me.showGlobalError('Unable to authenticate');
+					app.vent.trigger('notify:error', 'Unable to authenticate');
 				}
 			});
 		},
@@ -67,20 +68,6 @@ define([
 				url: app.url
 			};
 		},
-
-		/**
-		 * Show an error
-		 */
-		showGlobalError: function (message)
-		{
-			var container = $('#login-alert-container');
-			var alertbox = $('<div class="alert alert-error" />')
-				.append($('<button type="button" class="close" data-dismiss="alert">&times;</button>'))
-				.append('<strong>Error</strong>: '+message);
-
-			alertbox.appendTo(container).alert();
-		}
-
 	});
 
 	return LoginView;

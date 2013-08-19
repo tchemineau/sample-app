@@ -8,7 +8,7 @@ define([
 {
 	var accountCreated = false;
 
-	var CreateAccountView = Marionette.FormView.extend(
+	var createAccountView = Marionette.FormView.extend(
 	{
 		template: CreateAccountTemplate,
 
@@ -87,7 +87,9 @@ define([
 		 */
 		onModelError: function (response, xhr)
 		{
-			this.showGlobalError(response.message);
+			var app = this.options.app;
+
+			app.vent.trigger('notify:error', response.message);
 		},
 
 		/**
@@ -126,19 +128,6 @@ define([
 		},
 
 		/**
-		 * Show an error
-		 */
-		showGlobalError: function (message)
-		{
-			var container = $('#account-alert-container');
-			var alertbox = $('<div class="alert alert-error" />')
-				.append($('<button type="button" class="close" data-dismiss="alert">&times;</button>'))
-				.append('<strong>Error</strong>: '+message);
-
-			alertbox.appendTo(container).alert();
-		},
-
-		/**
 		 * Highlight input in error
 		 */
 		showLocalErrors: function (errors)
@@ -162,5 +151,5 @@ define([
 
 	});
 
-	return CreateAccountView;
+	return createAccountView;
 });

@@ -87,7 +87,7 @@ define([
 				},
 				error: function (xhr, status)
 				{
-					me.showGlobalError('Unable to update your password');
+					app.vent.trigger('notify:error', 'Unable to update your password');
 				}
 			});
 		},
@@ -108,36 +108,6 @@ define([
 				passwordUpdated: passwordUpdated,
 				url: app.url
 			};
-		},
-
-		/**
-		 * Show an global alert
-		 */
-		showGlobalAlert: function (type, message, isClosable)
-		{
-			// Get alert container
-			var container = $('#account-alert-container');
-
-			// Create the alert box
-			var alertbox = $('<div class="alert alert-'+type+'" />');
-
-			// Include closable button if needed
-			if (typeof isClosable != 'boolean' || isClosable)
-				alertbox.append($('<button type="button" class="close" data-dismiss="alert">&times;</button>'));
-
-			// Append message
-			alertbox.append(message);
-
-			// Show the message
-			alertbox.appendTo(container).alert();
-		},
-
-		/**
-		 * Show an error
-		 */
-		showGlobalError: function (message)
-		{
-			this.showGlobalAlert('error', message);
 		},
 
 		/**
