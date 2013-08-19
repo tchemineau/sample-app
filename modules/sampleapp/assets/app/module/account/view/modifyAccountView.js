@@ -65,7 +65,7 @@ define([
 			this.model.destroy({
 				'success': function ()
 				{
-					app.vent.trigger('page:logout');
+					app.vent.trigger('logout:success');
 				}
 			});
 		},
