@@ -107,7 +107,7 @@ $local = array(
     ),
 
 );
-```js
+```
 
 Note that the `module` key have to redeclare all modules!
 
