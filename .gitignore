@@ -1,5 +1,16 @@
+
+# Ignoring Mac OS X files
 .DS_Store
+
+# Ignoring local configuration files
 application/config/app.local.php
 application/config/mongodb.local.php
+
+# Ignoring local data
+data/*
+!data/README.md
+
+# Ignoring local modules
 modules/*
 !modules/sampleapp
+
