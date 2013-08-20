@@ -31,9 +31,13 @@ return array(
 
 	'Firstname' => 'Prénom',
 
+	'Goodbye from :title' => 'A bientôt sur :title',
+
 	'Gravatar email' => 'E-mail Gravatar',
 
 	'Hey' => 'Bonjour',
+
+	'How to reset your password on :title' => 'Comment réinitialiser votre mot de passe sur :title',
 
 	'I don\'t have account' => 'Je n\'ai pas de compte',
 

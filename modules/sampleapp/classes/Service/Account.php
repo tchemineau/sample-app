@@ -10,24 +10,10 @@ class Service_Account extends Service
 	 * Mail titles
 	 */
 	private static $_mail_titles = array (
-		'CREATE' => '',
-		'FORGOT_PASSWORD' => '',
-		'REMOVE' => ''
+		'CREATE' => 'Welcome on :title',
+		'FORGOT_PASSWORD' => 'How to reset your password on :title',
+		'REMOVE' => 'Goodbye from :title'
 	);
-
-	/**
-	 * Just used to set mail titles correctly
-	 */
-	public function __construct ()
-	{
-		$app_name = Kohana::$config->load('app.name');
-
-		self::$_mail_titles = array (
-			'CREATE' => 'Welcome to '.$app_name,
-			'FORGOT_PASSWORD' => 'How to reset your password on '.$app_name,
-			'REMOVE' => 'Goodbye from '.$app_name
-		);
-	}
 
 	/**
 	 * Authenticate user
@@ -311,8 +297,11 @@ class Service_Account extends Service
 	 */
 	private function _send_email ( $account, $type, $token = null )
 	{
-		// This is the mail title
-		$title = self::$_mail_titles[$type];
+		// Get the application name
+		$app_name = Kohana::$config->load('app.name');
+
+		// Get the translated the title
+		$title = Service::factory('I18n')->get_string(self::$_mail_titles[$type], array(':title' => $app_name));
 
 		// Get the email service
 		$email = Service::factory('Email');
