@@ -5,15 +5,13 @@ body {
 
 #appnotification {
 	display: none;
+	left: 25%;
 	position: absolute;
+	text-align: center;
 	top: 3px;
-	width: 100%;
-}
-#appnotification-content {
-	margin: auto;
 	width: 50%;
 }
-#appnotification-content .alert {
+#appnotification .alert {
 	-webkit-box-shadow: inset 0 1px 10px rgba(0,0,0,0.1);
 	-moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.1);
 	box-shadow: inset 0 1px 10px rgba(0,0,0,0.1);
