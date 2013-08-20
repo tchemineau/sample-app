@@ -8,7 +8,7 @@
 			'backbone': '../../static/library/backbone/backbone.min',
 			'backbone.session': '../../static/library/backbone/backbone.session',
 			'bootstrap': '../../static/library/bootstrap/js/bootstrap.min',
-			'jquery': '../../static/library/jquery/jquery-1.9.1.min',
+			'jquery': '../../static/library/jquery/jquery-1.10.2.min',
 			'marionette': '../../static/library/marionette/backbone.marionette.min',
 			'marionette.formview': '../../static/library/marionette/backbone.marionette.formview',
 			'underscore': '../../static/library/underscore/underscore.min'
