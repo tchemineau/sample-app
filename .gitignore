@@ -1,3 +1,5 @@
 .DS_Store
 application/config/app.local.php
 application/config/mongodb.local.php
+modules/*
+!modules/sampleapp
