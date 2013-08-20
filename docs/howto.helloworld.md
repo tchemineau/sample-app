@@ -16,20 +16,20 @@ of your first module into Sample-App.
 Create the module into Sample-App:
 
 ```bash
-mkdir modules/helloworld
+$ mkdir modules/helloworld
 ```
 
 Then, initialize the structure of this new module:
 
 ```bash
-cd modules/helloworld
-mkdir ./classes ./views ./i18n ./assets
+$ cd modules/helloworld
+$ mkdir ./classes ./views ./i18n ./assets
 ```
 
 Now create the backbone router:
 
 ```bash
-mkdir -p ./assets/app/module/helloworld
+$ mkdir -p ./assets/app/module/helloworld
 ```
 
 Create the file `./assets/app/module/helloworld/router.js`:
@@ -70,8 +70,8 @@ Go back to the root directory of Sample-App.
 Configuration files are into `application/config/` directory.
 
 ```bash
-cd application/config
-cp app.local.php-sample app.local.php
+$ cd application/config
+$ cp app.local.php-sample app.local.php
 ```
 
 This file should contain a `module` key like the following:
