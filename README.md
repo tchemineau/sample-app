@@ -1,6 +1,7 @@
 This is Sample-App
 ==================
 
+
 Overview
 --------
 
@@ -9,6 +10,7 @@ My goal is to learn how to use Marionette.js and MongoDB with a REST backend bas
 
 You can see a demo here:
 http://sampleapp.li/
+
 
 Requirements
 ------------
@@ -20,17 +22,22 @@ This application needs the following dependencies:
   *   A local mail server which is allowed to send emails to Internet
   *   A MongoDB server
 
+
 Quick installation notes
 ------------------------
 
 Clone the repository, and init its dependencies:
 
-    # git clone --recursive https://github.com/tchemineau/sample-app.git
+```bash
+$ git clone --recursive https://github.com/tchemineau/sample-app.git
+```
 
 On the system:
 
-    # mkdir ./data/cache ./data/log
-    # chown www-data:www-data ./data/cache ./data/log
+```bash
+$ mkdir ./data/cache ./data/log
+$ chown www-data:www-data ./data/cache ./data/log
+```
 
 Adjust your settings into the following files:
 
@@ -39,31 +46,37 @@ Adjust your settings into the following files:
 
 This is a example of Lighttpd configuration:
 
-    $HTTP["host"] =~ "^example\.com$" {
-        server.document-root = "/var/www/example.com/www/"
-        server.name = "example.com"
-        accesslog.filename = "/var/log/lighttpd/example.com.access.log"
-        alias.url = (
-                "/sample-app/assets/" => "/var/www/example.com/www/sample-app/data/cache/assets/",
-                "/sample-app/" => "/var/www/example.com/www/sample-app/public/"
-        )
-        url.rewrite-if-not-file  = (
-                "^/sample-app/(.+)" => "/sample-app/index.php/$1"
-        )
-        setenv.add-environment = (
-                "KOHANA_ENV" => "production"
-        )
-    }
+```
+$HTTP["host"] =~ "^example\.com$" {
+    server.document-root = "/var/www/example.com/www/"
+    server.name = "example.com"
+    accesslog.filename = "/var/log/lighttpd/example.com.access.log"
+    alias.url = (
+        "/sample-app/assets/" => "/var/www/example.com/www/sample-app/data/cache/assets/",
+        "/sample-app/" => "/var/www/example.com/www/sample-app/public/"
+    )
+    url.rewrite-if-not-file  = (
+        "^/sample-app/(.+)" => "/sample-app/index.php/$1"
+    )
+    setenv.add-environment = (
+        "KOHANA_ENV" => "production"
+    )
+}
+```
+
 
 Tests
 -----
 
-Use PHPUnit to tests the project:
+Use PHPUnit to tests the project (tests are yet not written):
 
-    $ export KOHANA_ENV="testing"
-    $ phpunit --bootstrap=application/bootstrap.tests.php --group=sampleapp tests.php
+```bash
+$ export KOHANA_ENV="testing"
+$ phpunit --bootstrap=application/bootstrap.tests.php --group=sampleapp tests.php
+```
 
 All tests are stored into the `modules/sampleapp/tests/` directory.
+
 
 Thanks
 ------
@@ -85,4 +98,5 @@ This project uses the following components:
   *   [Marionette.js](http://marionettejs.com/)
   *   [marionette.formview.js](https://github.com/onehealth/marionette.formview)
   *   [Bootstrap](http://twitter.github.io/bootstrap/)
+
 
