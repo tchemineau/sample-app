@@ -1,6 +1,7 @@
 <script type="text/template" id="welcomeTemplate">
 
 	<div class="jumbotron masthead">
+
 		<div class="inner">
 			<h1><%= __('Welcome on :title', {':title': 'Sample-App'}) %></h1>
 
@@ -12,12 +13,13 @@
 					':marionettejs': '<a href="http://marionettejs.com" target="_blank">Marionette.js</a>' }) %>
 			</p>
 
-			<p class="download-info">
+			<p>
 				<a href="https://github.com/tchemineau/sample-app" class="btn btn-primary btn-large">
 					<%= __('View the project on GitHub') %>
 				</a>
 			</p>
 		</div>
+
 		<div>
 			<ul class="masthead-links">
 				<li>
@@ -41,6 +43,35 @@
 				</li>
 			</ul>
 		</div>
+
+		<div class="row-fluid features">
+			<div class="span3 offset1">
+				<img src="<%= url %>assets/img/sampleapp-fast-128x128.png" class="image" />
+				<h2>Build faster.</h2>
+				<p>
+					Sample-App allows you to build your own features. For example, no need
+					to implement REST system, assets manager or i18n mechanism anymore.
+				</p>
+			</div>
+			<div class="span4">
+				<img src="<%= url %>assets/img/sampleapp-code-128x128.png" class="image" />
+				<h2>Keep organized.</h2>
+				<p>
+					Sample-App is based on well known frameworks and libraries. Kohana is a
+					powerfull PHP5 framework that will keep your PHP code structured, as well as
+					Marionette.js for your event based Javascript code.
+				</p>
+			</div>
+			<div class="span3">
+				<img src="<%= url %>assets/img/sampleapp-api-128x128.png" class="image" />
+				<h2>Use API.</h2>
+				<p>
+					Sample-App is designed as a rich client application using REST API. The
+					standard API manages user accounts deeply into a MongoDB database.
+				</p>
+			</div>
+		</div>
+
 	</div>
 
 </script>

@@ -72,3 +72,38 @@ img.gravatar {
 	-moz-border-radius: 2px;
 	border-radius: 2px;
 }
+
+.jumbotron.masthead {
+	margin-left: -20px;
+	margin-right: -20px;
+	padding-bottom: 10px;
+}
+.jumbotron.masthead .features {
+	background: #fff;
+	border-bottom: 1px solid #ddd;
+	border-top: 1px solid #ddd;
+	margin-top: 40px;
+	padding: 20px 0;
+}
+.jumbotron.masthead .features h2 {
+	font-weight: 200;
+}
+.jumbotron.masthead .features p {
+	font-size: 16px;
+	line-height: 1.5;
+}
+/**
+ * Images references:
+ * https://www.iconfinder.com/icons/33148/document_file_g11834_paper_icon#size=128
+ * https://www.iconfinder.com/icons/32765/blue_document_file_g12334_paper_icon#size=128
+ * https://www.iconfinder.com/icons/33030/document_file_g14852_green_paper_icon#size=128
+ */
+.jumbotron.masthead .features .image {
+	border: 0;
+	height: 64px;
+	margin: 0;
+	margin-top: 20px;
+	padding: 0;
+	width: 64px;
+}
+
