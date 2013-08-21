@@ -6,7 +6,7 @@ return array(
 		':title vous permet de vous concentrer sur vos fonctionnalités. Par exemple, plus besoin d\'implémenter un serveur REST, un gestionnaire d\'assets ou encore gérer l\'internationalisation.',
 
 	':title is based on well known frameworks and libraries. Kohana is a powerfull PHP5 framework that will keep your PHP code structured, as well as Marionette.js for your event based Javascript code.' =>
-		':title est basé sur des frameworks et bibliothèques connues. Kohana est un puissant framework PHP5 qui structurera votre code, tout comme Marionette.js pour votre code Javascript événementiel.',
+		':title est basé sur des frameworks et bibliothèques connus. Kohana est un puissant framework PHP5 qui structurera votre code, tout comme Marionette.js pour votre code Javascript événementiel.',
 
 	':title is designed as a rich client application using REST API. The standard API manages user accounts deeply into a MongoDB database.' =>
 		':title est architecturé autour d\'une application client riche et d\'API REST. L\'API standard gère déjà les comptes utilisateurs dans une base de données MongoDB.',
