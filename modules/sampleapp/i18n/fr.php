@@ -2,11 +2,22 @@
 
 return array(
 
+	':title allows you to build your own features. For example, no need to implement REST system, assets manager or i18n mechanism anymore.' =>
+		':title vous permet de vous concentrer sur vos fonctionnalités. Par exemple, plus besoin d\'implémenter un serveur REST, un gestionnaire d\'assets ou encore gérer l\'internationalisation.',
+
+	':title is based on well known frameworks and libraries. Kohana is a powerfull PHP5 framework that will keep your PHP code structured, as well as Marionette.js for your event based Javascript code.' =>
+		':title est basé sur des frameworks et bibliothèques connues. Kohana est un puissant framework PHP5 qui structurera votre code, tout comme Marionette.js pour votre code Javascript événementiel.',
+
+	':title is designed as a rich client application using REST API. The standard API manages user accounts deeply into a MongoDB database.' =>
+		':title est architecturé autour d\'une application client riche et d\'API REST. L\'API standard gère déjà les comptes utilisateurs dans une base de données MongoDB.',
+
 	'An unexpected error occurs, we are investigating on it.' =>
 		'Une erreur inconnue est survenue, nous allons la résoudre.',
 
 	'Are you sure you want to delete your account ?' =>
 		'Êtes vous sur de vouloir supprimer votre compte ?',
+
+	'Build faster.' => 'Développer rapidement.',
 
 	'By clicking on "Create an account" below, you will receiving an email which invites you to confirm your new account.' =>
 		'En cliquant sur le bouton "Créer un compte", vous allez recevoir un e-mail vous invitant à confirmer votre nouveau compte.',
@@ -47,6 +58,8 @@ return array(
 		'Si vous voulez supprimer votre compte, cliquer sur le bouton suivant.',
 
 	'Information saved' => 'Vos informations ont été sauvegardées',
+
+	'Keep organized.' => 'Organiser le code.',
 
 	'Lastname' => 'Nom',
 
@@ -97,6 +110,8 @@ return array(
 
 	'This is an automated message. Please, do not reply.' =>
 		'Ceci est un message automatique. Veuillez ne pas répondre.',
+
+	'Use API.' => 'Utiliser les API.',
 
 	'View the project on GitHub' => 'Voir le projet sur GitHub',
 
