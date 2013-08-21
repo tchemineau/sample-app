@@ -24,7 +24,9 @@
 				</ul>
 			<% } else { %>
 				<div class="pull-right">
-					<a class="btn btn-success" href="<%= url %>account/create"><%= __('Sign Up') %></a>
+					<a class="btn btn-success" href="<%= url %>account/create" id="btn-sign-up"
+					   data-title="<%= __('If you are new, start by creating a new account to see :title in action!', {':title': 'Sample-App'}) %>"
+					   data-placement="bottom" data-trigger="manual"><%= __('Sign Up') %></a>
 				</div>
 				<div class="pull-right">
 					<span class="navbar-text">&nbsp;<%= __('or') %>&nbsp;</span>

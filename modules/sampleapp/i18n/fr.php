@@ -56,6 +56,9 @@ return array(
 
 	'I forgot my password' => 'J\'ai oublié mon mot de passe',
 
+	'If you are new, start by creating a new account to see :title in action!' =>
+		'Si vous venez pour la première fois, commencez par créer un nouveau compte pour voir :title en action !',
+
 	'If you want to delete your account, click on the button below.' =>
 		'Si vous voulez supprimer votre compte, cliquer sur le bouton suivant.',
 
