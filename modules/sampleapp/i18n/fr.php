@@ -11,6 +11,8 @@ return array(
 	':title is designed as a rich client application using REST API. The standard API manages user accounts deeply into a MongoDB database.' =>
 		':title est architecturé autour d\'une application client riche et d\'API REST. L\'API standard gère déjà les comptes utilisateurs dans une base de données MongoDB.',
 
+	':title is licensed under MIT License' => ':title est couvert par la licence MIT',
+
 	'An unexpected error occurs, we are investigating on it.' =>
 		'Une erreur inconnue est survenue, nous allons la résoudre.',
 

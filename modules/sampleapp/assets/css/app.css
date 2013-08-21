@@ -1,6 +1,7 @@
 
 body {
 	background-image: url('../img/bg-noise-tile.png');
+	color: #444;
 }
 
 #appnotification {
@@ -77,6 +78,7 @@ img.gravatar {
 	margin-left: -20px;
 	margin-right: -20px;
 	padding-bottom: 10px;
+	padding-top: 30px;
 }
 .jumbotron.masthead .features {
 	background: #fff;
@@ -105,5 +107,9 @@ img.gravatar {
 	margin-top: 20px;
 	padding: 0;
 	width: 64px;
+}
+
+.footer {
+	padding: 10px;
 }
 
