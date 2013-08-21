@@ -17,10 +17,10 @@ define([
 			var app = options.app;
 
 			// This is the message of the notification
-			var message = null;
+			this.message = null;
 
 			// This is the type of the notification
-			var type = null;
+			this.type = null;
 
 			// Catch notification events
 			app.vent.on('notify:error', this.notifyError, this);
