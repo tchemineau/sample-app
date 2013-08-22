@@ -56,7 +56,7 @@ define([
 				success: function ()
 				{
 					// Store user account
-					app.user = account;
+					app.vent.trigger('account:updated', account);
 
 					// Launch a event to notify that login has succeed
 					app.vent.trigger('login:success:account');
