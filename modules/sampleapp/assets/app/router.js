@@ -47,9 +47,6 @@ define([
 			// Initialize the controller
 			this.controller.initialize(options);
 
-			// Initialize the session
-			session = new APP.Session(null, {remote: false});
-
 			// Catch login event
 			app.vent.on('login:success', this.login, this);
 
@@ -71,7 +68,6 @@ define([
 
 					var regexp = new RegExp(url, 'g');
 					var href = $(evt.currentTarget).attr('href').replace(regexp, '/').replace(/^\/+/, '/');
-					//var href = $(evt.currentTarget).attr('href').replace(regexp, '').replace(/^\//, '');
 
 					app.router.navigate(href, {trigger: true});
 					app.router._track();
@@ -184,6 +180,9 @@ define([
 		 */
 		startSession: function ()
 		{
+			// Initialize the session
+			session = new APP.Session(null, {remote: false});
+
 			// Get the application
 			var app = this.options.app;
 
