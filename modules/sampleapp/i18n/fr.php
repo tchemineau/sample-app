@@ -62,6 +62,9 @@ return array(
 	'If you want to delete your account, click on the button below.' =>
 		'Si vous voulez supprimer votre compte, cliquer sur le bouton suivant.',
 
+	'If you want to reset your password, click on the button below.' =>
+		'Si vous voulez réinitialiser votre mot de passe, veuillez cliquer sur le bouton suivant.',
+
 	'Information saved' => 'Vos informations ont été sauvegardées',
 
 	'Keep organized.' => 'Organiser le code.',
@@ -73,6 +76,8 @@ return array(
 	'or' => 'ou',
 
 	'Oups' => 'Aie',
+
+	'Password' => 'Mot de passe',
 
 	'Please confirm your email address by clicking the following link and you\'re ready to go:' =>
 		'Veuillez confirmer votre adresse e-mail en cliquant sur le lien suivant, votre inscription sera alors terminée:',

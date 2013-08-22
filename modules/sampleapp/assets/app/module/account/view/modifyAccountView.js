@@ -33,7 +33,8 @@ define([
 		 */
 		events: {
 			'click #account-delete-btn': 'showDeleteAccountModal',
-			'click #account-delete-modal-ok': 'onAccountDelete'
+			'click #account-delete-modal-ok': 'onAccountDelete',
+			'click #account-password-btn': 'onPasswordReset'
 		},
 
 		/**
@@ -83,6 +84,39 @@ define([
 			app.vent.trigger('notify:success', TemplateHelper.__('Information saved'));
 
 			this.render();
+		},
+
+		/**
+		 * Reset my password
+		 */
+		onPasswordReset: function (evt)
+		{
+			evt.preventDefault();
+
+			// This store this object
+			var me = this;
+
+			// Get application
+			var app = this.options.app;
+
+			// Do the request to log the user
+			$.ajax(
+			{
+				url: 'api/v1/auth/forgot_password',
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					'email': app.user.get('email')
+				},
+				success: function (response)
+				{
+					app.vent.trigger('notify:success', 'Reset password instructions has been sent');
+				},
+				error: function (xhr, status)
+				{
+					app.vent.trigger('notify:error', 'Unable to send reset password instructions');
+				}
+			});
 		},
 
 		/**
