@@ -8,6 +8,11 @@ class SampleApp_Model_App_Account extends Model
 	 */
 	public $date_created;
 
+        /**
+         * Timestamp of last connexion
+         */
+        public $date_lastvisit;
+
 	/**
 	 * Timestamp of last modification
 	 */
@@ -86,6 +91,10 @@ class SampleApp_Model_App_Account extends Model
 		if (!$this->date_created)
 			$data['date_created'] = $timestamp;
 
+		// Set last visit time
+		if (!$this->date_lastvisit)
+			$data['date_lastvisit'] = $timestamp;
+
 		// Store the last modification time
 		$data['date_modified'] = $timestamp;
 
@@ -106,6 +115,7 @@ class SampleApp_Model_App_Account extends Model
 		return array(
 			'id' => $this->id(),
 			'date_created' => $this->date_created,
+			'date_lastvisit' => $this->date_lastvisit,
 			'date_modified' => $this->date_modified,
 			'email' => $this->email,
 			'email_verified' => $this->email_verified,
