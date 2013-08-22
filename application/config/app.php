@@ -22,7 +22,7 @@ $config = array(
 	'email_from_address' => 'no-reply@example.com',
 
 	// Email sender name
-	'email_from_name' => 'Sample App',
+	'email_from_name' => 'Sample-App',
 
 	// This is application module that should be loaded at initialization
 	'module' => array(
