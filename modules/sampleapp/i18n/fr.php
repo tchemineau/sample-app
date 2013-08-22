@@ -19,7 +19,7 @@ return array(
 	'Are you sure you want to delete your account ?' =>
 		'Êtes vous sur de vouloir supprimer votre compte ?',
 
-	'Build faster.' => 'Développer rapidement.',
+	'Build faster.' => 'Développer vite.',
 
 	'By clicking on "Create an account" below, you will receiving an email which invites you to confirm your new account.' =>
 		'En cliquant sur le bouton "Créer un compte", vous allez recevoir un e-mail vous invitant à confirmer votre nouveau compte.',
