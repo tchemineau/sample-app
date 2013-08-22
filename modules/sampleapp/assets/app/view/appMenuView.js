@@ -15,9 +15,11 @@ define([
 		{
 			var app = options.app;
 
-			// Set instructions to false
-			this.isInstruction = false;
+			// Set instruction to true
+			// That will popup a div with a help message
+			this.isInstruction = true;
 
+			// Catch event which needs update
 			app.vent.on('account:updated:success', this.render, this);
 			app.vent.on('login:success:account', this.render, this);
 			app.vent.on('logout:success:account', this.render, this);
@@ -29,18 +31,23 @@ define([
 			var me = this;
 
 			// Manage instruction
-			if (!this.isInstruction)
+			if (this.isInstruction)
 			{
 				var el = $('#btn-sign-up');
-				clearTimeout($.data(el, 'timeout'));
 
-				$.data(el, 'timeout', setTimeout($.proxy(function()
+				clearTimeout($.data(el, 'timeout1'));
+				clearTimeout($.data(el, 'timeout2'));
+
+				$.data(el, 'timeout1', setTimeout($.proxy(function()
 				{
-					me.isInstruction = true;
-					el.tooltip('hide');
-				}, this), 8000));
+					me.isInstruction = false;
+					el.tooltip('show');
 
-				el.tooltip('show');
+					$.data(el, 'timeout2', setTimeout($.proxy(function()
+					{
+						el.tooltip('hide');
+					}, me), 5000));
+				}, me), 2000));
 			}
 		},
 
