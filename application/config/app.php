@@ -13,7 +13,7 @@ $config = array(
 	'cookie_salt' => 'foobar',
 
 	// Application name
-	'name' => 'Sample App',
+	'name' => 'Sample-App',
 
 	// Enable email feature
 	'email_enabled' => true,
