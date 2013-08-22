@@ -19,6 +19,7 @@ define([
 		 */
 		initialize: function(options)
 		{
+			// Store options
 			this.options = options;
 
 			// Get the app
@@ -29,16 +30,19 @@ define([
 			{
 				numberOfModulesToLoad--;
 
-				if (numberOfModulesToLoad == 0)
-				{
-					app.vent.trigger('module:boot');
+				app.vent.trigger('module:boot');
+			});
 
-					if (isModulesInit)
-					{
-						isModulesInit = false;
-						app.vent.trigger('module:boot:success');
-					}
-				}
+			// Catch module boot event
+			app.vent.on('module:boot', function()
+			{
+				if (numberOfModulesToLoad > 0)
+					return;
+
+				if (isModulesInit)
+					isModulesInit = false;
+
+				app.vent.trigger('module:boot:success');
 			});
 
 			// Display the error page
