@@ -59,7 +59,14 @@ $config = array(
 	'token_timeout_confirmemail' => 10800,
 
 	// Reset password timeout (in seconds)
-	'token_timeout_resetpassword' => 10800
+	'token_timeout_resetpassword' => 10800,
+
+	// Tracking Google Analytics
+	'tracking_ga' => false,
+	// 'tracking_ga' => array (
+	//	'domain' => 'example.com',
+	//	'id' => 'UA-00000000-0'
+	// ),
 
 );
 

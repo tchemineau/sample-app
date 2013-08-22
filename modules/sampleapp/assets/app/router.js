@@ -74,6 +74,7 @@ define([
 					//var href = $(evt.currentTarget).attr('href').replace(regexp, '').replace(/^\//, '');
 
 					app.router.navigate(href, {trigger: true});
+					app.router._track();
 				}
 			});
 
@@ -192,6 +193,16 @@ define([
 			// If token found, use it and login the user
 			if (token)
 				app.vent.trigger('login:success', {'token': token}, false);
+		},
+
+		/**
+		 * Track URL changes
+		 */
+		_track: function ()
+		{
+			var url = Backbone.history.root + Backbone.history.getFragment();
+
+			if( typeof ga === 'function' ) ga('send', 'pageview', {'page': url});
 		}
 	});
 

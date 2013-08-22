@@ -15,6 +15,9 @@ class SampleApp_Controller_App_Welcome extends Controller
 		$app = array(
 			'name' => Kohana::$config->load('app.name'),
 			'fragment' => $this->request->param('fragment'),
+			'tracking' => array(
+				'ga' => Kohana::$config->load('app.tracking_ga')
+			),
 			'url' => URL::base()
 		);
 

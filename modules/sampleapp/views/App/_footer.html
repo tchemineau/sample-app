@@ -1,5 +1,17 @@
 {# Twig #}
 
+{% for type, conf in APP.tracking %}
+
+	{% if conf != false %}
+
+		{% set tracking = conf %}
+		{% set template = 'App/_tracking_' ~ type %}
+		{% include template with tracking %}
+
+	{% endif %}
+
+{% endfor %}
+
 </body>
 </html>
 
