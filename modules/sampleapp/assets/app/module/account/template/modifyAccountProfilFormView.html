@@ -1,0 +1,36 @@
+<script id="modifyAccountProfilFormViewTemplate" type="text/template">
+
+	<form class="form-horizontal" method="POST">
+
+		<div id="account-firstname-control" class="control-group">
+			<label for="account-firstname"><%= __('Firstname') %></label>
+			<input class="input-block-level" id="account-firstname" type="text"
+				name="firstname" placeholder="<%= __('Your firstname') %>…" data-field="firstname" />
+		</div>
+
+		<div id="account-lastname-control" class="control-group">
+			<label for="account-lastname"><%= __('Lastname') %></label>
+			<input class="input-block-level" id="account-lastname" type="text"
+				name="lastname" placeholder="<%= __('Your lastname') %>…" data-field="lastname" />
+		</div>
+
+		<div id="account-gravatar-control" class="control-group">
+			<label for="account-gravatar"><%= __('Gravatar email') %> (<%= __('Private') %>)</label>
+			<input class="input-block-level" id="account-gravatar" type="text"
+				name="gravatar" placeholder="<%= __('Your Gravatar email') %>…" data-field="gravatar_email" />
+		</div>
+
+		<% if (gravatar_url) { %>
+			<div class="row">
+				<div class="span2"><img src="<%= gravatar_url %>" class="gravatar" border="0" height="32" width="32" alt="" /></div>
+				<div class="span10"><a href="https://gravatar.com/" target="_blank"><%= __('Change your avatar at Gravatar.com') %></a></div>
+			</div>
+		<% } %>
+
+		<div>
+			<button id="account-create-btn" type="submit" class="btn btn-large btn-primary"><%= __('Save') %></button>
+		</div>
+
+	</form>
+
+</script>

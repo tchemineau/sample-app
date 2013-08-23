@@ -59,12 +59,12 @@ define([
 			var app = this.options.app;
 
 			lrequire([
-				'./view/forgotPasswordView'
-			], function (ForgotPasswordView)
+				'./view/forgotPasswordLayout'
+			], function (ForgotPasswordLayout)
 			{
-				var forgotPasswordView = new ForgotPasswordView({app: app});
+				var forgotPasswordLayout = new ForgotPasswordLayout({app: app});
 
-				app.root.currentView.page.show(forgotPasswordView);
+				app.root.currentView.page.show(forgotPasswordLayout);
 			});
 		},
 
@@ -77,8 +77,8 @@ define([
 
 			lrequire([
 				'./model/account',
-				'./view/modifyAccountView'
-			], function (AccountModel, ModifyAccountView)
+				'./view/modifyAccountLayout'
+			], function (AccountModel, ModifyAccountLayout)
 			{
 				var data = {};
 
@@ -94,9 +94,9 @@ define([
 					},
 					success: function()
 					{
-						var modifyAccountView = new ModifyAccountView({app: app, model: account});
+						var modifyAccountLayout = new ModifyAccountLayout({app: app, model: account});
 
-						app.root.currentView.page.show(modifyAccountView);
+						app.root.currentView.page.show(modifyAccountLayout);
 					}
 				});
 			});

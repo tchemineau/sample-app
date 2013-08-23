@@ -52,18 +52,22 @@ form[class^="form-app"], form[class*=" form-app"] {
 }
 div[class^="form-app"] .form-appin-heading, div[class*=" form-app"] .form-appin-heading,
 form[class^="form-app"] .form-appin-heading, form[class*=" form-app"] .form-appin-heading,
+div[class^="form-app"] .checkbox, div[class*=" form-app"] .checkbox,
 form[class^="form-app"] .checkbox, form[class*=" form-app"] .checkbox {
 	margin-bottom: 20px;
 }
+div[class^="form-app"] input[type="text"], div[class*=" form-app"] input[type="text"],
 form[class^="form-app"] input[type="text"], form[class*=" form-app"] input[type="text"],
+div[class^="form-app"] input[type="email"], div[class*=" form-app"] input[type="email"],
 form[class^="form-app"] input[type="email"], form[class*=" form-app"] input[type="email"],
+div[class*=" form-app"] input[type="password"], div[class*=" form-app"] input[type="password"],
 form[class*=" form-app"] input[type="password"], form[class*=" form-app"] input[type="password"] {
 	font-size: 16px;
 	height: auto;
 	padding: 7px 9px;
 }
-div[class*=" form-app"] .row,
-form[class*=" form-app"] .row {
+div[class^="form-app"] .row, div[class*=" form-app"] .row,
+form[class^="form-app"] .row, form[class*=" form-app"] .row {
 	margin-bottom: 20px;
 	margin-left: 0;
 }

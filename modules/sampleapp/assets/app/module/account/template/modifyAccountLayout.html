@@ -1,0 +1,29 @@
+<script id="modifyAccountLayoutTemplate" type="text/template">
+
+	<div class="form-app" method="POST">
+
+		<h2 class="form-app-heading"><%= __('My account') %></h2>
+
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#account-profile-panel" data-toggle="tab"><%= __('Profile') %></a></li>
+			<li><a href="#account-password-panel" data-toggle="tab"><%= __('Password') %></a></li>
+			<li><a href="#account-settings-panel" data-toggle="tab"><%= __('Settings') %></a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div class="tab-pane active" id="account-profile-panel">
+				<div id="modify-account-profil-container"></div>
+			</div>
+
+			<div class="tab-pane" id="account-password-panel">
+				<div id="modify-account-password-container"></div>
+			</div>
+
+			<div class="tab-pane" id="account-settings-panel">
+				<div id="modify-account-settings-container"></div>
+			</div>
+		</div>
+
+	</div>
+
+</script>

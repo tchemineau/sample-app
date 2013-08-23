@@ -3,14 +3,14 @@ define([
 	'marionette',
 	'marionette.formview',
 	'helper/template',
-	'text!module/account/template/forgotPasswordView.html'
-], function(Marionette, MarionetteFormView, TemplateHelper, ForgotPasswordTemplate)
+	'text!module/account/template/forgotPasswordFormView.html'
+], function(Marionette, MarionetteFormView, TemplateHelper, ForgotPasswordFormViewTemplate)
 {
 	var passwordSent = false;
 
-	var ForgotPasswordView = Marionette.FormView.extend(
+	var forgotPasswordFormView = Marionette.FormView.extend(
 	{
-		template: ForgotPasswordTemplate,
+		template: ForgotPasswordFormViewTemplate,
 
 		templateHelpers: TemplateHelper,
 
@@ -47,15 +47,20 @@ define([
 			// Get application
 			var app = this.options.app;
 
+			// This will store data
+			var data = {};
+
+			// If email found, send it
+			if (this.ui.email !== 'undefined')
+				data.email = this.ui.email.val();
+
 			// Do the request to log the user
 			$.ajax(
 			{
 				url: 'api/v1/auth/forgot_password',
 				type: 'POST',
 				dataType: 'json',
-				data: {
-					'email': $('#account-email').val()
-				},
+				data: data,
 				success: function (response)
 				{
 					passwordSent = true;
@@ -78,7 +83,12 @@ define([
 
 		serializeData: function ()
 		{
-			return {passwordSent: passwordSent};
+			var app = this.options.app;
+
+			return {
+				passwordSent: passwordSent,
+				user: app.user ? app.user.toJSON() : {}
+			};
 		},
 
 		/**
@@ -105,6 +115,6 @@ define([
 
 	});
 
-	return ForgotPasswordView;
+	return forgotPasswordFormView;
 });
 
