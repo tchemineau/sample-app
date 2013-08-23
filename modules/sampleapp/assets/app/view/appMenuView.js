@@ -1,9 +1,10 @@
 
 define([
+	'backbone',
 	'marionette',
 	'helper/template',
 	'text!template/appMenuView.html'
-], function(Marionette, TemplateHelper, appMenuTemplate)
+], function(Backbone, Marionette, TemplateHelper, appMenuTemplate)
 {
 	var appMenuView = Marionette.ItemView.extend(
 	{
@@ -23,15 +24,28 @@ define([
 			app.vent.on('account:updated:success', this.render, this);
 			app.vent.on('login:success:account', this.render, this);
 			app.vent.on('logout:success:account', this.render, this);
+
+			// Catching application dom refreshing instead
+			app.root.currentView.page.on('show', this._updateMenu, this);
 		},
 
-		onDomRefresh: function()
+		serializeData: function()
+		{
+			var app = this.options.app;
+
+			return {
+				url: app.url,
+				user: app.user ? app.user.toJSON() : {}
+			};
+		},
+
+		_updateMenu: function()
 		{
 			// This is this element
 			var me = this;
 
 			// Manage instruction
-			if (this.isInstruction)
+			if (this.isInstruction && Backbone.history.getFragment() == '')
 			{
 				var el = $('#btn-sign-up');
 
@@ -49,16 +63,6 @@ define([
 					}, me), 5000));
 				}, me), 2000));
 			}
-		},
-
-		serializeData: function()
-		{
-			var app = this.options.app;
-
-			return {
-				user: app.user ? app.user.toJSON() : {},
-				url: app.url
-			};
 		}
 	});
 
