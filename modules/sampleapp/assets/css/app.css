@@ -50,7 +50,8 @@ form[class^="form-app"], form[class*=" form-app"] {
 	background-color: #fff;
 	width: 400px;
 }
-div[class^="form-app"] form, div[class*=" form-app"] form {
+div[class^="form-app"] form, div[class*=" form-app"] form,
+div[class^="form-app"] > *:last-child, div[class*=" form-app"] > *:last-child {
 	margin-bottom: 0;
 }
 div[class^="form-app"] .form-appin-heading, div[class*=" form-app"] .form-appin-heading,
