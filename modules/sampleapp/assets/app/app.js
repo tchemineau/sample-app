@@ -8,6 +8,9 @@ define([
 
 	var app = new Marionette.Application();
 
+	// This will store the application title
+	app.title = 'Sample-App';
+
 	// This will store the application url
 	app.url = '/';
 
@@ -31,6 +34,9 @@ define([
 	{
 		// Add this app to default options for all objects
 		options.app = app;
+
+		// Store the title
+		app.title = options.title;
 
 		// Store the url
 		app.url = options.url;

@@ -34,6 +34,7 @@ define([
 			var app = this.options.app;
 
 			return {
+				title: app.title,
 				url: app.url,
 				user: app.user ? app.user.toJSON() : {}
 			};

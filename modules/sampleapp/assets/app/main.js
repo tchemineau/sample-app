@@ -70,6 +70,7 @@
 	require(['app'], function (App)
 	{
 		App.start({
+			title: CONFIG.name,
 			url: CONFIG.url
 		});
 	});

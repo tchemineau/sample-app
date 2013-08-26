@@ -124,7 +124,12 @@ define([
 		 */
 		serializeData: function ()
 		{
-			return $.extend({}, this.model.toJSON(), {created: accountCreated});
+			var app = this.options.app;
+
+			return $.extend({}, this.model.toJSON(), {
+				created: accountCreated,
+				apptitle: app.title
+			});
 		},
 
 		/**
