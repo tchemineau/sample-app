@@ -116,7 +116,10 @@ class SAmpleApp_Service_Account extends Service
 		$account->set_data($data)->save();
 
 		// Create a temporary token
-		$token = Service::factory('Token')->create($account, false, Kohana::$config->load('app.token_timeout_confirmemail'));
+		$token = Service::factory('Token')->create($account, array(
+			'is_permanent' => false,
+			'timeout' => Kohana::$config->load('app.token_timeout_confirmemail'))
+		);
 
 		// Could not create account if mail is not sent
 		if (!$this->_send_email($account, 'CREATE', $token))
@@ -129,7 +132,7 @@ class SAmpleApp_Service_Account extends Service
 		}
 
 		// Create a new auth token for this account
-		$token = Service::factory('Token')->create($account, true);
+		$token = Service::factory('Token')->create($account, array('is_permanent' => true));
 
 		return $account;
 	}
@@ -146,7 +149,10 @@ class SAmpleApp_Service_Account extends Service
 		$account = $this->get($data);
 
 		// Create a temporary token
-		$token = Service::factory('Token')->create($account, false, Kohana::$config->load('app.token_timeout_resetpassword'));
+		$token = Service::factory('Token')->create($account, array(
+			'is_permanent' => false,
+			'timeout' => Kohana::$config->load('app.token_timeout_resetpassword'))
+		);
 
 		// Could not create account if mail is not sent
 		if (!$this->_send_email($account, 'FORGOT_PASSWORD', $token))
@@ -204,7 +210,7 @@ class SAmpleApp_Service_Account extends Service
 			return FALSE;
 
 		// Get all tokens
-		$tokens = Service::factory('Token')->get_all($account, true);
+		$tokens = Service::factory('Token')->get_all($account, array('only_permanent' => true));
 
 		// If no token found, then raise an error
 		if (!isset($tokens[0]))
