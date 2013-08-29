@@ -16,6 +16,7 @@ define([
 			var app = this.options.app;
 
 			return {
+				title: app.title,
 				user: app.user ? app.user.toJSON() : {},
 				url: app.url
 			};
