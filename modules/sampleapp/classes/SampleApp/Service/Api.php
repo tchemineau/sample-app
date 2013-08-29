@@ -10,6 +10,8 @@ class SampleApp_Service_Api extends Service
 
 	public static $FAILED = 'failure';
 
+	private static $_account = null;
+
 	/**
 	 * Build a standard response
 	 *
@@ -86,7 +88,20 @@ class SampleApp_Service_Api extends Service
 		$account_service = Service::factory('Account');
 
 		// Try to authenticate the user
-		return $account_service->authenticate($data);
+		self::$_account = $account_service->authenticate($data);
+
+		return self::$_account;
+	}
+
+	/**
+	 * Get the last checked account
+	 */
+	public static function get_account ()
+	{
+		if (is_null(self::$_account))
+			throw Service_Exception::factory('NotFound', 'Api account not found');
+
+		return self::$_account;
 	}
 
 } // End SampleApp_Service_Api
