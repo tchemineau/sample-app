@@ -49,13 +49,13 @@ define([
 	});
 
 	// Get session and launch page
-	app.on('start', function(options)
+	app.vent.on('module:boot:success', function(options)
 	{
 		// Start the session
 		this.router.startSession();
 
 		// Load the application view
-		app.root.show(this.layout);
+		this.root.show(this.layout);
 
 		// Get request from html
 		var fragment = $('#app').attr('data-fragment');
@@ -65,7 +65,7 @@ define([
 			this.router.loadFragment(fragment);
 		else
 			this.router.loadPage('welcome');
-	});
+	}, app);
 
 	return app;
 });
