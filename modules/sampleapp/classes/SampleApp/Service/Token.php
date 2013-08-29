@@ -17,26 +17,42 @@ class SampleApp_Service_Token extends Service
 	/**
 	 * Create a token for a given loaded mongo model
 	 *
+	 * Available default values are:
+	 *  is_permanent = false
+	 *  timeout = null
+	 *
 	 * @param {Model_Mongo} $model
+	 * @param {array} $values
 	 * @param {boolean} $is_permanent
 	 * @param {int} $timeout A optional timeout in seconds
 	 * @return {Model_App_Token}
 	 */
-	public function create ( $model, $is_permanent = false, $timeout = null )
+	public function create ( $model, $values )
 	{
 		// Create a new empty token
 		$token = Model::factory('App_Token');
 
 		// Build data
 		$data = array(
-			'is_permanent' => $is_permanent,
 			'target_id' => $model->id(),
 			'target_type' => get_class($model)
 		);
 
-		// Set timeout if not null
-		if (!is_null($timeout))
-			$data['timeout'] = $timeout;
+		// Set info if necessary
+		if (isset($values['info']))
+			$data['info'] = $values['info'];
+
+		// Set persistent bit
+		if (isset($values['is_permanent']) && $values['is_permanent'])
+			$data['is_permanent'] = $values['is_permanent'];
+
+		// Set timeout
+		if (isset($values['timeout']) && is_int($values['timeout']))
+			$data['timeout'] = $values['timeout'];
+
+		// Set type
+		if (isset($values['type']))
+			$data['type'] = $values['type'];
 
 		// Save data
 		$token->set_data($data)->save();
@@ -68,16 +84,18 @@ class SampleApp_Service_Token extends Service
 	/**
 	 * Get a all tokens for a given mongo model
 	 *
+	 * Available filters are defined into Model_App_Token::search_by_target
+	 *
 	 * @param {App_Model_Mongo} $model
-	 * @param {boolean} $is_permanent Only permanent tokens
+	 * @param {array} $filters
 	 * @return {array}
 	 */
-	public function get_all ( $model, $is_permanent = false )
+	public function get_all ( $model, $filters )
 	{
 		if (!$model->loaded())
 			return array();
 
-		return Model::factory('App_Token')->search_by_target($model->id(), $is_permanent);
+		return Model::factory('App_Token')->search_by_target($model->id(), $filters);
 	}
 
 	/**
@@ -107,12 +125,12 @@ class SampleApp_Service_Token extends Service
 	 * Delete all token for a given mongo model
 	 *
 	 * @param {Model_App_Mongo}
-	 * @param {boolean} $is_permanent Only permanent tokens
+	 * @param {array} $filters
 	 * @return {boolean}
 	 */
-	public function remove_all ( $model, $is_permanent = false )
+	public function remove_all ( $model, $filters )
 	{
-		foreach ($this->get_all($model, $is_permanent) as $token)
+		foreach ($this->get_all($model, $filters) as $token)
 			$this->remove($token);
 
 		return TRUE;
