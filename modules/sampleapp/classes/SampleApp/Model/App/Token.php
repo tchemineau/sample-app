@@ -29,6 +29,16 @@ class SampleApp_Model_App_Token extends Model
 	public $timeout;
 
 	/**
+	 * Type of the token
+	 */
+	public $type;
+
+	/**
+	 * Additionnal information for this token
+	 */
+	public $info;
+
+	/**
 	 * Reserved values to not return
 	 */
 	protected $_reserved = array();
@@ -48,8 +58,13 @@ class SampleApp_Model_App_Token extends Model
 		if (!$this->date_created)
 			$data['date_created'] = $timestamp;
 
+		// Set persistent token or not
 		if (!isset($data['is_permanent']))
 			$data['is_permanent'] = false;
+
+		// Set type
+		if (!isset($data['type']))
+			$data['type'] = 'app';
 
 		return $data;
 	}
@@ -88,32 +103,47 @@ class SampleApp_Model_App_Token extends Model
 			'date_created' => $this->date_created,
 			'is_permanent' => $this->permanent,
 			'target_id' => $this->target_id,
-			'target_type' => $this->target_type
+			'target_type' => $this->target_type,
+			'type' => $this->type
 		);
 	}
 
 	/**
-	 * Search by target id
+	 * Search by target id and filters.
+	 *
+	 * Available filters are:
+	 *  only_permanent = false
+	 *  only_temporary = false
+	 *  type = 'app'
 	 *
 	 * @param {string} $id
-	 * @param {boolean} $only_permanent
-	 * @param {boolean} $only_temporary
+	 * @param {array} $filters
 	 * @return {array}
 	 */
-	public function search_by_target ( $id, $only_permanent = false, $only_temporary = false )
+	public function search_by_target ( $id, $filters = array() )
 	{
+		// Set default values
+		$filters['only_permanent'] = isset($filters['only_permanent']) ? $filters['only_permanent'] : false;
+		$filters['only_temporary'] = isset($filters['only_temporary']) ? $filters['only_temporary'] : false;
+		$filters['type'] = isset($filters['type']) ? $filters['type'] : null;
+
+		// Get the collection pointer
 		$collection = new Mongo_Collection('App_Token');
 
 		// Build the query
 		$query = array('target_id' => $id);
 
 		// If we want only permanent tokens or not
-		if ($only_permanent)
+		if ($filters['only_permanent'])
 			$query['is_permanent'] = true;
 
 		// If wen want only temporary token
-		if ($only_temporary)
+		if ($filters['only_temporary'])
 			$query['is_permanent'] = false;
+
+		// Set type
+		if (!is_null($filters['type']))
+			$query['type'] = $filters['type'];
 
 		return $collection->find($query);
 	}
