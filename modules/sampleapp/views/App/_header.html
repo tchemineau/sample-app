@@ -11,6 +11,10 @@
         <link href="{{ APP.url }}assets/css/bootstrap-jumbotron.css" rel="stylesheet" type="text/css" />
         <link href="{{ APP.url }}assets/css/app.css" rel="stylesheet" type="text/css" />
 
+	{% for script in APP.script.css %}
+		<link href="{{ script }}" rel="stylesheet" type="text/css" />
+	{% endfor %}
+
 	<script>
 		var CONFIG = {
 			name: '{{ APP.name }}',

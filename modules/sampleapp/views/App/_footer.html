@@ -1,5 +1,21 @@
 {# Twig #}
 
+{% for script in APP.script.js %}
+
+	<script type="text/javascript" src="{{ script.src }}"
+
+		{% for key, value in script.data %}
+			{% if key == 'id' %}
+				id="{{ value }}"
+			{% else %}
+				data-{{ key }}="{{ value }}"
+			{% endif %}
+		{% endfor %}
+
+	></script>
+
+{% endfor %}
+
 {% for type, conf in APP.tracking %}
 
 	{% if conf != false %}

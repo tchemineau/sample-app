@@ -7,14 +7,34 @@ class SampleApp_Service_Application extends Service
 {
 
 	/**
+	 * CSS script to load
+	 */
+	private static $_css_script = array();
+
+	/**
 	 * Internal JS module to load at initialization
 	 */
 	private static $_js_init = array();
 
 	/**
+	 * JS script to load
+	 */
+	private static $_js_script = array();
+
+	/**
 	 * Internal JS routes
 	 */
 	private static $_js_uris = array();
+
+	/**
+	 * Return CSS script to load
+	 *
+	 * @return {array}
+	 */
+	public static function get_css_script ()
+	{
+		return self::$_css_script;
+	}
 
 	/**
 	 * Return JS module to load a initialization
@@ -48,6 +68,26 @@ class SampleApp_Service_Application extends Service
 	}
 
 	/**
+	 * Return JS script to load
+	 *
+	 * @return {array}
+	 */
+	public static function get_js_script ()
+	{
+		return self::$_js_script;
+	}
+
+	/**
+	 * Register a CSS script to be loaded
+	 *
+	 * @param {string} $path
+	 */
+	public static function set_css_script ( $path )
+	{
+		self::$_css_script[] = $path;
+	}
+
+	/**
 	 * Register a JS module to be load at initialization
 	 *
 	 * @param {string} $path Path of the JS module to load
@@ -64,7 +104,7 @@ class SampleApp_Service_Application extends Service
 	 * @param {array}  $uris  Valid uris for this module
 	 * @param {array}  $regex If $uris contains pattern to detect
 	 */
-	public static function set_js_route ( $path, array $uris, array $regex = NULL )
+	public static function set_js_path ( $path, array $uris, array $regex = NULL )
 	{
 		if (!isset(self::$_js_uris[$path]))
 		{
@@ -77,6 +117,19 @@ class SampleApp_Service_Application extends Service
 
 			self::$_js_uris[$path][] = $uri_regex;
 		}
+	}
+
+	/**
+	 * Register a JS script to be loaded
+	 *
+	 * @param {string} $path
+	 */
+	public static function set_js_script ( $path, $data = array() )
+	{
+		self::$_js_script[] = array(
+			'src' => $path,
+			'data' => $data
+		);
 	}
 
 } // End SampleApp_Service_Application
