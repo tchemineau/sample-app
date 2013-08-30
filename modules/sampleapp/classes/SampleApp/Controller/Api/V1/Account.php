@@ -6,6 +6,19 @@
 class SampleApp_Controller_Api_V1_Account extends Controller_Api_Rest
 {
 
+	/**
+	 * Actions that need restriction by token authentication
+	 */
+	protected $_action_restricted = array(
+		HTTP_Request::GET,
+		HTTP_Request::PUT,
+		HTTP_Request::DELETE
+	);
+
+	/**
+	 * Return an account
+	 * The returned account could be the authenticated one, or given by its id
+	 */
 	public function action_get ()
 	{
 		// Get account id
@@ -20,7 +33,7 @@ class SampleApp_Controller_Api_V1_Account extends Controller_Api_Rest
 		try
 		{
 			// Get current logged in user account
-			$user = $api_service->check_token($this->request);
+			$user = $api_service->get_account();
 
 			// If id is null, then try to use the one found into token
 			if (is_null($id))
@@ -38,10 +51,6 @@ class SampleApp_Controller_Api_V1_Account extends Controller_Api_Rest
 				$account->get_data()
 			), 200);
 		}
-		catch (Service_Exception_AuthError $e)
-		{
-			$this->response($api_service->build_response_failed($e->getMEssage()), 401);
-		}
 		catch (Service_Exception_NotFound $e)
 		{
 			$this->response($api_service->build_response_failed($e->getMEssage()), 404);
@@ -57,6 +66,10 @@ class SampleApp_Controller_Api_V1_Account extends Controller_Api_Rest
 		}
 	}
 
+	/**
+	 * Modify an account
+	 * The one which is connected or given by its ID
+	 */
 	public function action_update ()
 	{
 		// Get data from the body sent by backbone
@@ -79,7 +92,7 @@ class SampleApp_Controller_Api_V1_Account extends Controller_Api_Rest
 		try
 		{
 			// Get current logged in user account
-			$user = $api_service->check_token($this->request);
+			$user = $api_service->get_account();
 
 			// Update the account
 			$account = $account_service->get(array('id' => $body->id));
@@ -95,10 +108,6 @@ class SampleApp_Controller_Api_V1_Account extends Controller_Api_Rest
 				'Account updated',
 				$account->get_data()
 			), 200);
-		}
-		catch (Service_Exception_AuthError $e)
-		{
-			$this->response($api_service->build_response_failed($e->getMEssage()), 401);
 		}
 		catch (Service_Exception_InvalidData $e)
 		{
@@ -125,6 +134,9 @@ class SampleApp_Controller_Api_V1_Account extends Controller_Api_Rest
 		}
 	}
 
+	/**
+	 * Create an account
+	 */
 	public function action_create ()
 	{
 		// Get data from the body sent by backbone
@@ -174,6 +186,9 @@ class SampleApp_Controller_Api_V1_Account extends Controller_Api_Rest
 		}
 	}
 
+	/**
+	 * Delete an account
+	 */
 	public function action_delete ()
 	{
 		// Get account id
@@ -188,7 +203,7 @@ class SampleApp_Controller_Api_V1_Account extends Controller_Api_Rest
 		try
 		{
 			// Get current logged in user account
-			$user = $api_service->check_token($this->request);
+			$user = $api_service->get_account();
 
 			// Update the account
 			$account = $account_service->get(array('id' => $id));
@@ -203,10 +218,6 @@ class SampleApp_Controller_Api_V1_Account extends Controller_Api_Rest
 			$this->response($api_service->build_response_succeed(
 				'Account deleted'
 			), 200);
-		}
-		catch (Service_Exception_AuthError $e)
-		{
-			$this->response($api_service->build_response_failed($e->getMEssage()), 401);
 		}
 		catch (Service_Exception_NotFound $e)
 		{
