@@ -45,7 +45,7 @@ Route::set('app_default', '<fragment>', array(
  * Set routes of javascript modules
  */
 
-Service::factory('Application')->set_js_route('module/account/router',
+Service::factory('Application')->set_js_path('module/account/router',
 	array(
 		'account',
 		'account/confirm/<token>',
