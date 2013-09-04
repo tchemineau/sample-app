@@ -9,6 +9,8 @@ of your first module into Sample-App.
 * [Initialize the module](#initialize-the-module)
 * [Activate the module](#activate-the-module)
 * [Verification](#verification)
+* [Overload the welcome page](#overload-the-welcome-page)
+* [Manage internationalization](#manage-internationalization)
 
 
 ## Initialize the module
@@ -156,6 +158,9 @@ Simply create the file `./assets/app/template/welcomeView.html`:
 
 </script>
 ```
+
+
+## Manage internationalization
 
 Finaly, create the file `./i18n/fr.php`:
 
