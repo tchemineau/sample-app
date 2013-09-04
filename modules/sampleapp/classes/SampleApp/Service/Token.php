@@ -90,7 +90,7 @@ class SampleApp_Service_Token extends Service
 	 * @param {array} $filters
 	 * @return {array}
 	 */
-	public function get_all ( $model, $filters )
+	public function get_all ( $model, $filters = array() )
 	{
 		if (!$model->loaded())
 			return array();
@@ -128,7 +128,7 @@ class SampleApp_Service_Token extends Service
 	 * @param {array} $filters
 	 * @return {boolean}
 	 */
-	public function remove_all ( $model, $filters )
+	public function remove_all ( $model, $filters = array() )
 	{
 		foreach ($this->get_all($model, $filters) as $token)
 			$this->remove($token);
