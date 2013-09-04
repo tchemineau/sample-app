@@ -44,7 +44,13 @@ define([
     {
         initialize: function(options)
         {
+            // Get the core application object
+            var app = this.options.app;
+
             console.log('Hello World !');
+
+            // Trigger an event that indicates that this module is loaded
+            app.vent.trigger('module:init');
         }
     });
 
@@ -116,4 +122,50 @@ Note that the `module` key have to redeclare all modules!
 
 Go to the application, open the web console, and verify that the message
 `Hello World !` is correctly displayed.
+
+
+## Overload the welcome page
+
+Now, you probably want to overlaod the welcome page.
+
+Simply create the file `./assets/app/template/welcomeView.html`:
+
+```html
+<script type="text/template" id="welcomeTemplate">
+
+    <`% if (typeof user.id == 'undefined') { %>
+
+        <div class="jumbotron masthead">
+
+            <div class="inner">
+                <h1><%= __('Welcome on :title', {':title': 'Unpact'}) %></h1>
+
+                <p>
+                    <%= __('This is my HelloWorld application.') %>
+                </p>
+
+            </div>
+
+        </div>
+
+    <% } else { %>
+
+        <%= __('Hello :user!', {user: user.email}) %>
+
+    <% } %>
+
+</script>
+```
+
+Finaly, create the file `./i18n/fr.php`:
+
+```php
+<?php defined('SYSPATH') or die('No direct script access.');
+
+return array(
+
+    'This is my HelloWorld application.' => 'Ceci est mon application HelloWorld.',
+    'Hello :user!' => 'Bonjour :user !'
+);
+```
 
