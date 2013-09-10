@@ -49,7 +49,7 @@ define([
 	});
 
 	// Get session and launch page
-	app.vent.on('module:boot:success', function(options)
+	app.vent.on('app:start', function(options)
 	{
 		// Start the session
 		this.router.startSession();
