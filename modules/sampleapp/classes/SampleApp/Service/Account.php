@@ -55,7 +55,7 @@ class SAmpleApp_Service_Account extends Service
 			throw Service_Exception::factory('AuthError', 'Email has not been verified');
 
 		// Update last visit value and return
-		return $this->update($account, array('date_lastvisit', time()));
+		return $this->update($account, array('date_lastvisit' => time()));
 	}
 
 	/**
