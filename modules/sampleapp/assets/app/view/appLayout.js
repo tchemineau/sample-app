@@ -20,7 +20,7 @@ define([
 		{
 			this.menu.show(new AppMenuView(this.options));
 			this.notification.show(new AppNotificationView(this.options));
-		},
+		}
 	});
 
 	return AppLayout;
