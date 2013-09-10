@@ -39,13 +39,14 @@ define([
 				if (numberOfModulesToLoad > 0)
 					return;
 
-				if (isModulesInit)
-					isModulesInit = false;
+				// Never init state
+				isModulesInit = false;
 
-				app.vent.trigger('module:boot:success');
+				// Launch app:start event
+				app.vent.trigger('app:start');
 			});
 
-			// Display the error page
+			// Catch page error event
 			app.vent.on('page:error', this.doError, this);
 		},
 
@@ -159,7 +160,6 @@ define([
 				type: 'POST',
 				dataType: 'json',
 				data: {'route': route},
-				async: route != 'init',
 				success: onSuccessCb,
 				error: onErrorCb
 			});
