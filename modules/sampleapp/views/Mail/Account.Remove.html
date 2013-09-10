@@ -6,13 +6,13 @@
   {{ __('Hey') }},
 </p>
 <p>
-  {{ __('Your account has been permanently deleted from :title.', {':title': from.1}) }}
+  {{ __('Your account has been permanently deleted' }}.
 </p>
 <p>
-  {{ __('Thank you for using :title, we hope you will be back soon!', {':title': from.1}) }}
+  {{ __('Thank you for using :title, we hope you will be back soon!', {':title': appname}) }}
 </p>
 <p>
-  {{ __('The :title team.', {':title': from.1 }) }}
+  {{ __('The :title team', {':title': appname}) }}.
 </p>
 
 {% include 'Mail/_footer' %}

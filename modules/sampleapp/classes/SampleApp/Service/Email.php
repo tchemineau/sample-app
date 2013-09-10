@@ -11,9 +11,6 @@ class SampleApp_Service_Email extends Service
 	 */
 	public static function build_content ( $view, $data = array() )
 	{
-		// Calculate website URL from current request
-		$url = URL::base(Request::current());
-
 		// Load the mail template
 		$content = Twig::factory('Mail/'.$view);
 
@@ -21,8 +18,11 @@ class SampleApp_Service_Email extends Service
 		foreach ($data as $key => $value)
 			$content->set($key, $value);
 
-		// Set calculate variables
-		$content->set('url', $url);
+		// Set application name
+		$content->set('appname', Kohana::$config->load('app.name'));
+
+		// Set website URL from current request
+		$content->set('appurl', URL::base(Request::current()));
 
 		return $content;
 	}
@@ -34,9 +34,13 @@ class SampleApp_Service_Email extends Service
 	{
 		if (is_null($from))
 		{
+			$app_name = Kohana::$config->load('app.name');
+			$from_addr = Kohana::$config->load('app.email_from_address');
+			$from_name = Kohana::$config->load('app.email_from_name');
+
 			$from = array(
-				Kohana::$config->load('app.email_from_address'),
-				Kohana::$config->load('app.email_from_name')
+				$from_addr,
+				Service::factory('I18n')->get_string($from_name, array(':title' => $app_name))
 			);
 		}
 
@@ -57,7 +61,6 @@ class SampleApp_Service_Email extends Service
 	 */
 	public static function send ( $headers, $content )
 	{
-
 		if (!Kohana::$config->load('app.email_enabled'))
 			return TRUE;
 

@@ -6,14 +6,14 @@
   {{ __('Hey') }},
 </p>
 <p>
-  {{ __('Your registration to :title is almost complete.', {':title': from.1}) }}
+  {{ __('Your registration to :title is almost complete.', {':title': appname}) }}
 </p>
 <p>
   {{ __('Please confirm your email address by clicking the following link and you\'re ready to go:') }}<br/>
-  <a href="{{ url }}account/confirm/{{ token }}">{{ url }}account/confirm/{{ token }}</a>
+  <a href="{{ appurl }}account/confirm/{{ token }}">{{ appurl }}account/confirm/{{ token }}</a>
 </p>
 <p>
-  {{ __('The :title team.', {':title': from.1 }) }}
+  {{ __('The :title team', {':title': appname }) }}.
 </p>
 
 {% include 'Mail/_footer' %}

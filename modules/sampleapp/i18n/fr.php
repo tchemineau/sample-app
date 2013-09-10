@@ -110,7 +110,7 @@ return array(
 	'Thank you for using :title, we hope you will be back soon!' =>
 		'Merci d\'avoir utilisé :title, nous espérons vous revoir prochainement!',
 
-	'The :title team.' => 'L\'équipe :title.',
+	'The :title team' => 'L\'équipe :title',
 
 	'This action cannot be undone. This will delete your account permanently.' =>
 		'Cette action ne peut pas être annulée. Votre compte sera définitivement supprimé.',
@@ -146,8 +146,8 @@ return array(
 
 	'Your account has been confirmed' => 'Vous avez confirmé votre compte',
 
-	'Your account has been permanently deleted from :title.' =>
-		'Votre compte a été supprimé définitivement de :title.',
+	'Your account has been permanently deleted' =>
+		'Votre compte a été supprimé définitivement',
 
 	'Your email' => 'Votre e-mail',
 
