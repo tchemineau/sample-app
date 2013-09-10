@@ -8,11 +8,11 @@ define([
 	var AccountRouter = Marionette.AppRouter.extend(
 	{
 		appRoutes: {
-			'account': 'modify',
 			'account/confirm/:token': 'confirm',
 			'account/create': 'create',
 			'account/forgot_password': 'forgotPassword',
-			'account/reset_password/:token': 'resetPassword'
+			'account/reset_password/:token': 'resetPassword',
+			'account': 'modify'
 		},
 
 		controller: AccountController,
