@@ -3,7 +3,7 @@
 /**
  * A service class to manage accounts
  */
-class SAmpleApp_Service_Account extends Service
+class SampleApp_Service_Account extends Service
 {
 
 	/**
@@ -274,7 +274,10 @@ class SAmpleApp_Service_Account extends Service
 		$account = $this->get(array('id' => $target_id));
 
 		// Update the password
-		return $this->update($account, array('password' => $data['password']));
+		return $this->update($account, array(
+			'email_verified' => TRUE,
+			'password' => $data['password']
+		));
 	}
 
 	/**
