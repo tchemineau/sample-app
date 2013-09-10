@@ -27,6 +27,14 @@ define([
 		},
 
 		/**
+		 * Do things before closing the view
+		 */
+		onBeforeClose: function ()
+		{
+			this.options.app.vent.off('account:confirm', this.render, this);
+		},
+
+		/**
 		 * Confirm account
 		 */
 		confirmAccount: function ()
