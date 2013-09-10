@@ -4,6 +4,16 @@ body {
 	color: #444;
 }
 
+/**
+ * Inline element
+ */
+.inline {
+	display: inline-block;
+}
+
+/**
+ * Notifications
+ */
 #appnotification {
 	display: none;
 	left: 25%;
@@ -19,6 +29,9 @@ body {
 	padding: 5px 32px 5px 11px;
 }
 
+/**
+ * Page loading
+ */
 #appprogress-container {
 	bottom: 0;
 	position: absolute;
@@ -32,10 +45,16 @@ body {
 	width: 50%;
 }
 
+/**
+ * Page container
+ */
 #apppage-container {
 	margin-top: 30px;
 }
 
+/**
+ * Boxes
+ */
 div[class^="form-app"], div[class*=" form-app"],
 form[class^="form-app"], form[class*=" form-app"] {
 	-webkit-border-radius: 4px;
@@ -76,12 +95,18 @@ form[class^="form-app"] .row, form[class*=" form-app"] .row {
 	margin-left: 0;
 }
 
+/**
+ * Gravatar
+ */
 img.gravatar {
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	border-radius: 2px;
 }
 
+/**
+ * Jumbotron
+ */
 .jumbotron.masthead {
 	margin-left: -20px;
 	margin-right: -20px;
@@ -102,12 +127,6 @@ img.gravatar {
 	font-size: 16px;
 	line-height: 1.5;
 }
-/**
- * Images references:
- * https://www.iconfinder.com/icons/33148/document_file_g11834_paper_icon#size=128
- * https://www.iconfinder.com/icons/32765/blue_document_file_g12334_paper_icon#size=128
- * https://www.iconfinder.com/icons/33030/document_file_g14852_green_paper_icon#size=128
- */
 .jumbotron.masthead .features .image {
 	border: 0;
 	height: 64px;
@@ -117,7 +136,17 @@ img.gravatar {
 	width: 64px;
 }
 
+/**
+ * Footer
+ */
 .footer {
 	padding: 10px;
 }
+
+/**
+ * Images references:
+ * https://www.iconfinder.com/icons/33148/document_file_g11834_paper_icon#size=128
+ * https://www.iconfinder.com/icons/32765/blue_document_file_g12334_paper_icon#size=128
+ * https://www.iconfinder.com/icons/33030/document_file_g14852_green_paper_icon#size=128
+ */
 
