@@ -47,6 +47,9 @@ define([
 			// Initialize the controller
 			this.controller.initialize(options);
 
+			// Initialize module list
+			this.modules = {};
+
 			// Catch login event
 			app.vent.on('login:success', this.login, this);
 
@@ -55,9 +58,6 @@ define([
 
 			// Module load event
 			app.vent.on('module:load', this.loadModule, this);
-
-			// Module load post event
-			app.vent.on('module:boot:success', this.startSession, this);
 
 			// Catch clicks on every a links
 			$(document).on('click', 'a[href^="/"]:not([data-bypass])', function (evt)
@@ -97,11 +97,12 @@ define([
 		 */
 		loadModule: function(path)
 		{
-			var self = this;
+			// This is me
+			var me = this;
 
 			// Default request
 			var request = {
-				'loadFragment': true,
+				'loadFragment': false,
 				'request': null,
 				'route': 'unknow'
 			};
@@ -117,10 +118,11 @@ define([
 			{
 				require([request.module], function (Module)
 				{
-					new Module(self.options);
+					if (typeof me.modules[request.module] === 'undefined')
+						me.modules[request.module] = new Module(me.options);
 
 					if (request.loadFragment)
-						self.loadFragment(request.route);
+						me.loadFragment(request.route);
 				});
 			}
 		},
