@@ -128,7 +128,7 @@ Go to the application, open the web console, and verify that the message
 
 ## Overload the welcome page
 
-Now, you probably want to overlaod the welcome page.
+Now, you probably want to overload the welcome page.
 
 Simply create the file `./assets/app/template/welcomeView.html`:
 
