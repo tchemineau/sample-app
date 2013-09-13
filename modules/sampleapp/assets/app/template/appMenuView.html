@@ -1,42 +1,60 @@
 <script type="text/template" id="appMenuView">
 
-	<div class="navbar navbar-static-top">
-		<div class="navbar-inner">
+	<nav class="navbar navbar-default navbar-static-top" role="navigation">
 
-			<a class="brand" href="<%= url %>"><%= title %></a>
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="<%= url %>"><%= title %></a>
+		</div>
+
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
 
 			<% if (typeof user.id != 'undefined') { %>
-				<ul class="nav pull-right">
+
+				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
+
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-bypass>
+
 							<% if (user.gravatar_url) { %>
 								<img src="<%= user.gravatar_url %>" class="gravatar" border="0" height="16" width="16" alt="" />&nbsp;
 							<% } %>
+
 							<%= user.email %>
 							<b class="caret"></b>
+
 						</a>
+
 						<ul class="dropdown-menu">
 							<li><a href="<%= url %>account"><%= __('My account') %></a></li>
 							<li class="divider"></li>
 							<li><a href="<%= url %>logout"><%= __('Sign Off') %></a></li>
 						</ul>
+
 					</li>
 				</ul>
+
 			<% } else { %>
-				<div class="pull-right">
-					<a class="btn" href="<%= url %>login"><%= __('Sign In') %></a>
-				</div>
-				<div class="pull-right">
-					<span class="navbar-text">&nbsp;<%= __('or') %>&nbsp;</span>
-				</div>
-				 <div class="pull-right">
-					<a class="btn btn-success" href="<%= url %>account/create" id="btn-sign-up"
-					   data-title="<%= __('If you are new, start by creating a new account to see :title in action!', {':title': title}) %>"
-					   data-placement="bottom" data-trigger="manual"><%= __('Sign Up') %></a>
-				</div>
+
+				<a class="btn btn-default navbar-btn navbar-right" href="<%= url %>login"><%= __('Sign In') %></a>
+
+				<p class="navbar-text navbar-right hidden-xs">
+					<%= __('or') %>
+				</p>
+
+				<a class="btn btn-success navbar-btn navbar-right"
+					href="<%= url %>account/create" id="btn-sign-up"
+					data-title="<%= __('If you are new, start by creating a new account to see :title in action!', {':title': title}) %>"
+					data-placement="bottom" data-trigger="manual"><%= __('Sign Up') %></a>
+
 			<% } %>
 
 		</div>
-	</div>
+	</nav>
 
 </script>

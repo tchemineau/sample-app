@@ -22,7 +22,6 @@ define([
 		 * Catch events
 		 */
 		events: {
-			'click #account-delete-btn': 'showDeleteAccountModal',
 			'click #account-delete-modal-ok': 'onAccountDelete',
 		},
 

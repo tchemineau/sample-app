@@ -30,7 +30,7 @@ define([
 		notifyError: function (message)
 		{
 			this.message = message;
-			this.type = 'error';
+			this.type = 'danger';
 
 			this.render();
 		},

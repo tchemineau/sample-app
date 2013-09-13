@@ -1,26 +1,30 @@
 <script id="confirmAccountTemplate" type="text/template">
 
+	<div class="container">
+                <div class="row">
+                        <div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+
 	<% if (checked) { %>
 
-		<div class="form-app">
+		<div class="appbox">
 
 			<% if (confirmed) { %>
 
-				<h2 class="form-app-heading"><%= __('Your account has been confirmed') %></h2>
+				<h2 class="appbox-heading"><%= __('Your account has been confirmed') %></h2>
 
 				<div class="alert alert-success">
 					<%= __('You are now allowed to sign in with your account on our services.') %>
 				</div>
 
-				<div>
-					<a href="<%= url %>login" class="btn btn-large btn-primary"><%= __('Sign In') %></a>
+				<div class="appbox-action appbox-action-primary">
+					<a href="<%= url %>login" class="btn btn-primary btn-lg"><%= __('Sign In') %></a>
 				</div>
 
 			<% } else { %>
 
-				<h2 class="form-app-heading"><%= __('Oups') %></h2>
+				<h2 class="appbox-heading"><%= __('Oups') %></h2>
 
-				<div class="alert alert-error">
+				<div class="alert alert-danger">
 					<%= __('We are not able to confirm your account.') %>
 				</div>
 
@@ -29,5 +33,9 @@
 		</div>
 
 	<% } %>
+
+			</div>
+		</div>
+	</div>
 
 </script>

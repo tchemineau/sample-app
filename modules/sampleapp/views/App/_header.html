@@ -3,13 +3,12 @@
 
 <html>
 <head>
-        <meta charset="utf-8" />
-        <title>{{ APP.name }}</title>
-        <base href="{{ APP.url }}" />
+	<meta charset="utf-8" />
+	<title>{{ APP.name }}</title>
+	<base href="{{ APP.url }}" />
 
-        <link href="{{ APP.url }}static/library/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="{{ APP.url }}assets/css/bootstrap-jumbotron.css" rel="stylesheet" type="text/css" />
-        <link href="{{ APP.url }}assets/css/app.css" rel="stylesheet" type="text/css" />
+	<link href="{{ APP.url }}static/library/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="{{ APP.url }}assets/css/app.css" rel="stylesheet" type="text/css" />
 
 	{% for script in APP.script.css %}
 		<link href="{{ script }}" rel="stylesheet" type="text/css" />
@@ -25,7 +24,7 @@
 
 <body>
 
-<div class="row-fluid" id="appprogress-container">
-	<div class="row-fluid" id="appprogress"><i class="icon-refresh"></i></div>
+<div id="appprogress-container">
+	<div id="appprogress"><i class="icon-refresh"></i></div>
 </div>
 

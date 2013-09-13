@@ -1,36 +1,36 @@
 <script id="createAccountTemplate" type="text/template">
 
-	<form class="form-horizontal form-app" method="POST">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
 
-		<h2 class="form-app-heading"><%= __('Sign up for :title', {':title': apptitle}) %></h2>
+	<form class="appbox" method="POST" role="form">
+
+		<h2 class="appbox-heading"><%= __('Sign up for :title', {':title': apptitle}) %></h2>
 
 		<% if (!created) { %>
 
-			<fieldset>
+			<div id="account-email-control" class="form-group">
+				<input class="form-control" id="account-email"
+					type="email" name="email" placeholder="<%= __('Your email') %>…" data-field="email" />
+			</div>
 
-				<div id="account-email-control" class="control-group">
-					<input class="input-block-level" id="account-email"
-						type="email" name="email" placeholder="<%= __('Your email') %>…" data-field="email" />
-				</div>
+			<div id="account-password-control" class="form-group">
+				<input class="form-control" id="account-password"
+					type="password" name="password" placeholder="<%= __('Your password') %>" data-field="password" />
+			</div>
 
-				<div id="account-password-control" class="control-group">
-					<input class="input-block-level" id="account-password"
-						type="password" name="password" placeholder="<%= __('Your password') %>" data-field="password" />
-				</div>
+			<div id="account-password2-control" class="form-group">
+				<input class="form-control" id="account-password2"
+					type="password" name="password2" placeholder="<%= __('Confirm your password') %>" data-field="password2" />
+			</div>
 
-				<div id="account-password2-control" class="control-group">
-					<input class="input-block-level" id="account-password2"
-						type="password" name="password2" placeholder="<%= __('Confirm your password') %>" data-field="password2" />
-				</div>
-
-			</fieldset>
-
-			<div class="alert">
+			<div class="alert alert-warning">
 				<%= __('By clicking on &quot;Create an account&quot; below, you will receiving an email which invites you to confirm your new account.') %>
 			</div>
 
-			<div>
-				<button id="account-create-btn" type="submit" class="btn btn-large btn-primary"><%= __('Create an account') %></button>
+			<div class="appbox-action appbox-action-primary">
+				<button id="account-create-btn" type="submit" class="btn btn-primary btn-lg"><%= __('Create an account') %></button>
 			</div>
 
 		<% } else { %>
@@ -42,5 +42,9 @@
 		<% } %>
 
 	</form>
+
+			</div>
+		</div>
+	</div>
 
 </script>

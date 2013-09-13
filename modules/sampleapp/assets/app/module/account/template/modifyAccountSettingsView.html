@@ -1,32 +1,40 @@
 <script id="modifyAccountSettingsViewTemplate" type="text/template">
 
 	<div>
+
 		<p>
 			<%= __('If you want to delete your account, click on the button below.') %>
 		</p>
-		<div class="alert alert-warning">
+
+		<div class="alert alert-warning appbox-alert">
 			<%= __('This action cannot be undone. This will delete your account permanently.') %>
 		</div>
-		<div>
-			<button id="account-delete-btn" class="btn btn-large btn-danger"><%= __('Delete my account') %></button>
+
+		<div class="appbox-action appbox-action-primary">
+			<a id="account-delete-btn" class="btn btn-danger btn-lg" data-toggle="modal" href="#account-delete-modal"><%= __('Delete my account') %></a>
 		</div>
 	</div>
 
-	<div id="account-delete-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="account-delete-modal-title" aria-hidden="true">
-		<div class="modal-header">
-			<button id="account-delete-modal-close" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<h3 id="account-delete-modal-title"><%= __('Delete account confirmation') %></h3>
-		</div>
-		<div class="modal-body">
-			<p>
-				<strong><%= __('Are you sure you want to delete your account ?') %></strong>
-			</p>
-			<p>
-				<%= __('This action cannot be undone. This will delete your account permanently.') %>
-			</p>
-		</div>
-		<div class="modal-footer">
-			<button id="account-delete-modal-ok" class="btn btn-danger"><%= __('Yes, I want to delete my account now') %></button>
+	<div id="account-delete-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="account-delete-modal-title" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button id="account-delete-modal-close" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 id="account-delete-modal-title" class="modal-title"><%= __('Delete account confirmation') %></h4>
+				</div>
+				<div class="modal-body">
+					<p>
+						<strong><%= __('Are you sure you want to delete your account ?') %></strong>
+					</p>
+					<div class="alert alert-danger">
+						<span class="glyphicon glyphicon-info-sign"></span>
+						<%= __('This action cannot be undone. This will delete your account permanently.') %>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button id="account-delete-modal-ok" class="btn btn-danger"><%= __('Yes, I want to delete my account now') %></button>
+				</div>
+			</div>
 		</div>
 	</div>
 

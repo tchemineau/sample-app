@@ -1,31 +1,35 @@
 <script id="loginTemplate" type="text/template">
 
-	<form class="form-horizontal form-app" method="POST">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
 
-		<h2 class="form-app-heading"><%= __('Please sign in') %></h2>
+	<form class="appbox" method="POST" role="form">
 
-		<fieldset>
+		<h2 class="appbox-heading"><%= __('Please sign in') %></h2>
 
-			<div class="control-group">
-				<input class="input-block-level" id="login-email"
-					type="email" name="email" placeholder="<%= __('Your email') %>…" data-field="email" />
-			</div>
-			<div class="control-group">
-				<input class="input-block-level" id="login-password"
-					type="password" name="password" placeholder="<%= __('Your password') %>…" data-field="password" />
-			</div>
+		<div class="form-group">
+			<input class="form-control" id="login-email"
+				type="email" name="email" placeholder="<%= __('Your email') %>…" data-field="email" />
+		</div>
+		<div class="form-group">
+			<input class="form-control" id="login-password"
+				type="password" name="password" placeholder="<%= __('Your password') %>…" data-field="password" />
+		</div>
 			
-		</fieldset>
-
-		<div class="pull-right">
+		<div class="appbox-action appbox-action-secondary">
 			<a href="<%= url %>account/create"><%= __('I don&#039;t have account') %></a><br/>
 			<a href="<%= url %>account/forgot_password"><%= __('I forgot my password') %></a>
 		</div>
 
-		<div>
-			<button id="login-btn" type="submit" class="btn btn-large btn-primary"><%= __('Sign In') %></button>
+		<div class="appbox-action appbox-action-primary">
+			<button id="login-btn" type="submit" class="btn btn-primary btn-lg"><%= __('Sign In') %></button>
 		</div>
 
 	</form>
+
+			</div>
+		</div>
+	</div>
 
 </script>
