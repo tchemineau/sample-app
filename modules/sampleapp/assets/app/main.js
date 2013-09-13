@@ -11,6 +11,7 @@
 			'jquery': '../../static/library/jquery/jquery-1.10.2.min',
 			'marionette': '../../static/library/marionette/backbone.marionette.min',
 			'marionette.formview': '../../static/library/marionette/backbone.marionette.formview',
+			'stellar': '../../static/library/stellar/jquery.stellar.min',
 			'underscore': '../../static/library/underscore/underscore.min'
 		},
 		shim: {
@@ -34,6 +35,9 @@
 			},
 			'marionette.formview': {
 				deps: ['marionette']
+			},
+			'stellar': {
+				deps: ['jquery']
 			},
 			'underscore': {
 				exports: '_'

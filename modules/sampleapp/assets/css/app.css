@@ -122,9 +122,11 @@ img.gravatar {
 
 /* Masthead */
 .masthead {
-	background-color: transparent;
+	background-attachment: fixed;
+	background-image: url('../img/bg-industrial.jpg');
 	margin-bottom: 0;
-	padding: 0;
+	margin-top: -40px;
+	padding: 40px 0 0;
 	text-align: center;
 	text-shadow: 0 1px 3px rgba(255,255,255,.4), 0 0 30px rgba(255,255,255,.075);
 }
@@ -165,6 +167,13 @@ img.gravatar {
 	margin-top: 20px;
 	padding: 0;
 	width: 64px;
+}
+.masthead .slogan {
+	color: #fff;
+	text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
+}
+.masthead .slogan a:not(.btn) {
+	color: #62abea;
 }
 .masthead-links {
 	margin: 0;

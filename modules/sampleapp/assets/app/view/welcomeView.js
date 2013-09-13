@@ -1,15 +1,21 @@
 
 define([
 	'marionette',
+	'stellar',
 	'helper/template',
 	'text!template/welcomeView.html'
-], function(Marionette, TemplateHelper, WelcomeTemplate)
+], function(Marionette, Stellar, TemplateHelper, WelcomeTemplate)
 {
 	var WelcomeView = Marionette.ItemView.extend(
 	{
 		template: WelcomeTemplate,
 
 		templateHelpers: TemplateHelper,
+
+		onDomRefresh: function ()
+		{
+			$.stellar();
+		},
 
 		serializeData: function()
 		{
