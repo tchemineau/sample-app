@@ -28,9 +28,16 @@ class SampleApp_Controller_Api_V1_Auth extends Controller_Api_Standard
 			// Confirm account
 			$account = $account_service->confirm($data);
 
+			// Get authentication token
+			$token = $account_service->get_authentication_token($account);
+
 			// Return appropriate HTTP result
 			$this->response($api_service->build_response_succeed(
-				'Account has been confirmed'
+				'Account has been confirmed',
+				array(
+					'id' => $account->id(),
+					'token' => $token->id()
+				)
 			), 200);
 		}
 		catch (Exception $e)
