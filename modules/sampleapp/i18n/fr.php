@@ -107,6 +107,8 @@ return array(
 
 	'Sign Up' => 'Créer un compte',
 
+	'Start' => 'Commencer',
+
 	'Thank you for using :title, we hope you will be back soon!' =>
 		'Merci d\'avoir utilisé :title, nous espérons vous revoir prochainement!',
 
@@ -138,8 +140,8 @@ return array(
 	'Your are now able to reset your password by clicking this following link:' =>
 		'Vous pouvez maintenant réinitialiser votre mot de passe en cliquant sur le lien suivant:',
 
-	'You are now allowed to sign in with your account on our services.' =>
-		'Vous pouvez maintenant vous connecter avec votre compte à nos services.',
+	'You are now able to start using :title' =>
+		'Vous pouvez maintenant commencer à utiliser :title',
 
 	'You will soon receive an email giving you steps to reset your password.' =>
 		'Vous allez bientôt recevoir un e-mail vous indiquant les étapes de réinitialisation de votre mot de passe.',

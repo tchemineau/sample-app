@@ -57,6 +57,10 @@ define([
 					me.checked = true;
 					me.confirmed = true;
 
+					// Log the user
+					app.vent.trigger('login:success', {'token': response.data.token}, false);
+
+					// Render the view
 					app.vent.trigger('account:confirm');
 				},
 				error: function (xhr, status)
@@ -76,7 +80,8 @@ define([
 			return {
 				checked: this.checked,
 				confirmed: this.confirmed,
-				url: app.url
+				url: app.url,
+				title: app.title
 			};
 		}
 	});
