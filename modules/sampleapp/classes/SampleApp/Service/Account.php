@@ -19,9 +19,10 @@ class SampleApp_Service_Account extends Service
 	 * Authenticate user
 	 *
 	 * @param {array} $data
+	 * @param {boolean} $trace
 	 * @return {Model_App_Account}
 	 */
-	public function authenticate ( array $data )
+	public function authenticate ( array $data, $trace = TRUE )
 	{
 		// This will store the account
 		$account = NULL;
@@ -54,8 +55,11 @@ class SampleApp_Service_Account extends Service
 		if (!$account->email_verified)
 			throw Service_Exception::factory('AuthError', 'Email has not been verified');
 
-		// Update last visit value and return
-		return $this->update($account, array('date_lastvisit' => time()));
+		// Trace the authentication if necessary
+		if ($trace)
+			$account = $this->update($account, array('date_lastvisit' => time()));
+
+		return $account;
 	}
 
 	/**

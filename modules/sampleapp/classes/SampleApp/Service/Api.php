@@ -88,7 +88,7 @@ class SampleApp_Service_Api extends Service
 		$account_service = Service::factory('Account');
 
 		// Try to authenticate the user
-		self::$_account = $account_service->authenticate($data);
+		self::$_account = $account_service->authenticate($data, false);
 
 		return self::$_account;
 	}
