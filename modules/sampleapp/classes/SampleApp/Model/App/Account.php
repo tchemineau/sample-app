@@ -8,10 +8,10 @@ class SampleApp_Model_App_Account extends Model
 	 */
 	public $date_created;
 
-        /**
-         * Timestamp of last connexion
-         */
-        public $date_lastvisit;
+	/**
+	 * Timestamp of last connexion
+	 */
+	public $date_lastvisit;
 
 	/**
 	 * Timestamp of last modification
@@ -69,14 +69,24 @@ class SampleApp_Model_App_Account extends Model
 		// This is the current time
 		$timestamp = time();
 
+		// Set creation time
+		if (!$this->date_created)
+			$data['date_created'] = $timestamp;
+
+		// Set last visit time
+		if (!$this->date_lastvisit)
+			$data['date_lastvisit'] = $timestamp;
+
+		// Set default email_verified values
+		if (!$this->email_verified)
+			$data['email_verified'] = false;
+
 		// Check email verification
 		if (isset($data['email_verified']))
 		{
 			$data['email_verified'] = true;
 			$data['date_verified'] = $timestamp;
 		}
-		else if (!$this->email_verified)
-			$data['email_verified'] = false;
 
 		// If password found, securize it
 		if (isset($data['password']))
@@ -86,14 +96,6 @@ class SampleApp_Model_App_Account extends Model
 			else
 				$data['password'] = '**'.Password::instance()->hash($data['password']);
 		}
-
-		// Set creation time
-		if (!$this->date_created)
-			$data['date_created'] = $timestamp;
-
-		// Set last visit time
-		if (!$this->date_lastvisit)
-			$data['date_lastvisit'] = $timestamp;
 
 		// Store the last modification time
 		$data['date_modified'] = $timestamp;
