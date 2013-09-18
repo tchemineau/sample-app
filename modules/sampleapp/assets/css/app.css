@@ -14,7 +14,7 @@ body {
 #appnotification {
 	display: none;
 	left: 25%;
-	position: absolute;
+	position: fixed;
 	text-align: center;
 	top: 8px;
 	width: 50%;
