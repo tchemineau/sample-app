@@ -7,9 +7,6 @@
 	<title>{{ APP.name }}</title>
 	<base href="{{ APP.url }}" />
 
-	<link href="{{ APP.url }}static/library/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<link href="{{ APP.url }}assets/css/app.css" rel="stylesheet" type="text/css" />
-
 	{% for script in APP.script.css %}
 		<link href="{{ script }}" rel="stylesheet" type="text/css" />
 	{% endfor %}

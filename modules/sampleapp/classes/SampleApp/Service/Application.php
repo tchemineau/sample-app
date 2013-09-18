@@ -78,13 +78,36 @@ class SampleApp_Service_Application extends Service
 	}
 
 	/**
-	 * Register a CSS script to be loaded
+	 * Normalize path to include protocol
 	 *
 	 * @param {string} $path
 	 */
-	public static function set_css_script ( $path )
+	public static function normalize_path ( $path )
 	{
-		self::$_css_script[] = $path;
+		if (preg_match('!^(https?:)?//!', $path) != 1)
+			$path = URL::base().$path;
+
+		return $path;
+	}
+
+	/**
+	 * Register a CSS script to be loaded
+	 *
+	 * @param {string} $path
+	 * @param {string} $name
+	 * @param {boolean} $replace
+	 */
+	public static function set_css_script ( $path, $name = null, $replace = false )
+	{
+		$path = self::normalize_path($path);
+
+		if (!is_null($name))
+		{
+			if (!isset(self::$_css_script[$name]) || $replace)
+				self::$_css_script[$name] = $path;
+		}
+		else
+			self::$_css_script[] = $path;
 	}
 
 	/**
@@ -123,13 +146,28 @@ class SampleApp_Service_Application extends Service
 	 * Register a JS script to be loaded
 	 *
 	 * @param {string} $path
+	 * @param {string} $name
+	 * @param {array} $data
+	 * @param {boolean} $replace
 	 */
-	public static function set_js_script ( $path, $data = array() )
+	public static function set_js_script ( $path, $name = null, $data = array(), $replace = false )
 	{
-		self::$_js_script[] = array(
+		$path = self::normalize_path($path);
+
+		// Build array to store
+		$d = array(
 			'src' => $path,
 			'data' => $data
 		);
+
+		// Take care of name or not
+		if (!is_null($name))
+		{
+			if (!isset(self::$_js_script[$name]) || $replace)
+				self::$_js_script[$name] = $d;
+		}
+		else
+			self::$_js_script[] = $d;
 	}
 
 } // End SampleApp_Service_Application

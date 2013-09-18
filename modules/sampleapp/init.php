@@ -64,3 +64,10 @@ Service::factory('Application')->set_js_path('module/account/router',
 
 Service::factory('Application')->set_js_init('module/account/router');
 
+/**
+ * Set CSS to be linked into page header
+ */
+
+Service::factory('Application')->set_css_script('static/library/bootstrap/css/bootstrap.min.css', 'bootstrap');
+Service::factory('Application')->set_css_script('assets/css/app.css', 'sampleapp');
+
