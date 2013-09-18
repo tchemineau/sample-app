@@ -33,6 +33,7 @@ class SampleApp_Service_Application extends Service
 	 */
 	public static function get_css_script ()
 	{
+		ksort(self::$_css_script);
 		return self::$_css_script;
 	}
 
@@ -74,6 +75,7 @@ class SampleApp_Service_Application extends Service
 	 */
 	public static function get_js_script ()
 	{
+		ksort(self::$_js_script);
 		return self::$_js_script;
 	}
 
