@@ -68,6 +68,6 @@ Service::factory('Application')->set_js_init('module/account/router');
  * Set CSS to be linked into page header
  */
 
-Service::factory('Application')->set_css_script('static/library/bootstrap/css/bootstrap.min.css', 'bootstrap');
+Service::factory('Application')->set_css_script('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/css/bootstrap.min.css', 'bootstrap');
 Service::factory('Application')->set_css_script('assets/css/app.css', 'sampleapp');
 
