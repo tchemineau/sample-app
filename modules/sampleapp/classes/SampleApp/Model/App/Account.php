@@ -77,16 +77,13 @@ class SampleApp_Model_App_Account extends Model
 		if (!$this->date_lastvisit)
 			$data['date_lastvisit'] = $timestamp;
 
-		// Set default email_verified values
-		if (!$this->email_verified)
+		// Set default email_verified value
+		if (!isset($data['email_verified']) && !$this->email_verified)
 			$data['email_verified'] = false;
 
 		// Check email verification
-		if (isset($data['email_verified']))
-		{
-			$data['email_verified'] = true;
+		if (isset($data['email_verified']) && $data['email_verified'] === TRUE)
 			$data['date_verified'] = $timestamp;
-		}
 
 		// If password found, securize it
 		if (isset($data['password']))
@@ -159,9 +156,7 @@ class SampleApp_Model_App_Account extends Model
 
 		// Format
 		if ($format)
-		{
 			$data = $this->format_data($data);
-		}
 
 		return $this->values($data);
 	}
