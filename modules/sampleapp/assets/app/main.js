@@ -5,14 +5,17 @@
  	// Configure Requirement
 	require.config({
 		paths: {
-			'backbone': '../../static/library/backbone/backbone.min',
-			'backbone.session': '../../static/library/backbone/backbone.session',
-			'bootstrap': '../../static/library/bootstrap/js/bootstrap.min',
-			'jquery': '../../static/library/jquery/jquery-1.10.2.min',
-			'marionette': '../../static/library/marionette/backbone.marionette.min',
-			'marionette.formview': '../../static/library/marionette/backbone.marionette.formview',
-			'stellar': '../../static/library/stellar/jquery.stellar.min',
-			'underscore': '../../static/library/underscore/underscore.min'
+			// CDN
+			'backbone': '//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min',
+			'bootstrap': '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min',
+			'jquery': '//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min',
+			'marionette': '//cdnjs.cloudflare.com/ajax/libs/backbone.marionette/1.0.4-bundled/backbone.marionette.min',
+			'stellar': '//cdnjs.cloudflare.com/ajax/libs/stellar.js/0.6.2/jquery.stellar.min',
+			'underscore': '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min',
+
+			// Local
+			'backbone.session': '../lib/backbone/backbone.session',
+			'marionette.formview': '../lib/marionette/backbone.marionette.formview'
 		},
 		shim: {
 			'backbone': {
