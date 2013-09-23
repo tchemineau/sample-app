@@ -54,6 +54,11 @@ abstract class SampleApp_Controller_Api_Rest extends RESTful_Controller
 			$this->request->action('nothing');
 			$this->response($api_service->build_response_failed($e->getMEssage()), 401);
 		}
+		catch (Service_Exception_NotFound $e)
+		{
+			$this->request->action('nothing');
+			$this->response($api_service->build_response_failed($e->getMEssage()), 401);
+		}
 	}
 
 	/**
