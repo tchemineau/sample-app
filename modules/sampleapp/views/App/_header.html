@@ -3,13 +3,28 @@
 
 <html>
 <head>
+
 	<meta charset="utf-8" />
 	<title>{{ APP.name }}</title>
 	<base href="{{ APP.url }}" />
 
-	{% for script in APP.script.css %}
+	{% for script in APP.script.css -%}
 		<link href="{{ script }}" rel="stylesheet" type="text/css" />
 	{% endfor %}
+
+	{% for script in APP.script.js -%}
+		{%- if script.async == false -%}
+			<script type="text/javascript" src="{{ script.src }}"
+				{%- for key, value in script.data -%}
+					{%- if key == 'id' -%}
+						{{ '' }} id="{{ value }}"
+					{%- else -%}
+						{{ '' }} data-{{ key }}="{{ value }}"
+					{%- endif -%}
+				{%- endfor -%}
+			></script>
+		{%- endif %}
+	{%- endfor %}
 
 	<script>
 		var CONFIG = {
@@ -17,11 +32,10 @@
 			url: '{{ APP.url }}'
 		};
 	</script>
+
 </head>
 
 <body>
 
-<div id="appprogress-container">
-	<div id="appprogress"><i class="icon-refresh"></i></div>
-</div>
+<div id="appprogress-container"><div id="appprogress"><i class="icon-refresh"></i></div></div>
 

@@ -110,6 +110,10 @@ class SampleApp_Service_Application extends Service
 		}
 		else
 			self::$_css_script[] = $path;
+
+		// Return the latest inserted key
+		$keys = array_keys(self::$_css_script);
+		return end($keys);
 	}
 
 	/**
@@ -159,7 +163,8 @@ class SampleApp_Service_Application extends Service
 		// Build array to store
 		$d = array(
 			'src' => $path,
-			'data' => $data
+			'data' => $data,
+			'async' => false
 		);
 
 		// Take care of name or not
@@ -170,6 +175,22 @@ class SampleApp_Service_Application extends Service
 		}
 		else
 			self::$_js_script[] = $d;
+
+		// Return the latest inserted key
+		$keys = array_keys(self::$_js_script);
+		return end($keys);
+	}
+
+	/**
+	 * Register a JSC script to be loaded into footer
+	 */
+	public static function set_js_script_footer ( $path, $name = null, $data = array(), $replace = false )
+	{
+		$key = self::set_js_script($path, $name, $data, $replace);
+
+		self::$_js_script[$key]['async'] = true;
+
+		return $key;
 	}
 
 } // End SampleApp_Service_Application

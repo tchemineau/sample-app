@@ -1,19 +1,17 @@
 {# Twig #}
 
-{% for script in APP.script.js %}
-
-	<script type="text/javascript" src="{{ script.src }}"
-
-		{% for key, value in script.data %}
-			{% if key == 'id' %}
-				id="{{ value }}"
-			{% else %}
-				data-{{ key }}="{{ value }}"
-			{% endif %}
-		{% endfor %}
-
-	></script>
-
+{% for script in APP.script.js -%}
+	{%- if script.async == true -%}
+		<script type="text/javascript" src="{{ script.src }}"
+			{%- for key, value in script.data -%}
+				{%- if key == 'id' -%}
+					{{ '' }} id="{{ value }}"
+				{%- else -%}
+					{{ '' }} data-{{ key }}="{{ value }}"
+				{%- endif -%}
+			{%- endfor -%}
+		></script>
+	{%- endif -%}
 {% endfor %}
 
 {% for type, conf in APP.tracking %}
