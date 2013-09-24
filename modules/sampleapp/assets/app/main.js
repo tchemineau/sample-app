@@ -1,6 +1,12 @@
 (function ()
 {
 	var root = this;
+
+	// To not reload jquery dependencies
+	define('jquery', [], function()
+	{
+		return jQuery;
+	});
  
  	// Configure Requirement
 	require.config({
@@ -18,11 +24,14 @@
 		},
 		shim: {
 			'backbone': {
-				deps: ['underscore'],
+				deps: ['underscore', 'jquery'],
 				exports: 'Backbone'
 			},
 			'backbone.session': {
 				deps: ['backbone']
+			},
+			'jquery': {
+				exports: '$'
 			},
 			'marionette': {
 				deps: ['backbone', 'backbone.session'],
@@ -37,12 +46,6 @@
 		}
 	});
 
-	// To not reload jquery dependencies
-	define('jquery', [], function()
-	{
-		return jQuery;
-	});
- 
 	// Update the loading status
 	require(['jquery'], function($)
 	{
