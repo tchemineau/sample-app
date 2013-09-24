@@ -8,9 +8,11 @@
 			// CDN
 			'backbone': '//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min',
 			'bootstrap': '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min',
+			'i18n': '//cdnjs.cloudflare.com/ajax/libs/require-i18n/2.0.1/i18n',
 			'jquery': '//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min',
 			'marionette': '//cdnjs.cloudflare.com/ajax/libs/backbone.marionette/1.0.4-bundled/backbone.marionette.min',
 			'stellar': '//cdnjs.cloudflare.com/ajax/libs/stellar.js/0.6.2/jquery.stellar.min',
+			'text': '//cdnjs.cloudflare.com/ajax/libs/require-text/2.0.10/text',
 			'underscore': '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min',
 
 			// Local
