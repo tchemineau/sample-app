@@ -59,15 +59,23 @@ Service::factory('Application')->set_js_path('module/account/router',
 );
 
 /**
- * Set javascript module to be load at initialization
+ * Set Javascript to be linked into page header
  */
 
-Service::factory('Application')->set_js_init('module/account/router');
+Service::factory('Application')->set_js_script('//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js', '0:jquery', true);
+Service::factory('Application')->set_js_script('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js', '0:jquery.bootstrap', true);
+Service::factory('Application')->set_js_script('//cdnjs.cloudflare.com/ajax/libs/stellar.js/0.6.2/jquery.stellar.min.js', '0:jquery.stellar', true);
 
 /**
  * Set CSS to be linked into page header
  */
 
-Service::factory('Application')->set_css_script('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/css/bootstrap.min.css', 'bootstrap');
-Service::factory('Application')->set_css_script('assets/css/app.css', 'sampleapp');
+Service::factory('Application')->set_css_script('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/css/bootstrap.min.css', '0:bootstrap');
+Service::factory('Application')->set_css_script('assets/css/app.css', '0:sampleapp');
+
+/**
+ * Set Javascript module to be load at initialization
+ */
+
+Service::factory('Application')->set_js_init('module/account/router');
 
