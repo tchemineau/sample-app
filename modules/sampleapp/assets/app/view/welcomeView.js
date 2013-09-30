@@ -1,10 +1,9 @@
 
 define([
 	'marionette',
-	'stellar',
 	'helper/template',
 	'text!template/welcomeView.html'
-], function(Marionette, Stellar, TemplateHelper, WelcomeTemplate)
+], function(Marionette, TemplateHelper, WelcomeTemplate)
 {
 	var WelcomeView = Marionette.ItemView.extend(
 	{
