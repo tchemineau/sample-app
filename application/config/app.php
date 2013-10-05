@@ -32,7 +32,6 @@ $config = array(
 		// 'codebench'  => MODPATH.'codebench',  // Benchmarking tool
 		// 'database'   => MODPATH.'database',   // Database access
 		// 'image'      => MODPATH.'image',      // Image manipulation
-		// 'minion'     => MODPATH.'minion',     // CLI Tasks
 		// 'orm'        => MODPATH.'orm',        //  Object Relationship Mapping
 		// 'unittest'   => MODPATH.'unittest',   // Unit testing
 		// 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
@@ -46,6 +45,7 @@ $config = array(
 		// Finaly load additionnal module that do not need routing
 		'browser' => dirname(APPPATH).'/vendor/kohana-browser',
 		'email' => dirname(APPPATH).'/vendor/kohana-email',
+		'minion' => MODPATH.'minion',
 		'mongodb' => dirname(APPPATH).'/vendor/kohana-mongodb',
 		'password' => dirname(APPPATH).'/vendor/kohana-password',
 		'restful' => dirname(APPPATH).'/vendor/kohana-restful',

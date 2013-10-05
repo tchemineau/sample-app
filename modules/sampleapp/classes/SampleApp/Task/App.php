@@ -9,7 +9,7 @@ abstract class SampleApp_Task_App extends Minion_Task
 	 * @param $command
 	 * @return {array}
 	 */
-	protected static function _execute_shell ( $command )
+	public static function execute_shell ( $command )
 	{
 		$script_output = null;
 		$script_status = 0;
