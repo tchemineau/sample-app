@@ -1,12 +1,17 @@
 <?php defined('SYSPATH') or die('No direct script access.');
- 
+
+/**
+ * This is the Queue task.
+ * This take will loop for ever and read job from a tailable MongoDB collection.
+ * It is based on the work of Laurence Putra Franslay.
+ *
+ * @see https://github.com/laurenceputra/Codeigniter-Mongo-Queue
+ */
 class SampleApp_Task_App_Queue extends Task_App
 {
- 
+
 	/**
-	 * This is a demo task
-	 *
-	 * @return null
+	 * Minion will execute this function.
 	 */
 	protected function _execute ( array $params )
 	{
