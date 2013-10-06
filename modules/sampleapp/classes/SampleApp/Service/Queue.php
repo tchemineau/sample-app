@@ -27,12 +27,12 @@ class SampleApp_Service_Queue extends Service
 		// Check task
 		if (is_null($job->task))
 		{
-			$job->set_data(array('status' => Model_App_Queue::ERROR))->save();
+			$job->set_data(array('status' => Model_App_Queue::$ERROR))->save();
 			return FALSE;
 		}
 
 		// Update the job
-		$job->set_data(array('status' => Model_App_Queue::EXEC))->save();
+		$job->set_data(array('status' => Model_App_Queue::$EXEC))->save();
 
 		// For this process
 		$pid = pcntl_fork();
@@ -40,7 +40,7 @@ class SampleApp_Service_Queue extends Service
 		// An error occurs
 		if ($pid < 0)
 		{
-			$job->set_data(array('status' => Model_App_Queue::ERROR))->save();
+			$job->set_data(array('status' => Model_App_Queue::$ERROR))->save();
 			return FALSE;
 		}
 
@@ -52,9 +52,9 @@ class SampleApp_Service_Queue extends Service
 
 			// Update the job status
 			if (pcntl_wifexited($status) && pcntl_wexitstatus($status) == 0)
-				$job->set_data(array('status' => Model_App_Queue::DONE))->save();
+				$job->set_data(array('status' => Model_App_Queue::$DONE))->save();
 			else
-				$job->set_data(array('status' => Model_App_Queue::ERROR))->save();
+				$job->set_data(array('status' => Model_App_Queue::$ERROR))->save();
 		}
 
 		// The child process
@@ -89,13 +89,13 @@ class SampleApp_Service_Queue extends Service
 		// Run the job
 		switch ($job['status'])
 		{
-			case Model_App_Queue::DONE:
+			case Model_App_Queue::$DONE:
 				break;
 
-			case Model_App_Queue::EXEC:
+			case Model_App_Queue::$EXEC:
 				break;
 
-			case Model_App_Queue::NEW:
+			case Model_App_Queue::$NEW:
 				$success = $this->execute($job['id']);
 				break;
 		}

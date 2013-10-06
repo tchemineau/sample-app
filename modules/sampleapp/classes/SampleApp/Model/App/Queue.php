@@ -6,10 +6,10 @@ class SampleApp_Model_App_Queue extends Model
 	/**
 	 * Constants relative to status
 	 */
-	const NEW   = 10;	// The job is waiting to be executed
-	const EXEC  = 20;	// The job is in progress
-	const DONE  = 30;	// The job is done
-	const ERROR = 40;	// The job is in error
+	public static $NEW   = 10;	// The job is waiting to be executed
+	public static $EXEC  = 20;	// The job is in progress
+	public static $DONE  = 30;	// The job is done
+	public static $ERROR = 40;	// The job is in error
 
 	/**
 	 * Timestamp of creation
@@ -42,6 +42,32 @@ class SampleApp_Model_App_Queue extends Model
 	protected $_reserved = array();
 
 	/**
+	 * This will create a capped collection.
+	 */
+	public function __construct ( $model, $id = NULL, $config = 'default' )
+	{
+		parent::__construct($model, $id, $config);
+
+		// Get the database
+		$db = Mongo_Connection::instance($config)->db();
+
+		// The full name of this collection
+		$name = $db.'.'.$this->_model;
+
+		// Check if the collection exists
+		// If not, create a capped one
+		if ($db->system->namespaces->findOne(array('name' => $name)) === null)
+		{
+			$db->command(array(
+				'create' => $this->_model,
+				'capped' => TRUE,
+				'size' => 10*1024,
+				'max' => 1000
+			));
+		}
+	}
+
+	/**
 	 * Format values
 	 *
 	 * @param {array} $data
@@ -58,7 +84,7 @@ class SampleApp_Model_App_Queue extends Model
 
 		// Set status
 		if (!isset($data['status']))
-			$data['status'] = self::NEW;
+			$data['status'] = self::$NEW;
 
 		// Store the last update time
 		$data['date_updated'] = $timestamp;
@@ -105,13 +131,10 @@ class SampleApp_Model_App_Queue extends Model
 	 *
 	 * @return {MongoCursor}
 	 */
-	public static function tail ()
+	public function tail ()
 	{
-		// Get the collection
-		$collection = new Mongo_Collection('App_Queue');
-
 		// Return a tailable cursor on the queue
-        return $collection->find()->tailable();
-    }
+		return $this->_collection->find()->tailable();
+	}
 
 } // End SampleApp_Model_App_Queue
