@@ -27,12 +27,12 @@ class SampleApp_Service_Queue extends Service
 		// Check task
 		if (is_null($job->task))
 		{
-			$job->set_data(array('status' => Model_App_Queue::$ERROR))->save();
+			$job->set_data(array('status' => Model_App_Queue::ERROR))->save();
 			return FALSE;
 		}
 
 		// Update the job
-		$job->set_data(array('status' => Model_App_Queue::$EXEC))->save();
+		$job->set_data(array('status' => Model_App_Queue::EXEC))->save();
 
 		// For this process
 		$pid = pcntl_fork();
@@ -40,7 +40,7 @@ class SampleApp_Service_Queue extends Service
 		// An error occurs
 		if ($pid < 0)
 		{
-			$job->set_data(array('status' => Model_App_Queue::$ERROR))->save();
+			$job->set_data(array('status' => Model_App_Queue::ERROR))->save();
 			return FALSE;
 		}
 
@@ -52,16 +52,14 @@ class SampleApp_Service_Queue extends Service
 
 			// Update the job status
 			if (pcntl_wifexited($status) && pcntl_wexitstatus($status) == 0)
-				$job->set_data(array('status' => Model_App_Queue::$DONE))->save();
+				$job->set_data(array('status' => Model_App_Queue::DONE))->save();
 			else
-				$job->set_data(array('status' => Model_App_Queue::$ERROR))->save();
+				$job->set_data(array('status' => Model_App_Queue::ERROR))->save();
 		}
 
 		// The child process
 		else if ($pid == 0)
-		{
 			$this->_execute($job);
-		}
 
 		return TRUE;
 	}
@@ -83,20 +81,23 @@ class SampleApp_Service_Queue extends Service
 		// Get the next job
 		$job = $queue->getNext();
 
+		// Get the job id
+		$job_id = (string) $job['_id'];
+
 		// Success or not ?
 		$success = TRUE;
 
 		// Run the job
 		switch ($job['status'])
 		{
-			case Model_App_Queue::$DONE:
+			case Model_App_Queue::DONE:
 				break;
 
-			case Model_App_Queue::$EXEC:
+			case Model_App_Queue::EXEC:
 				break;
 
-			case Model_App_Queue::$NEW:
-				$success = $this->execute($job['id']);
+			case Model_App_Queue::WAIT:
+				$success = $this->execute($job_id);
 				break;
 		}
 
@@ -141,13 +142,13 @@ class SampleApp_Service_Queue extends Service
 	private function _execute ( $job )
 	{
 		// Get the task
-		$task = $job->task;
+		$task = (string) $job->task;
 
 		// Get the data
-		$data = $job->data;
+		$data = (array) $job->data;
 
 		// This is the commande
-		$command = DOCROOT.'index.php --task='.$job->task;
+		$command = 'php '.DOCROOT.'index.php --task='.$job->task;
 
 		// This is options to passed to the command
 		$options = '';
@@ -168,7 +169,7 @@ class SampleApp_Service_Queue extends Service
 
 		// Log the output if necessary
 		if ($result['error'])
-			Kohana::$log->add(Log::ERR, $result['output']);
+			Kohana::$log->add(Log::ERROR, implode("\n", $result['output']));
 
 		exit($result['status']);
 	}
