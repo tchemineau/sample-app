@@ -6,10 +6,10 @@ class SampleApp_Model_App_Queue extends Model
 	/**
 	 * Constants relative to status
 	 */
-	public static $NEW   = 10;	// The job is waiting to be executed
-	public static $EXEC  = 20;	// The job is in progress
-	public static $DONE  = 30;	// The job is done
-	public static $ERROR = 40;	// The job is in error
+	const WAIT  = 'WAITING';  // The job is waiting to be executed
+	const EXEC  = 'EXECUTE';  // The job is in progress
+	const DONE  = 'SUCCESS';  // The job is done
+	const ERROR = 'INERROR';  // The job is in error
 
 	/**
 	 * Timestamp of creation
@@ -84,7 +84,7 @@ class SampleApp_Model_App_Queue extends Model
 
 		// Set status
 		if (!isset($data['status']))
-			$data['status'] = self::$NEW;
+			$data['status'] = self::WAIT;
 
 		// Store the last update time
 		$data['date_updated'] = $timestamp;
