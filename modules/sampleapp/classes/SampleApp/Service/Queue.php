@@ -159,7 +159,12 @@ class SampleApp_Service_Queue extends Service
 
 		// Build option chain
 		foreach ($data as $key => $value)
+		{
+			if (is_array($value))
+				$value = implode(',', $value);
+
 			$options .= ' --'.$key.'='.$value;
+		}
 
 		// Set options to the commande
 		$command .= $options;
