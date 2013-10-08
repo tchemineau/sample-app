@@ -115,7 +115,7 @@ class SampleApp_Service_Queue extends Service
 		// Build the data object
 		$data = array(
 			'data' => $data,
-			'task' => $task
+			'task' => 'job:'.$task
 		);
 
 		// Save the job into the queue

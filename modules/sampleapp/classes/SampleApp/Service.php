@@ -26,7 +26,7 @@ abstract class SampleApp_Service
 		$classname = preg_replace('/^service_/', '', strtolower(get_class($this)));
 
 		// Build the task name
-		$taskname = 'app:'.$classname.':'.strtolower($action);
+		$taskname = $classname.':'.strtolower($action);
 
 		// Push a job into the queue
 		Service::factory('Queue')->push($taskname, $params);
