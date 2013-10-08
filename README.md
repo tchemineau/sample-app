@@ -12,6 +12,30 @@ You can see a demo here:
 http://sampleapp.li/
 
 
+Features
+--------
+
+Here are some of the features brings by Sample-App :
+
+  *   Server side HMVC based on the Kohana framework
+  *   Client side MVC based on the Marionette.JS framework (which is based on Backbone)
+  *   Use public CDN and Require.JS to load Javascript and CSS
+  *   Use the full power of Twig to compose views and templates
+  *   Simple REST Api which could be extended to your purpose
+  *   Simple email service using SwiftMailer
+  *   Simple assets service to manage JS/CSS minification
+  *   Simple token service to give access to REST API (and more)
+  *   Simple queue service to delegate jobs to a real time backend (based on MongoDB)
+  *   Full server side and client side support of internationalization
+  *   Full integration of a simple account workflows (creation, deletion, password reset, etc.)
+  *   Responsive desing based on Bootstrap 3
+
+With all of these features, your can quickly start to code a solid application based on standard composants.
+
+Based on the demo application, you can use the HMVC pattern of Kohana to implement your
+own code into your own files without modifying a simple line of code of Sample-App, and keep upgrade simple.
+
+
 Requirements
 ------------
 
