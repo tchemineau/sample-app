@@ -98,9 +98,10 @@ class SampleApp_Service_Account extends Service
 	 * Create a user account
 	 *
 	 * @param {array} $data
+	 * @param {boolean} $email Send a email or not
 	 * @return {Model_App_Account}
 	 */
-	public function create ( array $data )
+	public function create ( array $data, $email = TRUE )
 	{
 		// This will store the account model
 		$account = Model::factory('App_Account');
@@ -119,20 +120,24 @@ class SampleApp_Service_Account extends Service
 		// If nothing wrong, save account data
 		$account->set_data($data)->save();
 
-		// Create a temporary token
-		$token = Service::factory('Token')->create($account, array(
-			'is_permanent' => FALSE,
-			'timeout' => Kohana::$config->load('app.token_timeout_confirmemail'))
-		);
-
-		// Could not create account if mail is not sent
-		if (!$this->_send_email($account, 'CREATE', $token))
+		// Temporary token is only necessary if email have to be sent
+		if ($email)
 		{
-			$account->remove();
-			$token->remove();
+			// Create a temporary token
+			$token = Service::factory('Token')->create($account, array(
+				'is_permanent' => FALSE,
+				'timeout' => Kohana::$config->load('app.token_timeout_confirmemail'))
+			);
 
-			throw Service_Exception::factory('UnknownError', 'Unable to send email to :email',
-				array(':email' => $data['email']));
+			// Could not create account if mail is not sent
+			if (!$this->_send_email($account, 'CREATE', $token))
+			{
+				$account->remove();
+				$token->remove();
+
+				throw Service_Exception::factory('UnknownError', 'Unable to send email to :email',
+					array(':email' => $data['email']));
+			}
 		}
 
 		// Create a new auth token for this account
