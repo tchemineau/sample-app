@@ -23,8 +23,6 @@ class SampleApp_Service_Token extends Service
 	 *
 	 * @param {Model_Mongo} $model
 	 * @param {array} $values
-	 * @param {boolean} $is_permanent
-	 * @param {int} $timeout A optional timeout in seconds
 	 * @return {Model_App_Token}
 	 */
 	public function create ( $model, $values )

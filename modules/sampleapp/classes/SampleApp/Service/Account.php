@@ -27,7 +27,7 @@ class SampleApp_Service_Account extends Service
 		// This will store the account
 		$account = NULL;
 
-		// If token found, then authenticate throw token
+		// If token found, then authenticate through this token
 		if (isset($data['token']))
 		{
 			$token = Service::factory('Token')->get($data['token']);
@@ -38,7 +38,7 @@ class SampleApp_Service_Account extends Service
 			$account = $this->get(array('id' => $token->target_id));
 		}
 
-		// Else, check password authentication
+		// Else, check password authentication and generate a permanent token
 		else if (isset($data['password']))
 		{
 			$account = $this->get($data);
@@ -140,9 +140,6 @@ class SampleApp_Service_Account extends Service
 			}
 		}
 
-		// Create a new auth token for this account
-		$token = Service::factory('Token')->create($account, array('is_permanent' => TRUE));
-
 		return $account;
 	}
 
@@ -211,21 +208,41 @@ class SampleApp_Service_Account extends Service
 	/**
 	 * Get an authentication token of a given account
 	 *
-	 * @return {App_Model_Token}
+	 * @param {Model_App_Account} $account
+	 * @param {boolean} $renew
+	 * @return {Model_App_Token}
 	 */
-	public function get_authentication_token ( $account )
+	public function get_authentication_token ( $account, $renew = TRUE )
 	{
 		if (!$account->loaded())
 			return FALSE;
 
-		// Get all tokens
+		// This will store the valid token
+		$token = NULL;
+
+		// Get all permanent tokens
 		$tokens = Service::factory('Token')->get_all($account, array('only_permanent' => TRUE));
 
-		// If no token found, then raise an error
-		if (!isset($tokens[0]))
-			throw Service_Exception::factory('NotFound', 'Authentication token not found')->data($account->get_data());
+		// If the action need to renew token, remove them all,
+		// and create a fresh one
+		if ($renew)
+		{
+			foreach ($tokens as $id => $token)
+			{
+				$token->remove();
+				unset($tokens[$id]);
+			}
+		}
 
-		return $tokens[0];
+		// If tokens found, get the first one
+		if (isset($tokens[0]))
+			$token = $tokens[0];
+
+		// Else create a fresh one
+		else
+			$token = Service::factory('Token')->create($account, array('is_permanent' => TRUE));
+
+		return $token;
 	}
 
 	/**
