@@ -9,11 +9,6 @@ class SampleApp_Model_App_Token extends Model
 	public $date_created;
 
 	/**
-	 * Is the token permanent ?
-	 */
-	public $is_permanent;
-
-	/**
 	 * Id of the concerned object
 	 */
 	public $target_id;
@@ -58,13 +53,13 @@ class SampleApp_Model_App_Token extends Model
 		if (!$this->date_created)
 			$data['date_created'] = $timestamp;
 
-		// Set persistent token or not
-		if (!isset($data['is_permanent']))
-			$data['is_permanent'] = false;
-
 		// Set type
 		if (!isset($data['type']))
-			$data['type'] = 'app';
+			$data['type'] = 'default';
+
+		// Set timeout
+		if (!isset($data['timeout']))
+			$data['timeout'] = Kohana::$config->load('app.token_timeout.'.$data['type']);
 
 		return $data;
 	}
@@ -79,13 +74,10 @@ class SampleApp_Model_App_Token extends Model
 		if (!$this->loaded())
 			return FALSE;
 
-		// Get the expiration time
-		$timeout = Kohana::$config->load('app.token_timeout');
-
 		// This is the current time
 		$timestamp = time();
 
-		return $this->is_permanent || $this->date_created + $timeout > $timestamp;
+		return $this->date_created + $this->timeout > $timestamp;
 	}
 
 	/**
@@ -101,9 +93,9 @@ class SampleApp_Model_App_Token extends Model
 		return array(
 			'id' => $this->id(),
 			'date_created' => $this->date_created,
-			'is_permanent' => $this->permanent,
 			'target_id' => $this->target_id,
 			'target_type' => $this->target_type,
+			'timeout' => $this->timeout,
 			'type' => $this->type
 		);
 	}
@@ -112,9 +104,7 @@ class SampleApp_Model_App_Token extends Model
 	 * Search by target id and filters.
 	 *
 	 * Available filters are:
-	 *  only_permanent = false
-	 *  only_temporary = false
-	 *  type = 'app'
+	 *  type
 	 *
 	 * @param {string} $id
 	 * @param {array} $filters
@@ -123,8 +113,6 @@ class SampleApp_Model_App_Token extends Model
 	public function search_by_target ( $id, $filters = array() )
 	{
 		// Set default values
-		$filters['only_permanent'] = isset($filters['only_permanent']) ? $filters['only_permanent'] : false;
-		$filters['only_temporary'] = isset($filters['only_temporary']) ? $filters['only_temporary'] : false;
 		$filters['type'] = isset($filters['type']) ? $filters['type'] : null;
 
 		// Get the collection pointer
@@ -132,14 +120,6 @@ class SampleApp_Model_App_Token extends Model
 
 		// Build the query
 		$query = array('target_id' => $id);
-
-		// If we want only permanent tokens or not
-		if ($filters['only_permanent'])
-			$query['is_permanent'] = true;
-
-		// If wen want only temporary token
-		if ($filters['only_temporary'])
-			$query['is_permanent'] = false;
 
 		// Set type
 		if (!is_null($filters['type']))

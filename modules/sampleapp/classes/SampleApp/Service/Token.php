@@ -18,8 +18,9 @@ class SampleApp_Service_Token extends Service
 	 * Create a token for a given loaded mongo model
 	 *
 	 * Available default values are:
-	 *  is_permanent = false
-	 *  timeout = null
+	 *  info = null
+	 *  timeout = null (select timeout corresponding to token type)
+	 *  type = default
 	 *
 	 * @param {Model_Mongo} $model
 	 * @param {array} $values
@@ -39,10 +40,6 @@ class SampleApp_Service_Token extends Service
 		// Set info if necessary
 		if (isset($values['info']))
 			$data['info'] = $values['info'];
-
-		// Set persistent bit
-		if (isset($values['is_permanent']) && $values['is_permanent'])
-			$data['is_permanent'] = $values['is_permanent'];
 
 		// Set timeout
 		if (isset($values['timeout']) && is_int($values['timeout']))
