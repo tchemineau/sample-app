@@ -92,7 +92,7 @@ $HTTP["host"] =~ "^example\.com$" {
 Tests
 -----
 
-Use PHPUnit to tests the project (tests are yet not written):
+Use PHPUnit to tests the project (tests are not yet written):
 
 ```bash
 $ export KOHANA_ENV="testing"
