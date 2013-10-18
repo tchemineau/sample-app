@@ -7,7 +7,10 @@
 class AccountTest extends Unittest_TestCase
 {
 
-	public function testFormatDataWhenCreateAccount ()
+	/**
+	 * Test date created data formatting
+	 */
+	public function testFormatDataWhenCreateAccount_DateCreated ()
 	{
 		// Build request data
 		$data = array(
@@ -18,28 +21,95 @@ class AccountTest extends Unittest_TestCase
 		// Format data request
 		$dataf = Model::factory('App_Account')->format_data($data);
 
-		// Verify presence of keys
-		$this->assertArrayHasKey('email', $dataf);
-		$this->assertArrayHasKey('email_verified', $dataf);
-		$this->assertArrayHasKey('password', $dataf);
+		// Verify
 		$this->assertArrayHasKey('date_created', $dataf);
-		$this->assertArrayHasKey('date_modified', $dataf);
-
-		// Verify email
-		$this->assertEquals($data['email'], $dataf['email']);
-		$this->assertEquals($data['email_verified'], FALSE);
-
-		// Verify password
-		$this->assertStringStartsWith('**', $data['password']);
-
-		// Verify dates
 		$this->assertLessThanOrEqual(time(), $dataf['date_created']);
+	}
+
+	/**
+	 * Test date modified data formatting
+	 */
+	public function testFormatDataWhenCreateAccount_DateModified ()
+	{
+		// Build request data
+		$data = array(
+			'email' => 'test@example.com',
+			'password' => 'testtest'
+		);
+
+		// Format data request
+		$dataf = Model::factory('App_Account')->format_data($data);
+
+		// Verify
+		$this->assertArrayHasKey('date_modified', $dataf);
 		$this->assertEquals($dataf['date_modified'], $dataf['date_created']);
 	}
 
+	/**
+	 * Test account email data formatting
+	 */
+	public function testFormatDataWhenCreateAccount_Email ()
+	{
+		// Build request data
+		$data = array(
+			'email' => 'test@example.com',
+			'password' => 'testtest'
+		);
+
+		// Format data request
+		$dataf = Model::factory('App_Account')->format_data($data);
+
+		// Verify
+		$this->assertArrayHasKey('email', $dataf);
+		$this->assertEquals($data['email'], $dataf['email']);
+	}
+
+	/**
+	 * Test email verified data formatting
+	 */
+	public function testFormatDataWhenCreateAccount_EmailVerified ()
+	{
+		// Build request data
+		$data = array(
+			'email' => 'test@example.com',
+			'password' => 'testtest'
+		);
+
+		// Format data request
+		$dataf = Model::factory('App_Account')->format_data($data);
+
+		// Verify
+		$this->assertEquals($dataf['email_verified'], FALSE);
+	}
+
+	/**
+	 * Test account password data formatting
+	 */
+	public function testFormatDataWhenCreateAccount_Password ()
+	{
+		// Build request data
+		$data = array(
+			'email' => 'test@example.com',
+			'password' => 'testtest'
+		);
+
+		// Format data request
+		$dataf = Model::factory('App_Account')->format_data($data);
+
+		// Verify
+		$this->assertArrayHasKey('password', $dataf);
+		$this->assertStringStartsWith('**', $dataf['password']);
+	}
+
+	/**
+	 * Test account data validation
+	 */
 	/*
 	public function testValidateData ( array $data )
 	{
+		// Format data request
+		$dataf = Model::factory('App_Account')->format_data($data);
+
 		$validation = Validation::factory($data)
 
 			// Email address
@@ -56,6 +126,21 @@ class AccountTest extends Unittest_TestCase
 		return array(
 			'status' => $validation->check(),
 			'errors' => $validation->errors()
+		);
+	}
+	*/
+
+	/**
+	 * This is the data provider for testing account data validation
+	 */
+	/*
+	public function providerValidateData ()
+	{
+		return array(
+			array(array(
+			)),
+			array(array(
+			)),
 		);
 	}
 	*/
