@@ -56,11 +56,11 @@ define([
 				$.data(el, 'timeout1', setTimeout($.proxy(function()
 				{
 					me.isInstruction = false;
-					el.tooltip('show');
+					el.popover('show');
 
 					$.data(el, 'timeout2', setTimeout($.proxy(function()
 					{
-						el.tooltip('hide');
+						el.popover('hide');
 					}, me), 5000));
 				}, me), 2000));
 			}
