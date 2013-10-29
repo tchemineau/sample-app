@@ -32,6 +32,9 @@ return array(
 
 	'Change your avatar at Gravatar.com' => 'Changez votre avatar sur Gravatar.com',
 
+	'Client side MVC based on the Marionette.JS framework' =>
+		'MVC côté client grâce au framework Marionette.JS',
+
 	'Confirmation sent from' => 'Confirmation envoyée par',
 
 	'Confirm your password' => 'Confirmer votre mot de passe',
@@ -43,6 +46,12 @@ return array(
 	'Delete my account' => 'Supprimer mon compte',
 
 	'Firstname' => 'Prénom',
+
+	'Full integration of a simple account workflow' =>
+		'Intégration complète d\'un workflow de gestion de compte',
+
+	'Full server side and client side support of internationalization' =>
+		'Support complet de l\'internationalisation (serveur et client)',
 
 	'Goodbye from :title' => 'A bientôt sur :title',
 
@@ -93,9 +102,15 @@ return array(
 
 	'Reset my password' => 'Réinitialiser mon mot de passe',
 
+	'Responsive design based on Bootstrap 3' =>
+		'Responsive design basé sur Bootstrap 3',
+
 	'Save' => 'Enregister',
 
 	'Send' => 'Envoyer',
+
+	'Server side HMVC based on the Kohana framework' =>
+		'HMVC côté serveur grâce au framework Kohana',
 
 	'Settings' => 'Paramètres',
 
@@ -106,6 +121,21 @@ return array(
 	'Sign up for :title' => 'Créer un compte sur :title',
 
 	'Sign Up' => 'Créer un compte',
+
+	'Simple assets service to manage JS/CSS minification' =>
+		'Service d\'assets minimal pour gérer la minification JS/CSS',
+
+	'Simple email service using SwiftMailer' =>
+		'Service de mail minimal utilisant SwiftMailer',
+
+	'Simple queue service to delegate jobs' =>
+		'Service minimal de file de messages pour déléguer les tâches',
+
+	'Simple REST Api which could be extended to your purpose' =>
+		'Service REST minimal pouvant être étendu',
+
+	'Simple token service to give access to REST API' =>
+		'Service de jetons minimal pour protéger les accès aux API',
 
 	'Start' => 'Commencer',
 
@@ -125,7 +155,15 @@ return array(
 
 	'Use API.' => 'Utiliser les API.',
 
+	'Use public CDN and Require.JS to load JS and CSS' =>
+		'Utilise des CDN et Require.JS pour charger JS et CSS',
+
+	'Use the full power of Twig to compose views and templates' =>
+		'Utilise la puissante de Twig pour créer vues et templates',
+
 	'View the project on GitHub' => 'Voir le projet sur GitHub',
+
+	'Want some more details ?' => 'Vous souhaitez plus de détails ?',
 
 	'We are not able to confirm your account.' =>
 		'Votre compte n\'a pas pu être confirmé',

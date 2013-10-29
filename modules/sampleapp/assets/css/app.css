@@ -147,7 +147,7 @@ img.gravatar {
 	font-weight: 200;
 }
 .masthead .features {
-	background: #fff;
+	background: rgba(255,255,255,0.6);;
 	border-bottom: 1px solid #ddd;
 	border-top: 1px solid #ddd;
 	margin-top: 20px;
@@ -167,6 +167,21 @@ img.gravatar {
 	margin-top: 20px;
 	padding: 0;
 	width: 64px;
+}
+.masthead .features-detail {
+	background-color: rgba(50,50,100,0.3);
+	color: #fff;
+	padding: 20px;
+	text-shadow: 0 1px 3px rgba(0,0,0,0.4), 0 0 30px rgba(0,0,0,.075);
+}
+.masthead .features-detail h2 {
+	margin-bottom: 20px;
+	margin-top: 10px;
+}
+.masthead .features-detail ul {
+	font-size: 16px;
+	font-weight: 200;
+	text-align: left;
 }
 .masthead .slogan {
 	color: #fff;
