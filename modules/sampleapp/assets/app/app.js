@@ -58,7 +58,7 @@ define([
 		this.root.show(this.layout);
 
 		// Get request from html
-		var fragment = $('#app').attr('data-fragment');
+		var fragment = $('#appboot').attr('data-fragment');
 
 		// What to load next ?
 		if (fragment && fragment.length > 0)

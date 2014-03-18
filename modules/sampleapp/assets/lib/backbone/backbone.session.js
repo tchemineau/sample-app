@@ -5,14 +5,12 @@
  * Source: https://github.com/makesites/backbone-session
  *
  * Usage:
- *   this.session = new APP.Session();
+ *   this.session = new Backbone.Session();
  */
 
-(function(window) {
+(function(window, _, Backbone) {
 
-var APP = (typeof window.APP == "undefined") ? {} : window.APP;
-
-APP.Session = Backbone.Model.extend({
+var Session = Backbone.Model.extend({
 	url: function(){ return this.options.host + "/session" },
 	defaults : {
 		auth: 0,
@@ -26,7 +24,7 @@ APP.Session = Backbone.Model.extend({
 		host: ""
 	},
 	initialize: function( model, options ){
-		_.bindAll(this);
+		_.bindAll(this, "logout", "cache", "update");
 		// default vars
 		options = options || {};
 		// parse options
@@ -63,6 +61,7 @@ APP.Session = Backbone.Model.extend({
 		// event binders
 		this.bind("change",this.update);
 		this.bind("error", this.error);
+		this.on("logout", this.logout);
 	},
 
 	parse: function( data ) {
@@ -113,13 +112,15 @@ APP.Session = Backbone.Model.extend({
 		//...
 	},
 	// Destroy session - Source: http://backbonetutorials.com/cross-domain-sessions/
-	logout: function() {
+	logout: function( options ) {
 		// Do a DELETE to /session and clear the clientside data
 		var self = this;
+		options = options || {};
 		// delete local version
 		this.store.clear("session");
 		// notify remote
 		this.destroy({
+			wait: true,
 			success: function (model, resp) {
 				model.clear();
 				model.id = null;
@@ -128,13 +129,17 @@ APP.Session = Backbone.Model.extend({
 				// the user can relogin without refreshing the page
 				self.set({auth: false});
 				if( resp && resp._csrf) self.set({_csrf: resp._csrf});
+				// reload the page if needed
+				if( options.reload ){
+					window.location.reload();
+				}
 			}
 		});
 	},
 	// if data request fails request offline mode.
 	error: function( model, req, options, error ){
 		// consider redirecting based on statusCode
-		console.log( model );
+		console.log( req );
 	},
 
 	// Stores
@@ -221,6 +226,15 @@ APP.Session = Backbone.Model.extend({
 	}
 });
 
-	return window.APP = APP;
+	// reference in the Backbone namespace
+	if( _.isUndefined( Backbone.Session) ){
+		Backbone.Session = Session;
+	}
 
-})(window);
+	// reference in the APP namespace
+	if( typeof APP != "undefined" && _.isUndefined( APP.Session) ){
+		APP.Session = Session;
+	}
+
+
+})(window, this._, this.Backbone);

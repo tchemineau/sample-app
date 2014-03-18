@@ -12,11 +12,11 @@
 	require.config({
 		paths: {
 			// CDN
-			'backbone': '//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min',
-			'i18n': '//cdnjs.cloudflare.com/ajax/libs/require-i18n/2.0.1/i18n',
-			'marionette': '//cdnjs.cloudflare.com/ajax/libs/backbone.marionette/1.0.4-bundled/backbone.marionette.min',
+			'backbone': '//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min',
+			'i18n': '//cdnjs.cloudflare.com/ajax/libs/require-i18n/2.0.4/i18n',
+			'marionette': '//cdnjs.cloudflare.com/ajax/libs/backbone.marionette/1.5.1-bundled/backbone.marionette.min',
 			'text': '//cdnjs.cloudflare.com/ajax/libs/require-text/2.0.10/text',
-			'underscore': '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min',
+			'underscore': '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min',
 
 			// Local
 			'backbone.session': '../lib/backbone/backbone.session',

@@ -183,7 +183,7 @@ define([
 		startSession: function ()
 		{
 			// Initialize the session
-			session = new APP.Session(null, {
+			session = new Backbone.Session(null, {
 				persist: true,
 				remote: false
 			});
