@@ -26,10 +26,11 @@
 		{%- endif %}
 	{%- endfor %}
 
-	<script>
+	<script type="text/javascript">
 		var CONFIG = {
 			name: '{{ APP.name }}',
-			url: '{{ APP.url }}'
+			url: '{{ APP.url }}',
+			version: '{{ APP.version }}'
 		};
 	</script>
 

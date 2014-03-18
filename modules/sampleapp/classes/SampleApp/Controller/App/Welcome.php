@@ -25,7 +25,8 @@ class SampleApp_Controller_App_Welcome extends Controller
 			'tracking' => array(
 				'ga' => Kohana::$config->load('app.tracking_ga')
 			),
-			'url' => URL::base()
+			'url' => URL::base(),
+			'version' => $app->version(),
 		);
 
 		// Render application core layout
