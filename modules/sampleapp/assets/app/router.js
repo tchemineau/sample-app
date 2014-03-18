@@ -183,7 +183,10 @@ define([
 		startSession: function ()
 		{
 			// Initialize the session
-			session = new APP.Session(null, {remote: false});
+			session = new APP.Session(null, {
+				persist: true,
+				remote: false
+			});
 
 			// Get the application
 			var app = this.options.app;
