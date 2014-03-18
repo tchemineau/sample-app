@@ -80,6 +80,16 @@ class SampleApp_Service_Application extends Service
 	}
 
 	/**
+	 * Return the version file
+	 *
+	 * @return {string}
+	 */
+	public static function get_version_file ()
+	{
+		return Kohana::$cache_dir.'/version';
+	}
+
+	/**
 	 * Normalize path to include protocol
 	 *
 	 * @param {string} $path
@@ -191,6 +201,26 @@ class SampleApp_Service_Application extends Service
 		self::$_js_script[$key]['async'] = true;
 
 		return $key;
+	}
+
+	/**
+	 * Get application version
+	 */
+	public static function version ()
+	{
+		// This is current timestamp
+		$version = sha1(time());
+
+		// Build the version file
+		$version_file = self::get_version_file();
+
+		// Get or set version
+		if (!is_file($version_file))
+			file_put_contents($version_file, $version);
+		else
+			$version = file_get_contents($version_file);
+
+		return $version;
 	}
 
 } // End SampleApp_Service_Application
