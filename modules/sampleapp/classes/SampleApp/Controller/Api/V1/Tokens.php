@@ -31,6 +31,7 @@ class SampleApp_Controller_Api_V1_Tokens extends Controller_Api_Rest
 				$tokens[] = array(
 					'id' => $token->id(),
 					'date_created' => $token->date_created,
+					'info' => $token->info,
 				);
 			}
 
