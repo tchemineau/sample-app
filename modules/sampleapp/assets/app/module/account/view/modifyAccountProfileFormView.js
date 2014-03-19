@@ -3,19 +3,23 @@ define([
 	'marionette',
 	'marionette.formview',
 	'helper/template',
-	'text!module/account/template/modifyAccountProfilFormView.html'
-], function(Marionette, MarionetteFormView, TemplateHelper, ModifyAccountProfilFormViewTemplate)
-{
-	var accountModified = false;
-
-	var modifyAccountProfilFormView = Marionette.FormView.extend(
+	'text!module/account/template/modifyAccountProfileFormView.html'
+], function(
+	Marionette,
+	MarionetteFormView,
+	TemplateHelper,
+	ModifyAccountProfileFormViewTemplate
+){
+	return Marionette.FormView.extend(
 	{
-		template: ModifyAccountProfilFormViewTemplate,
+		template: ModifyAccountProfileFormViewTemplate,
 
 		templateHelpers: TemplateHelper,
 
 		initialize: function (options)
 		{
+			this.accountModified = false;
+
 			this.listenTo(this.model, 'account:save:success', this.onAccountSave);
 		},
 
@@ -49,7 +53,7 @@ define([
 		{
 			var app = this.options.app;
 
-			accountModified = true;
+			this.accountModified = true;
 
 			app.vent.trigger('account:updated', this.model);
 			app.vent.trigger('notify:success', TemplateHelper.__('Information saved'));
@@ -75,11 +79,9 @@ define([
 			var app = this.options.app;
 
 			return $.extend({}, this.model.toJSON(), {
-				accountModified: accountModified,
+				accountModified: this.accountModified,
 				url: app.url
 			});
 		}
 	});
-
-	return modifyAccountProfilFormView;
 });

@@ -9,21 +9,37 @@
 		<h2 class="appbox-heading"><%= __('My account') %></h2>
 
 		<ul class="nav nav-tabs">
-			<li class="active"><a href="#account-profile-panel" data-toggle="tab"><%= __('Profile') %></a></li>
-			<li><a href="#account-password-panel" data-toggle="tab"><%= __('Password') %></a></li>
-			<li><a href="#account-settings-panel" data-toggle="tab"><%= __('Settings') %></a></li>
+			<li class="active">
+				<a id="modify-account-profile-button" href="#modify-account-profile-panel" data-toggle="tab"><%= __('Profile') %></a>
+			</li>
+
+			<li>
+				<a id="modify-account-password-tab" href="#modify-account-password-panel" data-toggle="tab"><%= __('Password') %></a>
+			</li>
+
+			<li>
+				<a id="modify-account-authorizations-tab" href="#modify-account-authorizations-panel" data-toggle="tab"><%= __('Authorizations') %></a>
+			</li>
+
+			<li>
+				<a id="modify-account-settings-tab" href="#modify-account-settings-panel" data-toggle="tab"><%= __('Settings') %></a>
+			</li>
 		</ul>
 
 		<div class="tab-content appbox-body">
-			<div class="tab-pane active" id="account-profile-panel">
-				<div id="modify-account-profil-container"></div>
+			<div class="tab-pane active" id="modify-account-profile-panel">
+				<div id="modify-account-profile-container"></div>
 			</div>
 
-			<div class="tab-pane" id="account-password-panel">
+			<div class="tab-pane" id="modify-account-password-panel">
 				<div id="modify-account-password-container"></div>
 			</div>
 
-			<div class="tab-pane" id="account-settings-panel">
+			<div class="tab-pane" id="modify-account-authorizations-panel">
+				<div id="modify-account-authorizations-container"></div>
+			</div>
+
+			<div class="tab-pane" id="modify-account-settings-panel">
 				<div id="modify-account-settings-container"></div>
 			</div>
 		</div>
