@@ -26,7 +26,7 @@ class SampleApp_Controller_Api_V1_Tokens extends Controller_Api_Rest
 			$tokens = array();
 
 			// Get tokens
-			foreach ($token_service->get_all($user) as $token)
+			foreach ($token_service->get_all($user, array('type' => 'api')) as $token)
 			{
 				$tokens[] = array(
 					'id' => $token->id(),
