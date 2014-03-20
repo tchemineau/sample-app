@@ -1,7 +1,7 @@
 <script type="text/template" id="tokenItemView">
 
 	<td><%= id %></td>
-	<td><%= date_created %></td>
+	<td><%= moment(date_created, 'X').format('LL') %></td>
 	<td><%= info %></td>
 	<td>
 		<div class="pull-right">
