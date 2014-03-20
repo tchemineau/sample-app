@@ -1,9 +1,14 @@
 define([
 	'require',
 	'marionette',
+	'moment',
 	'i18n!nls/i18n.js'
-], function(lrequire, Marionette, Translate)
-{
+], function (
+	lrequire,
+	Marionette,
+	Moment,
+	Translate
+){
 
 	/**
 	 * strtr() for JavaScript
@@ -19,18 +24,26 @@ define([
 	String.prototype.strtr = function (replacePairs)
 	{
 		"use strict";
+
 		var str = this.toString(), key, re;
-		for (key in replacePairs) {
-			if (replacePairs.hasOwnProperty(key)) {
+
+		for (key in replacePairs)
+		{
+			if (replacePairs.hasOwnProperty(key))
+			{
 				re = new RegExp(key, "g");
 				str = str.replace(re, replacePairs[key]);
 			}
 		}
+
 		return str;
 	};
 
-	var helper = {
+	return {
 
+		/**
+		 * Function to translate string
+		 */
 		__: function (string, values)
 		{
 			// Find the translation string
@@ -42,11 +55,11 @@ define([
 				string = string.strtr(values);
 
 			return string;
-		}
+		},
 
+		/**
+		 * Object to manipulate dates
+		 */
+		moment: Moment
 	};
-
-	return helper;
-
 });
-

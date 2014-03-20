@@ -15,6 +15,7 @@
 			'backbone': '//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min',
 			'i18n': '//cdnjs.cloudflare.com/ajax/libs/require-i18n/2.0.4/i18n',
 			'marionette': '//cdnjs.cloudflare.com/ajax/libs/backbone.marionette/1.5.1-bundled/backbone.marionette.min',
+			'moment': '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min',
 			'text': '//cdnjs.cloudflare.com/ajax/libs/require-text/2.0.10/text',
 			'underscore': '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min',
 
@@ -68,6 +69,7 @@
 	require(['app'], function (App)
 	{
 		App.start({
+			lang: CONFIG.lang,
 			title: CONFIG.name,
 			url: CONFIG.url
 		});

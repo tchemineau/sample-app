@@ -2,11 +2,18 @@ define([
 	'marionette',
 	'router',
 	'view/appLayout'
-], function (Marionette, appRouter, appLayout)
-{
+], function (
+	Marionette,
+	AppRouter,
+	AppLayout
+){
 	"use strict";
 
+	// Create the application
 	var app = new Marionette.Application();
+
+	// This will store the language of the application
+	app.lang = 'en';
 
 	// This will store the application title
 	app.title = 'Sample-App';
@@ -35,6 +42,9 @@ define([
 		// Add this app to default options for all objects
 		options.app = app;
 
+		// Store the language
+		app.lang = options.lang;
+
 		// Store the title
 		app.title = options.title;
 
@@ -42,10 +52,10 @@ define([
 		app.url = options.url;
 
 		// Initialize the layout
-		this.layout = new appLayout(options);
+		this.layout = new AppLayout(options);
 
 		// Initialize the main router
-		this.router = new appRouter(options);
+		this.router = new AppRouter(options);
 	});
 
 	// Get session and launch page
