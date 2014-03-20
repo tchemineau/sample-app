@@ -1,4 +1,3 @@
-
 define([
 	'marionette',
 	'helper/template',
@@ -17,10 +16,25 @@ define([
 		templateHelpers: TemplateHelper,
 
 		/**
+		 * Events
+		 */
+		events: {
+			'click #authorization-add-modal-ok': '_onCreateToken',
+		},
+
+		/**
 		 * Regions
 		 */
 		regions: {
-			'tokens': '#tokens-list',
+			'tokens': '#tokens',
+		},
+
+		/**
+		 * UI elements
+		 */
+		ui: {
+			addTokenModal: '#authorization-add-modal',
+			tokenInfo: '#authorization-info'
 		},
 
 		initialize: function (options)
@@ -35,7 +49,20 @@ define([
 		onDomRefresh: function ()
 		{
 			this.tokens.show(this.tokenCollectionView);
+		},
+
+		_onCreateToken: function (evt)
+		{
+			// Cancel click
+			evt.preventDefault();
+
+			// Create the token
+			this.tokenCollectionView.createToken({
+				info: this.ui.tokenInfo.val()
+			});
+
+			// Hide the modal
+			this.ui.addTokenModal.modal('hide');
 		}
 	});
 });
-

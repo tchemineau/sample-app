@@ -2,16 +2,20 @@ define([
 	'marionette',
 	'helper/template',
 	'module/account/collection/tokenCollection',
+	'module/account/model/tokenModel',
 	'module/account/view/tokenItemView',
-	'module/account/view/emptyTokenCollectionView'
+	'module/account/view/emptyTokenCollectionView',
+	'text!module/account/template/tokenCollectionView.html'
 ], function(
 	Marionette,
 	TemplateHelper,
 	TokenCollection,
+	TokenModel,
 	TokenItemView,
-	EmptyTokenCollectionView
+	EmptyTokenCollectionView,
+	TokenCollectionViewTemplate
 ){
-	return Marionette.CollectionView.extend(
+	return Marionette.CompositeView.extend(
 	{
 		/**
 		 * The empty view
@@ -24,6 +28,18 @@ define([
 		itemView: TokenItemView,
 
 		/**
+		 * Where to add item view
+		 */
+		itemViewContainer: '#tokens-list',
+
+		/**
+		 * The template of the view
+		 */
+		template: TokenCollectionViewTemplate,
+
+		templateHelpers: TemplateHelper,
+
+		/**
 		 * Create an empty tokens list when initialize this view
 		 */
 		initialize: function (options)
@@ -33,6 +49,16 @@ define([
 
 			// Create the collection object
 			this.collection = new TokenCollection([], this.options);
+		},
+
+		/**
+		 * Create a new token
+		 */
+		createToken: function (data)
+		{
+			this.collection.create(data, {
+				wait: true
+			});
 		},
 
 		/**

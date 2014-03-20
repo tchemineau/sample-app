@@ -6,8 +6,33 @@
 			<%= __('Here are the list of all access you authorized.') %>
 		</p>
 
-		<div id="tokens-list"></div>
+		<div id="tokens"></div>
 
+		<div class="appbox-action appbox-action-primary">
+			<a id="authorization-add-btn" class="btn btn-primary btn-lg" data-toggle="modal" href="#authorization-add-modal"><%= __('Add a new access') %></a>
+		</div>
+
+	</div>
+
+	<div id="authorization-add-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="authorization-add-modal-title" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 id="authorization-add-modal-title" class="modal-title"><%= __('Add a new access') %></h4>
+				</div>
+				<div class="modal-body">
+					<div id="authorization-info-control" class="form-group">
+						<label for="authorization-info"><%= __('Give some information about your new access') %></label>
+						<input class="form-control" id="authorization-info" type="text"
+							name="info" placeholder="<%= __('My new API access') %>…" data-field="info" />
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button id="authorization-add-modal-ok" class="btn btn-primary"><%= __('Add') %></button>
+				</div>
+			</div>
+		</div>
 	</div>
 
 </script>
