@@ -14,10 +14,14 @@ class SampleApp_Controller_App_Welcome extends Controller
 		// Get the application service
 		$app = Service::factory('Application');
 
+		// Get the i18n service
+		$i18n = Service::factory('I18n');
+
 		// Build configuration
 		$app = array(
 			'name' => Kohana::$config->load('app.name'),
 			'fragment' => $this->request->param('fragment'),
+			'lang' => $i18n->get_language(),
 			'script' => array(
 				'css' => $app->get_css_script(),
 				'js' => $app->get_js_script()
