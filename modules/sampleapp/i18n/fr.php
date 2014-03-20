@@ -13,11 +13,17 @@ return array(
 
 	':title is licensed under MIT License' => ':title est couvert par la licence MIT',
 
+	'Add' => 'Ajouter',
+
+	'Add a new access' => 'Ajouter un accès',
+
 	'An unexpected error occurs, we are investigating on it.' =>
 		'Une erreur inconnue est survenue, nous allons la résoudre.',
 
 	'Are you sure you want to delete your account ?' =>
 		'Êtes vous sur de vouloir supprimer votre compte ?',
+
+	'Authorizations' => 'Autorisations',
 
 	'Build faster.' => 'Développer vite.',
 
@@ -53,9 +59,15 @@ return array(
 	'Full server side and client side support of internationalization' =>
 		'Support complet de l\'internationalisation (serveur et client)',
 
+	'Give some information about your new access' =>
+		'Donnez quelques informations à propos de cet accès',
+
 	'Goodbye from :title' => 'A bientôt sur :title',
 
 	'Gravatar email' => 'E-mail Gravatar',
+
+	'Here are the list of all access you authorized.' =>
+		'Voici la liste de tous les accès que vous avez autorisés.',
 
 	'Hey' => 'Bonjour',
 
@@ -81,6 +93,10 @@ return array(
 	'Lastname' => 'Nom',
 
 	'My account' => 'Mon compte',
+
+	'My new API access' => 'Mon nouvel accès',
+
+	'No access found' => 'Aucun accès trouvé',
 
 	'or' => 'ou',
 
