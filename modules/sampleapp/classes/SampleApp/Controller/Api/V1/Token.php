@@ -62,5 +62,50 @@ class SampleApp_Controller_Api_V1_Token extends Controller_Api_Rest
 		}
 	}
 
+	/**
+	 * Delete a token
+	 */
+	public function action_delete ()
+	{
+		// Get account id
+		$id = $this->request->param('id');
+
+		// Get the token service
+		$token_service = Service::factory('Token');
+
+		// Get the api service
+		$api_service = Service::factory('Api');
+
+		try
+		{
+			// Get current logged in user account
+			$user = $api_service->get_account();
+
+			// Get the token
+			$token = $token_service->get($id);
+
+			// Remove it
+			$token_service->remove($token);
+
+			// Return appropriate HTTP code
+			$this->response($api_service->build_response_succeed(
+				'Token deleted'
+			), 200);
+		}
+		catch (Service_Exception_NotFound $e)
+		{
+			$this->response($api_service->build_response_failed($e->getMEssage()), 404);
+		}
+		catch (Service_Exception_PermissionDenied $e)
+		{
+			$this->response($api_service->build_response_failed($e->getMEssage()), 403);
+		}
+		catch (Exception $e)
+		{
+			Kohana_Exception::log($e, Log::ERROR);
+			$this->response($api_service->build_response_failed($e->getMessage()), 400);
+		}
+	}
+
 } // End SampleApp_Controller_Api_V1_Token
 

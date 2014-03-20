@@ -9,10 +9,23 @@ define([
 ){
 	return Marionette.ItemView.extend(
 	{
+		events: {
+			'click .authorization-delete-btn': '_onDelete',
+		},
+
 		tagName: 'tr',
 
 		template: TokenItemViewTemplate,
 
 		templateHelpers: TemplateHelper,
+
+		_onDelete: function (evt)
+		{
+			// Cancel click
+			evt.preventDefault();
+
+			// Remove this token
+			this.model.destroy();
+		}
 	});
 });

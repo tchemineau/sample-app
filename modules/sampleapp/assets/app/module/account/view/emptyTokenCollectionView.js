@@ -9,6 +9,8 @@ define([
 ){
 	return Marionette.ItemView.extend(
 	{
+		tagName: 'tr',
+
 		template: EmptyTokenCollectionViewTemplate,
 
 		templateHelpers: TemplateHelper,
