@@ -55,6 +55,7 @@ $config = array(
 	// Token expiration time (in seconds)
 	'token_timeout' => array(
 		'default' => 86400, // This is default token type, 1 day
+		'api' => null,      // This is api token, permanent
 		'auth' => 604800,   // This is the lifetime of an auth token, 1 week
 		'mail' => 10800,    // This is token sent by mail, 3 hours
 	),
