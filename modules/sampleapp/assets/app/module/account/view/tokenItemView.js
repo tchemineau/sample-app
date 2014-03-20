@@ -21,11 +21,19 @@ define([
 
 		_onDelete: function (evt)
 		{
+			// Get the application
+			var app = this.options.app;
+
 			// Cancel click
 			evt.preventDefault();
 
 			// Remove this token
-			this.model.destroy();
+			this.model.destroy({
+				success: function()
+				{
+					app.vent.trigger('notify:success', TemplateHelper.__('Information saved'));
+				}
+			})
 		}
 	});
 });

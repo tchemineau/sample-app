@@ -33,6 +33,14 @@ define([
 		itemViewContainer: '#tokens-list',
 
 		/**
+		 * Options pass to item view
+		 */
+		itemViewOptions: function (model, index)
+		{
+			return this.options;
+		},
+
+		/**
 		 * The template of the view
 		 */
 		template: TokenCollectionViewTemplate,
@@ -56,7 +64,15 @@ define([
 		 */
 		createToken: function (data)
 		{
+			// Get the application
+			var app = this.options.app;
+
+			// Create the token
 			this.collection.create(data, {
+				success: function()
+				{
+					app.vent.trigger('notify:success', TemplateHelper.__('Information saved'));
+				},
 				wait: true
 			});
 		},
