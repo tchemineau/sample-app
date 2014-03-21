@@ -62,10 +62,18 @@ class SampleApp_Service_Api extends Service
 	 *
 	 * @param {Model_Mongo} $to
 	 * @param {Model_Mongo} $by
+	 * @param {string} $to_id_name
+	 * @param {string} $by_id_name
 	 */
-	public static function check_access ( $to, $by )
+	public static function check_access ( $to, $by, $to_id_name = 'id', $by_id_name = 'id' )
 	{
-		if ($to->id() != $by->id())
+		// This will store destination identifier
+		$to_id = $to_id_name === 'id' ? $to->id() : $to->$to_id_name;
+
+		// This will store source identifier
+		$by_id = $by_id_name === 'id' ? $by->id() : $by->$by_id_name;
+
+		if ($to_id != $by_id)
 			throw Service_Exception::factory('PermissionDenied', 'Permission denied')->data(array(
 				'to' => $to, 'by' => $by));
 	}
