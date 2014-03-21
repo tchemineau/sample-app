@@ -1,8 +1,8 @@
 <script id="confirmAccountTemplate" type="text/template">
 
 	<div class="container">
-                <div class="row">
-                        <div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
 
 	<% if (checked) { %>
 
@@ -14,6 +14,10 @@
 
 				<div class="alert alert-success">
 					<%= __('You are now able to start using :title', {':title': title}) %>.
+				</div>
+
+				<div class="appbox-action appbox-action-secondary">
+					<a href="<%= url %>account"><%= __('My account') %></a><br/>
 				</div>
 
 				<div class="appbox-action appbox-action-primary">
