@@ -78,6 +78,23 @@ define([
 		},
 
 		/**
+		 * Delete a given token item view
+		 */
+		deleteToken: function (tokenItemView)
+		{
+			// Get the application
+			var app = this.options.app;
+
+			// Delete the token
+			tokenItemView.model.destroy({
+				success: function()
+				{
+					app.vent.trigger('notify:success', TemplateHelper.__('Information saved'));
+				}
+			});
+		},
+
+		/**
 		 * Fetch collection each time the view is refreshed
 		 */
 		onDomRefresh: function ()

@@ -20,6 +20,9 @@ return array(
 	'An unexpected error occurs, we are investigating on it.' =>
 		'Une erreur inconnue est survenue, nous allons la résoudre.',
 
+	'Are you sure you want to delete this access ?' =>
+		'Êtes vous sur de vouloir supprimer cet accès ?',
+
 	'Are you sure you want to delete your account ?' =>
 		'Êtes vous sur de vouloir supprimer votre compte ?',
 
@@ -46,6 +49,8 @@ return array(
 	'Confirm your password' => 'Confirmer votre mot de passe',
 
 	'Create an account' => 'Créer un compte',
+
+	'Delete access confirmation' => 'Confirmation de suppression d\'accès',
 
 	'Delete account confirmation' => 'Confirmation de suppression de compte',
 
@@ -160,6 +165,9 @@ return array(
 
 	'The :title team' => 'L\'équipe :title',
 
+	'This action cannot be undone. This will delete this access permanently.' =>
+		'Cette action ne peut pas être annulée. Cet accès sera définitivement supprimé.',
+
 	'This action cannot be undone. This will delete your account permanently.' =>
 		'Cette action ne peut pas être annulée. Votre compte sera définitivement supprimé.',
 
@@ -187,6 +195,9 @@ return array(
 	'Welcome on board!' => 'Bienvenue à bord !',
 
 	'Welcome on :title' => 'Bienvenue sur :title',
+
+	'Yes, I want to delete this access now' =>
+		'Oui, je veux supprimer cet accès maintenant',
 
 	'Yes, I want to delete my account now' =>
 		'Oui, je veux supprimer mon compte maintenant',

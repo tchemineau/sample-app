@@ -19,6 +19,10 @@ define([
 
 		templateHelpers: TemplateHelper,
 
+		ui: {
+			deleteTokenModal: '#authorization-delete-modal'
+		},
+
 		_onDelete: function (evt)
 		{
 			// Get the application
@@ -27,13 +31,8 @@ define([
 			// Cancel click
 			evt.preventDefault();
 
-			// Remove this token
-			this.model.destroy({
-				success: function()
-				{
-					app.vent.trigger('notify:success', TemplateHelper.__('Information saved'));
-				}
-			})
+			// Send a event to delete this token item view (and the token)
+			app.vent.trigger('token:delete', this, this.model);
 		}
 	});
 });
