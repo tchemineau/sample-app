@@ -4,16 +4,16 @@ define([
 	'helper/template',
 	'module/account/view/forgotPasswordFormView',
 	'module/account/view/modifyAccountAuthorizationsLayout',
+	'module/account/view/modifyAccountOtherSettingsView',
 	'module/account/view/modifyAccountProfileFormView',
-	'module/account/view/modifyAccountSettingsView',
 	'text!module/account/template/modifyAccountLayout.html'
 ], function(
 	Marionette,
 	TemplateHelper,
 	ForgotPasswordFormView,
 	ModifyAccountAuthorizationsLayout,
+	ModifyAccountOtherSettingsView,
 	ModifyAccountProfileFormView,
-	ModifyAccountSettingsView,
 	ModifyAccountLayoutTemplate
 ){
 	return Marionette.Layout.extend(
@@ -26,7 +26,7 @@ define([
 			'click #modify-account-authorizations-tab': '_onDisplayAuthorizations',
 			'click #modify-account-password-tab': '_onDisplayPassword',
 			'click #modify-account-profile-tab': '_onDisplayProfile',
-			'click #modify-account-settings-tab': '_onDisplaySettings'
+			'click #modify-account-settings-tab': '_onDisplayOtherSettings'
 		},
 
 		regions: {
@@ -56,9 +56,9 @@ define([
 			this.profile.show(new ModifyAccountProfileFormView(this.options));
 		},
 
-		_onDisplaySettings: function()
+		_onDisplayOtherSettings: function()
 		{
-			this.settings.show(new ModifyAccountSettingsView(this.options));
+			this.settings.show(new ModifyAccountOtherSettingsView(this.options));
 		}
 	});
 });

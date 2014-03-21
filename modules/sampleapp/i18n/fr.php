@@ -105,6 +105,8 @@ return array(
 
 	'or' => 'ou',
 
+	'Other settings' => 'Autre paramètres',
+
 	'Oups' => 'Aie',
 
 	'Password' => 'Mot de passe',
@@ -132,8 +134,6 @@ return array(
 
 	'Server side HMVC based on the Kohana framework' =>
 		'HMVC côté serveur grâce au framework Kohana',
-
-	'Settings' => 'Paramètres',
 
 	'Sign In' => 'Se connecter',
 
