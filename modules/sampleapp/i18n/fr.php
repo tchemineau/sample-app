@@ -105,7 +105,7 @@ return array(
 
 	'or' => 'ou',
 
-	'Other settings' => 'Autre paramètres',
+	'Other settings' => 'Autres paramètres',
 
 	'Oups' => 'Aie',
 
