@@ -84,6 +84,9 @@ class SampleApp_Controller_Api_V1_Token extends Controller_Api_Rest
 			// Get the token
 			$token = $token_service->get($id);
 
+			// Check permissions
+			$api_service->check_access($token, $user, 'target_id');
+
 			// Remove it
 			$token_service->remove($token);
 
